@@ -12,4 +12,5 @@ static const cardYellow=Color(0xffF79E1B);
 static const cardred=Color(0xffEB001B);
 static const cardblack=Color(0xffFFFFFF0D);
 static const cardgrey=Color(0xff999999);
+static const shadow=Color(0xff8A959E);
 }
