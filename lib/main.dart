@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
+var h;
+var w;
 void main(){
   runApp(MyApp());
 }
@@ -14,6 +15,8 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
+    h=MediaQuery.of(context).size.height;
+    w=MediaQuery.of(context).size.width;
     return GestureDetector(
       onTap:  () {
         FocusManager.instance.primaryFocus?.unfocus();
