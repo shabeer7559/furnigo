@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:furnigo/features/constants/icon_const.dart';
 
 class home extends StatefulWidget {
   const home({super.key});
@@ -13,7 +14,7 @@ class _homeState extends State<home> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        ,
+        leading: Image.asset(IconConst.searchIcon),
       ),
     );
   }
