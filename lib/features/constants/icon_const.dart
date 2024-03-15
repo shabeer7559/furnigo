@@ -3,4 +3,8 @@ class IconConst{
   static const searchIcon="assets/icon/searchIcon.svg";
   static const cartIcon="assets/icon/cartIcon.svg";
   static const sofaIcon="assets/icon/sofa.png";
+  static const tabeIcon="assets/icon/table.svg";
+  static const starIcon="assets/icon/star.svg";
+  static const chairIcon="assets/icon/chair.svg";
+  static const bedIcon="assets/icon/bed.svg";
 }
