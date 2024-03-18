@@ -9,4 +9,7 @@ class IconConst{
   static const chairIcon="assets/icon/chair.svg";
   static const bedIcon="assets/icon/bed.svg";
   static const bookingIcon="assets/icon/bookingIcon.svg";
+  static const savedIcon="assets/icon/savedIcon.svg";
+  static const notifIcon="assets/icon/bellIcon.svg";
+  static const profileIcon="assets/icon/personIcon.svg";
 }

@@ -19,7 +19,7 @@ class home extends StatefulWidget {
 }
 
 class _homeState extends State<home> {
-
+  int selectedIndex=0;
   List<Map<String,dynamic>>suggessions=[
     { "icon":IconConst.starIcon,
       "text":"Popular"
@@ -89,67 +89,103 @@ class _homeState extends State<home> {
           )
         ],
       ),
-      body: Column(
-        children: [
-          Container(
-            width: w*1,
-            height:h*0.15,
-            color: Colors.grey,
-            child: ListView.separated(
-              scrollDirection: Axis.horizontal,
-              physics: BouncingScrollPhysics(),
-              shrinkWrap: true,
-              itemBuilder: (BuildContext context, int index) {
-                return Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Container(
-                      width: w*0.2,
-                      height: w*0.2,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(w*0.03),
-                          color: ColorConst.containerGrey
+      body: Padding(
+        padding:  EdgeInsets.all(8.0),
+        child: Column(
+          children: [
+            Container(
+              width: w*1,
+              height:h*0.15,
+              child: ListView.separated(
+                scrollDirection: Axis.horizontal,
+                physics: BouncingScrollPhysics(),
+                shrinkWrap: true,
+                itemBuilder: (BuildContext context, int index) {
+                  return Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      InkWell(
+                        onTap: () {
+                          selectedIndex=index;
+                          setState(() {
+
+                          });
+                        },
+                        child: Container(
+                          width: w*0.2,
+                          height: w*0.2,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(w*0.03),
+                              color:selectedIndex==index?ColorConst.primaryColor: ColorConst.containerGrey
+                          ),
+                          child: Padding(
+                            padding:  EdgeInsets.all(w*0.05),
+                            child: SvgPicture.asset(suggessions[index]["icon"]),
+                          ),
+                        ),
                       ),
-                      child: Padding(
-                        padding:  EdgeInsets.all(w*0.05),
-                        child: SvgPicture.asset(suggessions[index]["icon"]),
-                      ),
+                      Text(suggessions[index]["text"])
+                    ],
+                  );
+                },
+                separatorBuilder: (BuildContext context, int index) {
+                  return SizedBox(width: w*0.03,);
+                },
+                itemCount: suggessions.length,
+              ),
+            ),
+            Expanded(
+              child: GridView.builder(
+                physics: BouncingScrollPhysics(),
+                itemCount: items.length,
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisSpacing: w * 0.03,
+                    mainAxisSpacing: w* 0.03,
+                    childAspectRatio: 0.7,
+                    crossAxisCount: 2),
+                itemBuilder: (BuildContext context, int index) {
+                  return Container(
+                    width: w*0.5,
+                    child: Column(
+                      crossAxisAlignment:CrossAxisAlignment.start ,
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Stack(
+                          children: [
+                            Container(
+                            height: h*0.28,
+                            width: w*0.45,
+                            decoration:BoxDecoration(
+                                borderRadius: BorderRadius.circular(w*0.03),
+                                image: DecorationImage(image: AssetImage(items[index]["products"]),fit: BoxFit.fill)
+
+                            ) ,
+                          ),
+                            Positioned(
+                              left: w*0.34,
+                                top: w*0.45,
+                                child: SvgPicture.asset(IconConst.bookingIcon))
+                          ]
+                        ),
+                        Text(items[index]["name"],style: TextStyle(
+                            fontWeight: FontWeight.w500,
+                          color: ColorConst.grey
+                        ),),
+                        Text(items[index]["price"],
+                        style: TextStyle(
+                          fontWeight: FontWeight.w700,
+
+                        ),)
+                      ],
                     ),
-                    Text(suggessions[index]["text"])
-                  ],
-                );
-              },
-              separatorBuilder: (BuildContext context, int index) {
-                return SizedBox(width: w*0.03,);
-              },
-              itemCount: suggessions.length,
-            ),
-          ),
-          Container(
-            height: h*0.45,
-            width: w*0.5,
-            color: Colors.red,
-            child: Column(
-               crossAxisAlignment:CrossAxisAlignment.start ,
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Container(
-                  height: h*0.35,
-                  width: w*0.5,
-                  decoration:BoxDecoration(
-                    borderRadius: BorderRadius.circular(w*0.03),
-                    image: DecorationImage(image: AssetImage(ImageConst.lamp))
-                    
-                  ) ,
-                ),
-                Text("Lamp"),
-                Text("22")
-              ],
-            ),
+                  );
+                },
+              ),
             ),
 
 
-        ],
+          ],
+        ),
       ),
     );
   }
