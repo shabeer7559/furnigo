@@ -4,6 +4,7 @@ class ImageConst{
   static const minimalStand="assets/image/minimalStand.png";
   static const simpleDesk="assets/image/simpleDesk.png";
   static const coffieChair="assets/image/coffieChair.png";
+  static const coffieTable="assets/image/coffieTable.png";
 
 
   static const person="assets/image/person";
