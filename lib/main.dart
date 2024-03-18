@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:furnigo/features/profile/screen/profile_page.dart';
-import 'package:furnigo/features/profile/screen/settings.dart';
+import 'package:furnigo/features/splash/screen/splash_screen.dart';
+import 'package:google_fonts/google_fonts.dart';
 var h;
 var w;
 void main(){
@@ -24,8 +24,11 @@ class _MyAppState extends State<MyApp> {
         FocusManager.instance.primaryFocus?.unfocus();
       },
       child: MaterialApp(
-        home: settings(),
+        theme: ThemeData(
+        textTheme: GoogleFonts.nunitoSansTextTheme()
+        ),
         debugShowCheckedModeBanner: false,
+        home: SplashScreen(),
       ),
     );
   }
