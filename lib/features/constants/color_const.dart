@@ -6,8 +6,6 @@ static const whit=Color(0xffFFFFFF);
 static const tile=Color(0xffFFFFFF);
 static const liteGrey=Color(0xff8A959E33);
 static const darkgrey=Color(0xff909191);
-
-static const primaryColor=Color(0xff242424);
 static const secondaryColor=Color(0xffFFFFFF);
 static const grey=Color(0xff909090);
 static const green=Color(0xff27AE60);
