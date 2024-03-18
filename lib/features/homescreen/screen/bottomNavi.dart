@@ -6,6 +6,7 @@ import 'package:furnigo/features/constants/icon_const.dart';
 import 'package:furnigo/features/homescreen/screen/favorite.dart';
 import 'package:furnigo/features/homescreen/screen/home_page.dart';
 import 'package:furnigo/features/homescreen/screen/notification.dart';
+import 'package:furnigo/features/profile/screen/profile_page.dart';
 
 class bottomNavi extends StatefulWidget {
   const bottomNavi({super.key});
@@ -20,8 +21,7 @@ List pages=[
   home(),
   favorite(),
   notification(),
-
-
+  profile_page()
 ];
   @override
   Widget build(BuildContext context) {

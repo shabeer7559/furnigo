@@ -1,7 +1,7 @@
 import 'dart:ui';
 
 class ColorConst{
-static const primaryColor=Color(242424);
+static const primaryColor=Color(0xff242424);
 static const whit=Color(0xffFFFFFF);
 static const tile=Color(0xffFFFFFF);
 static const liteGrey=Color(0xff8A959E33);
