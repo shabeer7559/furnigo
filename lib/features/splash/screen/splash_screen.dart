@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:furnigo/features/authentication/screen/login_page.dart';
 import 'package:furnigo/features/constants/color_const.dart';
 import 'package:furnigo/features/constants/icon_const.dart';
 import 'package:furnigo/features/constants/image_const.dart';
@@ -71,20 +72,25 @@ class _SplashScreenState extends State<SplashScreen> {
            Positioned(
              top: h*0.75,
              left: w*0.25,
-             child: Container(
-               height: h*0.06,
-               width: w*0.5,
-               decoration: BoxDecoration(
-                   color: ColorConst.primaryColor,
-                   borderRadius: BorderRadius.circular(w*0.02)
-               ),
-               child: Center(
-                 child: Text("Get Started",
-                   style: GoogleFonts.gelasio(
-                       color: ColorConst.secondaryColor,
-                       fontWeight: FontWeight.w600,
-                       fontSize: w*0.06
-                   ),),
+             child: InkWell(
+               onTap: () {
+                 Navigator.push(context, MaterialPageRoute(builder: (context) => LoginPage(),));
+               },
+               child: Container(
+                 height: h*0.06,
+                 width: w*0.5,
+                 decoration: BoxDecoration(
+                     color: ColorConst.primaryColor,
+                     borderRadius: BorderRadius.circular(w*0.02)
+                 ),
+                 child: Center(
+                   child: Text("Get Started",
+                     style: GoogleFonts.gelasio(
+                         color: ColorConst.secondaryColor,
+                         fontWeight: FontWeight.w600,
+                         fontSize: w*0.06
+                     ),),
+                 ),
                ),
              ),
            )
