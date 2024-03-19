@@ -133,6 +133,13 @@ class _SignUpState extends State<SignUp> {
                         height: h*0.06,
                         width: w*0.7,
                         decoration: BoxDecoration(
+                            boxShadow: [
+                              BoxShadow(
+                                  offset: Offset(0, 10),
+                                  blurRadius: w*0.1,
+                                  color: ColorConst.shadow
+                              )
+                            ],
                             color: ColorConst.primaryColor,
                             borderRadius: BorderRadius.circular(w*0.02)
                         ),

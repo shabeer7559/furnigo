@@ -17,4 +17,5 @@ class IconConst{
   static const savedIcon="assets/icon/savedIcon.svg";
   static const notifIcon="assets/icon/bellIcon.svg";
   static const profileIcon="assets/icon/personIcon.svg";
+  static const yellowStar="assets/icon/yellowStar.svg";
 }
