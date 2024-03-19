@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:furnigo/features/authentication/screen/login_page.dart';
 import 'package:furnigo/features/authentication/screen/signup_page.dart';
 import 'package:furnigo/features/homescreen/screen/bottomNavi.dart';
+import 'package:furnigo/features/homescreen/screen/check_in.dart';
 import 'package:furnigo/features/homescreen/screen/cart.dart';
 import 'package:furnigo/features/homescreen/screen/home_page.dart';
 import 'package:furnigo/features/homescreen/screen/product_details.dart';
@@ -35,7 +36,7 @@ class _MyAppState extends State<MyApp> {
         textTheme: GoogleFonts.nunitoSansTextTheme()
         ),
         debugShowCheckedModeBanner: false,
-        home: MyCart(),
+        home: checkOut(),
       ),
     );
   }

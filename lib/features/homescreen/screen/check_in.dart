@@ -1,0 +1,110 @@
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:furnigo/features/constants/color_const.dart';
+import 'package:google_fonts/google_fonts.dart';
+
+import '../../../main.dart';
+import '../../constants/icon_const.dart';
+
+class checkOut extends StatefulWidget {
+  const checkOut({super.key});
+
+  @override
+  State<checkOut> createState() => _checkOutState();
+}
+
+class _checkOutState extends State<checkOut> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar:  AppBar(
+        leading: Padding(
+          padding:  EdgeInsets.all(w*0.05),
+          child: SvgPicture.asset(IconConst.arrowback),
+        ),
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text("Check out",style: GoogleFonts.gelasio(),),
+          ],
+        ),
+      ),
+      body: Column(
+        children: [Padding(
+          padding:  EdgeInsets.all(w*0.05),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text("Shipping Address",style: TextStyle(
+                color: ColorConst.grey,
+                fontSize: w*0.05
+              ),),
+              SvgPicture.asset(IconConst.editIcon,color: ColorConst.primaryColor,)
+            ],
+          ),
+        ),
+          Container(
+            height: h*0.2,
+            width: w*0.9,
+            decoration: BoxDecoration(
+              color: ColorConst.secondaryColor,
+              boxShadow:[
+                BoxShadow(
+                    color:Colors.grey.shade200,
+                    blurRadius: 5,
+                    spreadRadius: 5,
+                    offset: Offset(0, 6)
+                )]),
+            child: Padding(
+              padding:  EdgeInsets.all(w*0.05),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text("Bruno Fernandes",style: TextStyle(
+                    fontWeight: FontWeight.w700,
+                    fontSize: w*0.06
+                  ),),
+                  Divider(
+                    color:Colors.grey.shade100,
+                    height: w*0.1,
+                  ),
+                  Text("25 rue Robert Latouche, Nice, 06200, Côte D’azur, France",
+                  style: TextStyle(
+                    fontSize: w*0.05,
+                    color: ColorConst.grey
+                  ),)
+                ],
+              ),
+            ),
+          ),
+          Padding(
+            padding:  EdgeInsets.all(w*0.05),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text("Payment",style: TextStyle(
+                    color: ColorConst.grey,
+                    fontSize: w*0.05
+                ),),
+                SvgPicture.asset(IconConst.editIcon,color: ColorConst.primaryColor,)
+              ],
+            ),
+          ),
+          Container(
+            height: h*0.09,
+            width: w*0.9,
+            decoration: BoxDecoration(
+              color: ColorConst.secondaryColor,
+              boxShadow: [
+                BoxShadow(
+                    color:Colors.grey.shade200,
+                    blurRadius: 5,
+                    spreadRadius: 5,
+                    offset: Offset(0, 6)
+                )]),
+          )        ],
+      ),
+    );
+  }
+}

@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:furnigo/features/constants/color_const.dart';
 import 'package:furnigo/features/constants/icon_const.dart';
 import 'package:furnigo/features/constants/image_const.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -15,6 +17,30 @@ class favorite extends StatefulWidget {
 }
 
 class _favoriteState extends State<favorite> {
+  List fav=[
+    {"image":ImageConst.coffieTable,
+      "name":"Coffie Table",
+      "amnt":"\$50.00"
+
+  },
+    {"image":ImageConst.coffieChair,
+      "name":"Coffie Chair",
+      "amnt":"\$20.00"
+
+  },
+    {"image":ImageConst.minimalStand,
+      "name":"Minimal Stand",
+      "amnt":"\$25.00"
+  },
+    {"image":ImageConst.simpleDesk,
+      "name":"Minimal Desk",
+      "amnt":"\$50.00"
+  },
+    {"image":ImageConst.lamp,
+      "name":"Minimal Lamp",
+      "amnt":"\$12.00"
+  },
+  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,28 +64,72 @@ class _favoriteState extends State<favorite> {
       ),
       body: Column(
         children: [
-          Container(
-            margin: EdgeInsets.all(w*0.04),
-            width: w*1,
-            height: h*0.18,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(w*0.03),
-            ),
-            child: Row(
-              children: [
-                Container(
-                  height: h*0.3,
-                  width: w*0.3,
+          Expanded(
+            child: ListView.separated(
+              physics: BouncingScrollPhysics(),
+              scrollDirection: Axis.vertical,
+              shrinkWrap: true,
+            
+              itemBuilder: (BuildContext context, int index) {
+                return Container(
+                  margin: EdgeInsets.all(w*0.04),
+                  width: w*1,
+                  height: h*0.18,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(w*0.03),
-                    color: Colors.deepOrange
-
                   ),
-                )
-              ],
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Container(
+                        height: h*0.3,
+                        width: w*0.35,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(w*0.03),
+                            image: DecorationImage(image: AssetImage(fav[index]["image"]),fit: BoxFit.cover)
+            
+                        ),
+                      ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(fav[index]["name"]),
+                          Text(fav[index]["amnt"],style: TextStyle(fontWeight: FontWeight.w700,
+                              fontSize: w*0.05),),
+                        ],),
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          SvgPicture.asset(IconConst.closeIcon),
+                          SvgPicture.asset(IconConst.bookingIcon),
+                        ],
+                      )
+                    ],
+                  ),
+                );
+              },
+              separatorBuilder: (BuildContext context, int index) {
+                return SizedBox();
+              },
+              itemCount: fav.length,
+            
             ),
-          )
+          ),
         ],
+      ),
+      floatingActionButton:
+      Container(
+        width: w*0.9,
+        height: h*0.08,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(w*0.03),
+          color: ColorConst.primaryColor
+        ),
+        child: Center(
+          child: Text("Add all to my cart",style: TextStyle(
+            color: ColorConst.secondaryColor,fontSize: w*0.06
+          ),),
+        ),
       ),
     );
   }

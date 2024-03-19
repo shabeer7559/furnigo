@@ -6,7 +6,6 @@ class IconConst{
   static const arrowIcon="assets/icon/arrowIcon.svg";
   static const arrowleft="assets/icon/arroeleft.svg";
   static const editIcon="assets/icon/editIcon.svg";
-
   static const sofaIcon="assets/icon/sofa.svg";
   static const sofa1Icon="assets/icon/sofa.png";
   static const tabeIcon="assets/icon/table.svg";
@@ -16,6 +15,8 @@ class IconConst{
   static const bookingIcon="assets/icon/bookingIcon.svg";
   static const savedIcon="assets/icon/savedIcon.svg";
   static const notifIcon="assets/icon/bellIcon.svg";
-  static const profileIcon="assets/icon/personIcon.svg";
+  static const profileIcon="assets/icon/person.svg";
+  static const closeIcon="assets/icon/closeIcon.svg";
+  static const arrowback="assets/icon/arrowBack.svg";
   static const yellowStar="assets/icon/yellowStar.svg";
 }
