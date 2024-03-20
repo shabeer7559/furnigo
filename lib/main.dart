@@ -37,7 +37,7 @@ class _MyAppState extends State<MyApp> {
         textTheme: GoogleFonts.nunitoSansTextTheme()
         ),
         debugShowCheckedModeBanner: false,
-        home: home(),
+        home: notification(),
       ),
     );
   }

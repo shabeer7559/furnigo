@@ -45,19 +45,19 @@ class _homeState extends State<home> {
   List items=[
     {"products":ImageConst.lamp,
       "name":"Black Simple Lamp",
-      "price":"\$12"
+      "price":"\$12.00"
     },
     {"products":ImageConst.minimalStand,
       "name":"Minimal Stand",
-      "price":"\$25"
+      "price":"\$25.00"
     },
     {"products":ImageConst.coffieChair,
       "name":"Coffie Chair",
-      "price":"\$20"
+      "price":"\$20.00"
     },
     {"products":ImageConst.simpleDesk,
       "name":"Simple Desk",
-      "price":"\$50"
+      "price":"\$50.00"
     },
   ];
   @override

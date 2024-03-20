@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:furnigo/features/constants/image_const.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../../main.dart';
@@ -14,6 +16,39 @@ class notification extends StatefulWidget {
 }
 
 class _notificationState extends State<notification> {
+  List notification=[
+    {
+      "image":ImageConst.simpleDesk,
+      "title":"Your order #123456789 has been confirmed",
+      "note":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Turpis pretium et in arcu adipiscing nec. Turpis pretium et in arcu adipiscing nec."
+    },
+    {
+      "image":ImageConst.lamp,
+      "title":"Your order #123456789 has been canceled",
+      "note":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Turpis pretium et in arcu adipiscing nec. Turpis pretium et in arcu adipiscing nec."
+    },
+    {
+      "image":ImageConst.coffeetable,
+      "title":"Your order #123456789 has been shipped successfully",
+      "note":"Please help us to confirm and rate your order to get 10% discount code for next order."
+    },
+    {
+      "image":ImageConst.coffeetable,
+      "title":"Your order #123456789 has been confirmed",
+      "note":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Turpis pretium et in arcu adipiscing nec. Turpis pretium et in arcu adipiscing nec.."
+    },
+    {
+      "image":ImageConst.simpleDesk,
+      "title":"Your order #123456789 has been canceled",
+      "note":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Turpis pretium et in arcu adipiscing nec. Turpis pretium et in arcu adipiscing nec.."
+    },
+    {
+      "image":ImageConst.coffeetable,
+      "title":"Your order #123456789 has been shipped successfully",
+      "note":"Please help us to confirm and rate your order to get 10% discount code for next order."
+    },
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,7 +66,63 @@ class _notificationState extends State<notification> {
       ),
       body: Column(
         children: [
-
+          Expanded(
+            child: ListView.separated(
+              shrinkWrap: true,
+             scrollDirection: Axis.vertical,
+              
+              itemBuilder: (BuildContext context, int index) {
+                return Container(
+                  width: w*1,
+                  height: h*0.18,
+                  child: Row(
+                    children: [
+                      Padding(
+                        padding:  EdgeInsets.all(w*0.03),
+                        child: Container(
+                          height: h*0.17,
+                          width: w*0.3,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(w*0.03),
+                              image: DecorationImage(image: AssetImage(notification[index]["image"]),fit: BoxFit.fill)
+                          ),
+                        ),
+                      ),
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Container(
+                            width: w*0.6,
+                            height: h*0.06,
+                            child: Text(notification[index]['title'],
+                              textAlign: TextAlign.left,
+                              style: TextStyle(
+                                fontWeight: FontWeight.w700,
+                                fontSize: w*0.05,
+            
+            
+                              ),),
+                          ),
+                          Container(
+                              width: w*0.6,
+                              height: h*0.09,
+                              child: Text(notification[index]["note"]))
+                        ],
+                      )
+                    ],
+                  ),
+                );
+              },
+              separatorBuilder: (BuildContext context, int index) {
+                return Divider(
+                  color: Colors.grey.shade100,
+                );
+              },
+              itemCount: notification.length,
+            
+            ),
+          ),
         ],
       ),
     );
