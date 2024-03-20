@@ -9,7 +9,7 @@ class ImageConst{
   static const success="assets/image/success.png";
   static const tickmark="assets/image/tickmark.png";
   static const coffeetable="assets/image/coffeetable.png";
-
-
-  static const person="assets/image/person";
+  static const masterCard="assets/image/mastercard.png";
+  static const dhl="assets/image/dhl.png";
+  static const person="assets/image/person.png";
 }

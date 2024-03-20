@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:furnigo/features/constants/color_const.dart';
+import 'package:furnigo/features/constants/image_const.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../../main.dart';
@@ -38,14 +39,16 @@ class _checkOutState extends State<checkOut> {
             children: [
               Text("Shipping Address",style: TextStyle(
                 color: ColorConst.grey,
-                fontSize: w*0.05
+                fontSize: w*0.04
               ),),
-              SvgPicture.asset(IconConst.editIcon,color: ColorConst.primaryColor,)
+              SvgPicture.asset(IconConst.editIcon,
+                width: w*0.04,
+                color: ColorConst.primaryColor,)
             ],
           ),
         ),
           Container(
-            height: h*0.2,
+            height: h*0.18,
             width: w*0.9,
             decoration: BoxDecoration(
               color: ColorConst.secondaryColor,
@@ -63,7 +66,7 @@ class _checkOutState extends State<checkOut> {
                 children: [
                   Text("Bruno Fernandes",style: TextStyle(
                     fontWeight: FontWeight.w700,
-                    fontSize: w*0.06
+                    fontSize: w*0.05
                   ),),
                   Divider(
                     color:Colors.grey.shade100,
@@ -71,7 +74,7 @@ class _checkOutState extends State<checkOut> {
                   ),
                   Text("25 rue Robert Latouche, Nice, 06200, Côte D’azur, France",
                   style: TextStyle(
-                    fontSize: w*0.05,
+                    fontSize: w*0.04,
                     color: ColorConst.grey
                   ),)
                 ],
@@ -85,14 +88,16 @@ class _checkOutState extends State<checkOut> {
               children: [
                 Text("Payment",style: TextStyle(
                     color: ColorConst.grey,
-                    fontSize: w*0.05
+                    fontSize: w*0.04
                 ),),
-                SvgPicture.asset(IconConst.editIcon,color: ColorConst.primaryColor,)
+                SvgPicture.asset(IconConst.editIcon,
+                  width: w*0.04,
+                  color: ColorConst.primaryColor,)
               ],
             ),
           ),
           Container(
-            height: h*0.09,
+            height: h*0.08,
             width: w*0.9,
             decoration: BoxDecoration(
               color: ColorConst.secondaryColor,
@@ -102,8 +107,139 @@ class _checkOutState extends State<checkOut> {
                     blurRadius: 5,
                     spreadRadius: 5,
                     offset: Offset(0, 6)
-                )]),
-          )        ],
+                )]
+            ),
+            child: Row(
+              children: [
+                Padding(
+                  padding:  EdgeInsets.all(w*0.05),
+                  child: Image.asset(ImageConst.masterCard),
+                ),
+                Text("**** **** **** "),
+                Text("3944 "),
+              ],
+            ),
+          ),
+          Padding(
+            padding:  EdgeInsets.all(w*0.05),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text("Delivery method",style: TextStyle(
+                    color: ColorConst.grey,
+                    fontSize: w*0.04
+                ),),
+                SvgPicture.asset(IconConst.editIcon,
+                  width: w*0.04,
+                  color: ColorConst.primaryColor,)
+              ],
+            ),
+          ),
+          Container(
+            height: h*0.08,
+            width: w*0.9,
+            decoration: BoxDecoration(
+                color: ColorConst.secondaryColor,
+                boxShadow: [
+                  BoxShadow(
+                      color:Colors.grey.shade200,
+                      blurRadius: 5,
+                      spreadRadius: 5,
+                      offset: Offset(0, 6)
+                  )]
+            ),
+            child: Row(
+              children: [
+                Padding(
+                  padding:  EdgeInsets.all(w*0.05),
+                  child: Image.asset(ImageConst.dhl),
+                ),
+                Text("Fast "),
+                Text("(2-3days) "),
+              ],),),
+          Container(
+            margin: EdgeInsets.all(w*0.03),
+            height: h*0.18,
+            width: w*0.9,
+            decoration: BoxDecoration(
+                color: ColorConst.secondaryColor,
+                boxShadow:[
+                  BoxShadow(
+                      color:Colors.grey.shade200,
+                      blurRadius: 5,
+                      spreadRadius: 5,
+                      offset: Offset(0, 6)
+                  )]),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Padding(
+                  padding:  EdgeInsets.all(w*0.03),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text("Order:",style: TextStyle(
+                        color: ColorConst.grey,
+                        fontSize: w*0.05
+                      ),),
+                      Text("\$95.00",
+                      style: TextStyle(
+                          fontSize: w*0.05
+                      ),),
+                    ],
+                  ),
+                ),
+                Padding(
+                  padding:  EdgeInsets.all(w*0.03),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text("Delivery:",style: TextStyle(
+                        color: ColorConst.grey,
+                        fontSize: w*0.05
+                      ),),
+                      Text("\$5.00",
+                      style: TextStyle(
+                          fontSize: w*0.05
+                      ),),
+                    ],
+                  ),
+                ),
+                Padding(
+                  padding:  EdgeInsets.all(w*0.03),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text("Total:",style: TextStyle(
+                        color: ColorConst.grey,
+                        fontSize: w*0.05
+                      ),),
+                      Text("\$100.00",
+                      style: TextStyle(
+                          fontSize: w*0.05
+                      ),),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Container(
+            height: h*0.08,
+            width: w*0.9,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(w*0.03),
+              color: ColorConst.primaryColor
+            ),
+            child: Center(
+              child: Text("SUBMIT ORDER",
+              style: TextStyle(
+                color: ColorConst.secondaryColor,
+                fontSize: w*0.05
+              ),),
+            ),
+          )
+        ],
       ),
     );
   }
