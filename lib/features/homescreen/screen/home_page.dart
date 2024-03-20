@@ -7,6 +7,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:furnigo/features/constants/color_const.dart';
 import 'package:furnigo/features/constants/icon_const.dart';
 import 'package:furnigo/features/constants/image_const.dart';
+import 'package:furnigo/features/homescreen/screen/product_details.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../../main.dart';
@@ -144,39 +145,44 @@ class _homeState extends State<home> {
                     childAspectRatio: 0.7,
                     crossAxisCount: 2),
                 itemBuilder: (BuildContext context, int index) {
-                  return Container(
-                    width: w*0.5,
-                    child: Column(
-                      crossAxisAlignment:CrossAxisAlignment.start ,
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        Stack(
-                          children: [
-                            Container(
-                            height: h*0.28,
-                            width: w*0.45,
-                            decoration:BoxDecoration(
-                                borderRadius: BorderRadius.circular(w*0.03),
-                                image: DecorationImage(image: AssetImage(items[index]["products"]),fit: BoxFit.fill)
+                  return InkWell(
+                    onTap: () {
+                      Navigator.push(context,   CupertinoPageRoute(builder: (context) => ProductDetails(),));
+                    },
+                    child: Container(
+                      width: w*0.5,
+                      child: Column(
+                        crossAxisAlignment:CrossAxisAlignment.start ,
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Stack(
+                            children: [
+                              Container(
+                              height: h*0.25,
+                              width: w*0.45,
+                              decoration:BoxDecoration(
+                                  borderRadius: BorderRadius.circular(w*0.03),
+                                  image: DecorationImage(image: AssetImage(items[index]["products"]),fit: BoxFit.fill)
 
-                            ) ,
+                              ) ,
+                            ),
+                              Positioned(
+                                left: w*0.34,
+                                  top: w*0.45,
+                                  child: SvgPicture.asset(IconConst.bookingIcon))
+                            ]
                           ),
-                            Positioned(
-                              left: w*0.34,
-                                top: w*0.45,
-                                child: SvgPicture.asset(IconConst.bookingIcon))
-                          ]
-                        ),
-                        Text(items[index]["name"],style: TextStyle(
-                            fontWeight: FontWeight.w500,
-                          color: ColorConst.grey
-                        ),),
-                        Text(items[index]["price"],
-                        style: TextStyle(
-                          fontWeight: FontWeight.w700,
+                          Text(items[index]["name"],style: TextStyle(
+                              fontWeight: FontWeight.w500,
+                            color: ColorConst.grey
+                          ),),
+                          Text(items[index]["price"],
+                          style: TextStyle(
+                            fontWeight: FontWeight.w700,
 
-                        ),)
-                      ],
+                          ),)
+                        ],
+                      ),
                     ),
                   );
                 },

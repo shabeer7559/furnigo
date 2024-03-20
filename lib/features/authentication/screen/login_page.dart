@@ -4,6 +4,7 @@ import 'package:flutter/widgets.dart';
 import 'package:furnigo/features/authentication/screen/signup_page.dart';
 import 'package:furnigo/features/constants/color_const.dart';
 import 'package:furnigo/features/constants/icon_const.dart';
+import 'package:furnigo/features/homescreen/screen/bottomNavi.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../../main.dart';
@@ -42,7 +43,7 @@ class _LoginPageState extends State<LoginPage> {
                             indent: w * 0.03,
                           ),
                         ),
-                      Image.asset(IconConst.sofaIcon,width: w*0.17,),
+                      Image.asset(IconConst.sofa1Icon,width: w*0.17,),
                         Expanded(
                           child: Divider(
                             color: Colors.grey,
@@ -117,27 +118,32 @@ class _LoginPageState extends State<LoginPage> {
                           fontWeight: FontWeight.w600,
                           fontSize: w*0.045
                       ),),
-                    Container(
-                      height: h*0.06,
-                      width: w*0.7,
-                      decoration: BoxDecoration(
-                          boxShadow: [
-                            BoxShadow(
-                                offset: Offset(0, 10),
-                                blurRadius: w*0.1,
-                                color: ColorConst.shadow
-                            )
-                          ],
-                          color: ColorConst.primaryColor,
-                          borderRadius: BorderRadius.circular(w*0.02)
-                      ),
-                      child: Center(
-                        child: Text("Log in",
-                          style: TextStyle(
-                              color: ColorConst.secondaryColor,
-                              fontWeight: FontWeight.w600,
-                              fontSize: w*0.05
-                          ),),
+                    InkWell(
+                      onTap: () {
+                        Navigator.push(context, CupertinoPageRoute(builder: (context) => bottomNavi(),));
+                      },
+                      child: Container(
+                        height: h*0.06,
+                        width: w*0.7,
+                        decoration: BoxDecoration(
+                            boxShadow: [
+                              BoxShadow(
+                                  offset: Offset(0, 10),
+                                  blurRadius: w*0.1,
+                                  color: ColorConst.shadow
+                              )
+                            ],
+                            color: ColorConst.primaryColor,
+                            borderRadius: BorderRadius.circular(w*0.02)
+                        ),
+                        child: Center(
+                          child: Text("Log in",
+                            style: TextStyle(
+                                color: ColorConst.secondaryColor,
+                                fontWeight: FontWeight.w600,
+                                fontSize: w*0.05
+                            ),),
+                        ),
                       ),
                     ),
                     InkWell(

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:furnigo/features/constants/color_const.dart';
 import 'package:furnigo/features/constants/image_const.dart';
+import 'package:furnigo/features/homescreen/screen/success.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../../main.dart';
@@ -224,19 +225,24 @@ class _checkOutState extends State<checkOut> {
               ],
             ),
           ),
-          Container(
-            height: h*0.08,
-            width: w*0.9,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(w*0.03),
-              color: ColorConst.primaryColor
-            ),
-            child: Center(
-              child: Text("SUBMIT ORDER",
-              style: TextStyle(
-                color: ColorConst.secondaryColor,
-                fontSize: w*0.05
-              ),),
+          InkWell(
+            onTap: () {
+              Navigator.push(context, CupertinoPageRoute(builder: (context) => Success(),));
+            },
+            child: Container(
+              height: h*0.08,
+              width: w*0.9,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(w*0.03),
+                color: ColorConst.primaryColor
+              ),
+              child: Center(
+                child: Text("SUBMIT ORDER",
+                style: TextStyle(
+                  color: ColorConst.secondaryColor,
+                  fontSize: w*0.05
+                ),),
+              ),
             ),
           )
         ],

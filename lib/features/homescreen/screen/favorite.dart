@@ -5,6 +5,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:furnigo/features/constants/color_const.dart';
 import 'package:furnigo/features/constants/icon_const.dart';
 import 'package:furnigo/features/constants/image_const.dart';
+import 'package:furnigo/features/homescreen/screen/cart.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../../main.dart';
@@ -18,7 +19,7 @@ class favorite extends StatefulWidget {
 
 class _favoriteState extends State<favorite> {
   List fav=[
-    {"image":ImageConst.coffieTable,
+    {"image":ImageConst.coffeetable,
       "name":"Coffie Table",
       "amnt":"\$50.00"
 
@@ -118,17 +119,22 @@ class _favoriteState extends State<favorite> {
         ],
       ),
       floatingActionButton:
-      Container(
-        width: w*0.9,
-        height: h*0.08,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(w*0.03),
-          color: ColorConst.primaryColor
-        ),
-        child: Center(
-          child: Text("Add all to my cart",style: TextStyle(
-            color: ColorConst.secondaryColor,fontSize: w*0.06
-          ),),
+      InkWell(
+        onTap: () {
+          Navigator.push(context, MaterialPageRoute(builder: (context) => MyCart(),));
+        },
+        child: Container(
+          width: w*0.9,
+          height: h*0.08,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(w*0.03),
+            color: ColorConst.primaryColor
+          ),
+          child: Center(
+            child: Text("Add all to my cart",style: TextStyle(
+              color: ColorConst.secondaryColor,fontSize: w*0.06
+            ),),
+          ),
         ),
       ),
     );
