@@ -27,7 +27,7 @@ class _SplashScreenState extends State<SplashScreen> {
            Container(
              height: h*1,
              width: w*1,
-             child: Image.asset(ImageConst.sofa),
+             child: Image.asset(ImageConst.sofa,fit: BoxFit.fill,),
            ),
            Positioned(
            top: w*0.4,left: w*0.1,

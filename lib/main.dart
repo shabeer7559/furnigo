@@ -6,6 +6,7 @@ import 'package:furnigo/features/homescreen/screen/bottomNavi.dart';
 import 'package:furnigo/features/homescreen/screen/check_in.dart';
 import 'package:furnigo/features/homescreen/screen/cart.dart';
 import 'package:furnigo/features/homescreen/screen/home_page.dart';
+import 'package:furnigo/features/homescreen/screen/notification.dart';
 import 'package:furnigo/features/homescreen/screen/product_details.dart';
 import 'package:furnigo/features/homescreen/screen/success.dart';
 import 'package:furnigo/features/splash/screen/splash_screen.dart';
@@ -36,7 +37,7 @@ class _MyAppState extends State<MyApp> {
         textTheme: GoogleFonts.nunitoSansTextTheme()
         ),
         debugShowCheckedModeBanner: false,
-        home: SplashScreen(),
+        home: home(),
       ),
     );
   }

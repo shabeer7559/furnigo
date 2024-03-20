@@ -168,7 +168,7 @@ class _homeState extends State<home> {
                             ),
                               Positioned(
                                 left: w*0.34,
-                                  top: w*0.45,
+                                  bottom: w*0.05,
                                   child: SvgPicture.asset(IconConst.bookingIcon))
                             ]
                           ),
