@@ -5,10 +5,10 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:furnigo/features/constants/color_const.dart';
 import 'package:furnigo/features/constants/icon_const.dart';
 import 'package:furnigo/features/constants/image_const.dart';
-import 'package:furnigo/features/homescreen/screen/check_in.dart';
+import 'package:furnigo/cart/check_in.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../../../main.dart';
+import '../main.dart';
 
 class MyCart extends StatefulWidget {
   const MyCart({super.key});

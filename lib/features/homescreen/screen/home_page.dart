@@ -7,7 +7,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:furnigo/features/constants/color_const.dart';
 import 'package:furnigo/features/constants/icon_const.dart';
 import 'package:furnigo/features/constants/image_const.dart';
-import 'package:furnigo/features/homescreen/screen/product_details.dart';
+import 'package:furnigo/cart/product_details.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../../main.dart';

@@ -39,6 +39,8 @@ dependencies:
   lottie: ^2.7.0
   flutter_svg: ^2.0.9
   flutter_flip_card: ^0.0.4
+  givestarreviews: ^1.0.2
+
 
 dev_dependencies:
   flutter_test:

@@ -2,7 +2,6 @@ class IconConst{
   static const homeIcon="assets/icon/clarity_home-solid.svg";
   static const searchIcon="assets/icon/searchIcon.svg";
   static const cartIcon="assets/icon/cartIcon.svg";
-  static const sofaIcon="assets/icon/sofa.png";
   static const backIcon="assets/icon/Group 6.svg";
   static const edit2Icon="assets/icon/edit-2.svg";
   static const logoutIcon="assets/icon/Logout.svg";

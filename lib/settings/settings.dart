@@ -4,7 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:furnigo/features/constants/color_const.dart';
 import 'package:furnigo/features/constants/icon_const.dart';
 
-import '../../../main.dart';
+import '../main.dart';
 
 class settings extends StatefulWidget {
   const settings({super.key});

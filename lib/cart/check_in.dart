@@ -6,8 +6,8 @@ import 'package:furnigo/features/constants/image_const.dart';
 import 'package:furnigo/features/homescreen/screen/success.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../../../main.dart';
-import '../../constants/icon_const.dart';
+import '../main.dart';
+import '../features/constants/icon_const.dart';
 
 class checkOut extends StatefulWidget {
   const checkOut({super.key});

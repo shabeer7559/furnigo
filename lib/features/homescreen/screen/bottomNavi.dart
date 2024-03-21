@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:furnigo/features/constants/color_const.dart';
 import 'package:furnigo/features/constants/icon_const.dart';
-import 'package:furnigo/features/homescreen/screen/favorite.dart';
+import 'package:furnigo/cart/favorite.dart';
 import 'package:furnigo/features/homescreen/screen/home_page.dart';
 import 'package:furnigo/features/homescreen/screen/notification.dart';
 import 'package:furnigo/features/profile/screen/profile_page.dart';

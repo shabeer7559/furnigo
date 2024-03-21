@@ -5,10 +5,10 @@ import 'package:flutter_svg/svg.dart';
 import 'package:furnigo/features/constants/color_const.dart';
 import 'package:furnigo/features/constants/icon_const.dart';
 import 'package:furnigo/features/constants/image_const.dart';
-import 'package:furnigo/features/homescreen/screen/cart.dart';
+import 'package:furnigo/cart/cart.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../../../main.dart';
+import '../main.dart';
 
 class favorite extends StatefulWidget {
   const favorite({super.key});
@@ -114,7 +114,7 @@ class _favoriteState extends State<favorite> {
               },
               itemCount: fav.length,
             
-            ),
+             ),
           ),
         ],
       ),
