@@ -1,5 +1,7 @@
 class ImageConst{
   static const sofa="assets/image/splashImage.png";
+  static const mastercard="assets/image/mastercard.png";
+  static const visa="assets/image/Visa Logo.png";
   static const lamp="assets/image/lamp.png";
   static const minimalStand="assets/image/minimalStand.png";
   static const simpleDesk="assets/image/simpleDesk.png";
