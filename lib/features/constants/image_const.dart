@@ -13,4 +13,7 @@ class ImageConst{
   static const masterCard="assets/image/mastercard.png";
   static const dhl="assets/image/dhl.png";
   static const person="assets/image/person.png";
+  static const amina="assets/image/amina.png";
+  static const bruno="assets/image/burno.png";
+  static const tracy="assets/image/tracy.png";
 }

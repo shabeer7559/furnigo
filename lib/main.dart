@@ -7,6 +7,10 @@ import 'package:furnigo/features/homescreen/screen/bottomNavi.dart';
 
 import 'package:furnigo/features/homescreen/screen/home_page.dart';
 import 'package:furnigo/features/homescreen/screen/notification.dart';
+// import 'package:furnigo/features/homescreen/screen/product_details.dart';
+import 'package:furnigo/features/homescreen/screen/success.dart';
+import 'package:furnigo/features/reviews/screen/rating_review.dart';
+import 'package:furnigo/features/homescreen/screen/notification.dart';
 
 import 'package:furnigo/features/homescreen/screen/success.dart';
 import 'package:furnigo/features/reviews/screen/my_review.dart';
@@ -40,7 +44,7 @@ class _MyAppState extends State<MyApp> {
         textTheme: GoogleFonts.nunitoSansTextTheme()
         ),
         debugShowCheckedModeBanner: false,
-        home: home(),
+        home: rating(),
       ),
     );
   }
