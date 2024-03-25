@@ -1,5 +1,5 @@
 class IconConst{
-  static const homeIcon="assets/icon/clarity_home-solid.svg";
+  static const homeIcon="assets/icon/homeIcon.svg";
   static const searchIcon="assets/icon/searchIcon.svg";
   static const cartIcon="assets/icon/cartIcon.svg";
   static const backIcon="assets/icon/Group 6.svg";
@@ -21,4 +21,5 @@ class IconConst{
   static const closeIcon="assets/icon/closeIcon.svg";
   static const arrowback="assets/icon/arrowBack.svg";
   static const yellowStar="assets/icon/yellowStar.svg";
+
 }

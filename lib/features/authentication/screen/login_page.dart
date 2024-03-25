@@ -126,7 +126,8 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                     InkWell(
                       onTap: () {
-                        Navigator.push(context, CupertinoPageRoute(builder: (context) => bottomNavi(),));
+
+                        Navigator.pushAndRemoveUntil(context, CupertinoPageRoute(builder: (context) => bottomNavi(),), (route) => false);
                       },
                       child: Container(
                         height: h*0.06,
@@ -135,8 +136,8 @@ class _LoginPageState extends State<LoginPage> {
                             boxShadow: [
                               BoxShadow(
                                   offset: Offset(0, 10),
-                                  blurRadius: w*0.1,
-                                  color: ColorConst.shadow
+                                  blurRadius: 20,
+                                  color: ColorConst.primaryColor.withOpacity(0.25)
                               )
                             ],
                             color: ColorConst.primaryColor,

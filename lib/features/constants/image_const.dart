@@ -18,4 +18,5 @@ class ImageConst{
   static const bruno="assets/image/burno.png";
   static const tracy="assets/image/tracy.png";
   static const lockpassword="assets/image/lockpassword.png";
+  static const security="assets/image/security.png";
 }

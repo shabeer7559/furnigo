@@ -1,6 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+import 'package:furnigo/features/authentication/screen/create_new_password.dart';
+import 'package:furnigo/features/constants/image_const.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:pinput/pinput.dart';
 
 import '../../../main.dart';
 import '../../constants/color_const.dart';
@@ -30,8 +34,80 @@ class _EmailOtpState extends State<EmailOtp> {
         elevation: 0,
         centerTitle: true,
       ),
-      body: Column(
-        
+      body: SingleChildScrollView(
+        child: Container(
+          height: h*0.8,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Container(
+                height: h*0.6,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Container(
+                      height: h*0.35,
+                      width: w*0.8,
+                      margin: EdgeInsets.all(w*0.06),
+                      child: Image.asset(ImageConst.security,fit: BoxFit.fill,),
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text("Code has been sent to ",style: TextStyle(
+                          fontSize: w*0.045,
+                          fontWeight: FontWeight.w600,
+                          color: ColorConst.grey
+                        ),),
+                      ],
+                    ),
+                    Pinput(
+                      length: 4,
+                      defaultPinTheme: PinTheme(
+                          margin: EdgeInsets.all(w*0.02),
+                          width: w*0.17,
+                          height: w*0.17,
+                          decoration: BoxDecoration(
+                              color: ColorConst.grey.withOpacity(0.25),
+                              borderRadius: BorderRadius.circular(w*0.03)
+                          )
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              InkWell(
+                onTap: () {
+                  Navigator.push(context, CupertinoPageRoute(builder: (context) => NewPassword(),));
+                },
+                child: Container(
+                  height: h*0.08,
+                  width: w*0.8,
+                  decoration: BoxDecoration(
+                      color: ColorConst.primaryColor,
+                      boxShadow: [
+                        BoxShadow(
+                            offset: Offset(0, 10),
+                            blurRadius: 20,
+
+                            color: ColorConst.primaryColor.withOpacity(0.25)
+                        )
+                      ],
+                      borderRadius: BorderRadius.circular(w*0.03)
+                  ),
+                  child: Center(
+                    child: Text("Verify",
+                      style: TextStyle(
+                          fontSize: w*0.045,
+                          fontWeight: FontWeight.w600,
+                          color: ColorConst.secondaryColor
+                      ),),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }

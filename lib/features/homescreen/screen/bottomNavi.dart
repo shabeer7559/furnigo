@@ -1,3 +1,4 @@
+import 'package:awesome_bottom_bar/awesome_bottom_bar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -29,7 +30,7 @@ List pages=[
   Widget build(BuildContext context) {
     return Scaffold(
       body: pages[selectedIndex],
-      bottomNavigationBar: BottomNavigationBar(
+      bottomNavigationBar:BottomNavigationBar(
         selectedItemColor: ColorConst.primaryColor,
         unselectedItemColor: ColorConst.secondaryColor,
         showSelectedLabels: true,
@@ -42,16 +43,16 @@ List pages=[
         },
         items:[
           BottomNavigationBarItem(
-            label: "",
+              label: "",
               icon: SvgPicture.asset(IconConst.homeIcon)),
           BottomNavigationBarItem(
-            label: "",
+              label: "",
               icon: SvgPicture.asset(IconConst.savedIcon)),
           BottomNavigationBarItem(
-            label: "",
+              label: "",
               icon: SvgPicture.asset(IconConst.notifIcon)),
           BottomNavigationBarItem(
-            label: "",
+              label: "",
               icon: SvgPicture.asset(IconConst.profileIcon)),
         ],)
     );
