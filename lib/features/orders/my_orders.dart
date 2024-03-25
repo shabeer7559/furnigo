@@ -156,7 +156,7 @@ class _MyOrdersState extends State<MyOrders> {
                                      child: Text("Delivered",
                                        style: TextStyle(
                                            fontWeight: FontWeight.w700,
-                                           fontSize: w*0.05,
+                                           fontSize: w*0.051,
                                            color: ColorConst.green
                                        ),),
                                    )
