@@ -2,9 +2,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:furnigo/features/cart/cart.dart';
+import 'package:furnigo/features/cart/favorite.dart';
 import 'package:furnigo/features/constants/color_const.dart';
 import 'package:furnigo/features/constants/icon_const.dart';
 import 'package:furnigo/features/constants/image_const.dart';
+import 'package:furnigo/features/reviews/screen/rating_review.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../main.dart';
@@ -39,26 +42,31 @@ class _ProductDetailsState extends State<ProductDetails> {
                child: SvgPicture.asset(IconConst.savedIcon,color: ColorConst.primaryColor,),
              ),
            ),
-           Container(
-             height: h*0.075,
-             width: w*0.6,
-             decoration: BoxDecoration(
-               color: ColorConst.primaryColor,
-               borderRadius: BorderRadius.circular(w*0.03),
-               boxShadow: [
-                 BoxShadow(
-                   offset: Offset(0, 10),
-                   blurRadius: w*0.1,
-                   color: ColorConst.shadow
-                 )
-               ]
-             ),
-             child: Center(
-               child: Text("Add to cart",style: TextStyle(
-                 fontSize: w*0.05,
-                 fontWeight: FontWeight.w600,
-                 color: ColorConst.secondaryColor
-               ),),
+           InkWell(
+             onTap: () {
+               Navigator.push(context, CupertinoPageRoute(builder: (context) => favorite(),));
+             },
+             child: Container(
+               height: h*0.075,
+               width: w*0.6,
+               decoration: BoxDecoration(
+                 color: ColorConst.primaryColor,
+                 borderRadius: BorderRadius.circular(w*0.03),
+                 boxShadow: [
+                   BoxShadow(
+                     offset: Offset(0, 10),
+                     blurRadius: w*0.1,
+                     color: ColorConst.shadow
+                   )
+                 ]
+               ),
+               child: Center(
+                 child: Text("Add to cart",style: TextStyle(
+                   fontSize: w*0.05,
+                   fontWeight: FontWeight.w600,
+                   color: ColorConst.secondaryColor
+                 ),),
+               ),
              ),
            )
          ],
@@ -201,12 +209,17 @@ class _ProductDetailsState extends State<ProductDetails> {
                             fontSize: w*0.045,
                             color: ColorConst.primaryColor
                           ),),
-                        Text("(50 reviews)",style:
-                          TextStyle(
-                            fontWeight: FontWeight.w600,
-                            fontSize: w*0.045,
-                            color: ColorConst.grey
-                          ),),
+                        InkWell(
+                          onTap: () {
+                            Navigator.push(context, CupertinoPageRoute(builder: (context) => rating(),));
+                          },
+                          child: Text("(50 reviews)",style:
+                            TextStyle(
+                              fontWeight: FontWeight.w600,
+                              fontSize: w*0.045,
+                              color: ColorConst.grey
+                            ),),
+                        ),
                       ],
                     ),
                   ),

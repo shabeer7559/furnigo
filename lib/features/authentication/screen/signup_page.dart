@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:furnigo/features/authentication/screen/login_page.dart';
 import 'package:furnigo/features/constants/color_const.dart';
 import 'package:furnigo/features/homescreen/screen/bottomNavi.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -167,12 +168,17 @@ class _SignUpState extends State<SignUp> {
                             color: ColorConst.grey,
                             fontSize: w*0.035
                           ),),
-                          Text("SIGN IN",
-                          style: TextStyle(
-                            fontWeight: FontWeight.w700,
-                            color: ColorConst.primaryColor,
-                            fontSize: w*0.035
-                          ),),
+                          InkWell(
+                            onTap: () {
+                              Navigator.push(context, CupertinoPageRoute(builder: (context) => LoginPage(),));
+                            },
+                            child: Text("SIGN IN",
+                            style: TextStyle(
+                              fontWeight: FontWeight.w700,
+                              color: ColorConst.primaryColor,
+                              fontSize: w*0.035
+                            ),),
+                          ),
                         ],
                       )
                     ],

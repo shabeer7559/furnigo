@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:furnigo/features/authentication/screen/foget_password.dart';
 import 'package:furnigo/features/authentication/screen/signup_page.dart';
 import 'package:furnigo/features/constants/color_const.dart';
 import 'package:furnigo/features/constants/icon_const.dart';
@@ -113,11 +114,16 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                       ),
                     ),
-                    Text("Forgot Password",
-                      style: TextStyle(
-                          fontWeight: FontWeight.w600,
-                          fontSize: w*0.045
-                      ),),
+                    InkWell(
+                      onTap: () {
+                        Navigator.push(context, CupertinoPageRoute(builder: (context) => ForgetPassword(),));
+                      },
+                      child: Text("Forgot Password",
+                        style: TextStyle(
+                            fontWeight: FontWeight.w600,
+                            fontSize: w*0.045
+                        ),),
+                    ),
                     InkWell(
                       onTap: () {
                         Navigator.push(context, CupertinoPageRoute(builder: (context) => bottomNavi(),));
