@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_flip_card/flipcard/gesture_flip_card.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:furnigo/features/payments/screen/payment_methods.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../../main.dart';
@@ -26,7 +27,11 @@ class _addNewcardState extends State<addNewcard> {
         backgroundColor: ColorConst.secondaryColor,
         leading: Padding(
           padding: EdgeInsets.all(w * 0.05),
-          child: SvgPicture.asset(IconConst.backIcon),
+          child: InkWell(
+            onTap: () {
+              Navigator.push(context, CupertinoPageRoute(builder: (context) => paymentMethod(),));
+            },
+              child: SvgPicture.asset(IconConst.backIcon)),
         ),
         elevation: 0,
         centerTitle: true,
@@ -233,27 +238,32 @@ class _addNewcardState extends State<addNewcard> {
                   ],
                 ),
               ),
-              Container(
-                width: w * 0.9,
-                height: h * 0.08,
-                decoration: BoxDecoration(
-                    color: ColorConst.primaryColor,
-                    borderRadius: BorderRadius.circular(w * 0.02),
-                    boxShadow: [
-                      BoxShadow(
-                          color: ColorConst.primaryColor.withOpacity(0.25),
-                          offset: Offset(0, 4),
-                          spreadRadius: 1,
-                          blurRadius: 3)
-                    ]),
-                child: Center(
-                    child: Text(
-                  'ADD NEW CARD',
-                  style: TextStyle(
-                      color: ColorConst.secondaryColor,
-                      fontWeight: FontWeight.w500,
-                      fontSize: w * 0.045),
-                )),
+              InkWell(
+                onTap: () {
+                  Navigator.push(context, CupertinoPageRoute(builder: (context) => paymentMethod(),));
+                },
+                child: Container(
+                  width: w * 0.9,
+                  height: h * 0.08,
+                  decoration: BoxDecoration(
+                      color: ColorConst.primaryColor,
+                      borderRadius: BorderRadius.circular(w * 0.02),
+                      boxShadow: [
+                        BoxShadow(
+                            color: ColorConst.primaryColor.withOpacity(0.25),
+                            offset: Offset(0, 4),
+                            spreadRadius: 1,
+                            blurRadius: 3)
+                      ]),
+                  child: Center(
+                      child: Text(
+                    'ADD NEW CARD',
+                    style: TextStyle(
+                        color: ColorConst.secondaryColor,
+                        fontWeight: FontWeight.w500,
+                        fontSize: w * 0.045),
+                  )),
+                ),
               )
             ],
           ),

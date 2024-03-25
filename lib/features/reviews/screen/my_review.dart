@@ -22,19 +22,18 @@ class _MyReviewState extends State<MyReview> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: Icon(Icons.arrow_back_ios_sharp,color: ColorConst.primaryColor,),
-        title: Center(
-          child: Text("My Reviews",
-          style: GoogleFonts.merriweather(
-            fontWeight: FontWeight.w700,
-            fontSize: w*0.05,
-            color: ColorConst.primaryColor
-          ),),
-        ),
-        actions: [
-          SvgPicture.asset(IconConst.searchIcon,color: ColorConst.primaryColor,),
-          SizedBox(width: w*0.02,)
-        ],
+        centerTitle: true,
+        leading: InkWell(
+          onTap: () {
+            Navigator.pop(context);
+          },
+            child: Icon(Icons.arrow_back_ios_sharp,color: ColorConst.primaryColor,)),
+        title: Text("My Reviews",
+        style: GoogleFonts.merriweather(
+          fontWeight: FontWeight.w700,
+          fontSize: w*0.05,
+          color: ColorConst.primaryColor
+        ),),
       ),
       body: Column(
         children: [
@@ -45,7 +44,7 @@ class _MyReviewState extends State<MyReview> {
                 physics: BouncingScrollPhysics(),
                 itemBuilder: (context, index) {
                   return Container(
-                    height: h*0.35,
+                    height: h*0.32,
                     width: w*0.9,
                     margin: EdgeInsets.only(right: w*0.06,left: w*0.06),
                     decoration: BoxDecoration(

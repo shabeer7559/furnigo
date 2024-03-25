@@ -22,10 +22,14 @@ class _settingsState extends State<settings> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        leading: Icon(Icons.arrow_back_ios_sharp,color: ColorConst.primaryColor,),
+        leading: InkWell(
+          onTap: () {
+            Navigator.pop(context);
+          },
+            child: Icon(Icons.arrow_back_ios_sharp,color: ColorConst.primaryColor,)),
         title: Text(
           "Setting",
-          style: GoogleFonts.merriweather(
+          style: GoogleFonts.aBeeZee(
             fontSize: w*0.045   ,
               color: ColorConst.primaryColor,
               fontWeight: FontWeight.w700,),

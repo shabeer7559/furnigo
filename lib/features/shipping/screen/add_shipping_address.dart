@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:furnigo/features/shipping/screen/shipping_address.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../../main.dart';
@@ -28,7 +29,11 @@ class _AddshippingState extends State<Addshipping> {
         backgroundColor: ColorConst.secondaryColor,
         leading: Padding(
           padding: EdgeInsets.all(w*0.05),
-          child: SvgPicture.asset(IconConst.backIcon),
+          child: InkWell(
+            onTap: () {
+              Navigator.push(context, CupertinoPageRoute(builder: (context) => shippingAddress(),));
+            },
+              child: SvgPicture.asset(IconConst.backIcon)),
         ),
         elevation: 0,
         centerTitle: true,
@@ -36,7 +41,7 @@ class _AddshippingState extends State<Addshipping> {
       ),
       body: SingleChildScrollView(
         child: Container(
-          height: h*0.9,
+          height: h*0.85,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -45,7 +50,6 @@ class _AddshippingState extends State<Addshipping> {
                   width: w*0.9,
                   height: h*0.6,
                   child: Column(
-        
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       Container(
@@ -55,13 +59,17 @@ class _AddshippingState extends State<Addshipping> {
                             color: ColorConst.grey.withOpacity(0.25),
                             borderRadius:BorderRadius.circular(w*0.02)
                         ),
-        
-                        child: TextFormField(
-        
-                          decoration: InputDecoration(
-                              hintText: "CardHolder Name",
-                              border: InputBorder.none,
-                              constraints: BoxConstraints()
+                        child: Padding(
+                          padding:  EdgeInsets.only(left: w*0.03),
+                          child: TextFormField(
+                            decoration: InputDecoration(
+                                labelText: "Full Name",
+                                border: InputBorder.none,
+                                constraints: BoxConstraints(
+                                  maxWidth: w*0.9,
+                                  minHeight: h*0.04,
+                                )
+                            ),
                           ),
                         ),
                       ),
@@ -72,13 +80,14 @@ class _AddshippingState extends State<Addshipping> {
                             color: ColorConst.grey.withOpacity(0.25),
                             borderRadius:BorderRadius.circular(w*0.02)
                         ),
-        
-                        child: TextFormField(
-        
-                          decoration: InputDecoration(
-                              hintText: "Address",
-                              border: InputBorder.none,
-                              constraints: BoxConstraints()
+                        child: Padding(
+                          padding:  EdgeInsets.only(left: w*0.03),
+                          child: TextFormField(
+                            decoration: InputDecoration(
+                                hintText: "Address",
+                                border: InputBorder.none,
+                                constraints: BoxConstraints()
+                            ),
                           ),
                         ),
                       ),
@@ -167,17 +176,22 @@ class _AddshippingState extends State<Addshipping> {
         
                 ),
               ),
-              Container(
-                width: w*0.9,
-                height: h*0.08,
-                decoration: BoxDecoration(
-                    color: ColorConst.primaryColor,
-                    borderRadius: BorderRadius.circular(w*0.02),
-                    boxShadow: [BoxShadow(
-                        color: ColorConst.primaryColor.withOpacity(0.25),offset: Offset(0, 4),spreadRadius: 1,blurRadius: 3
-                    )]
+              InkWell(
+                onTap: () {
+                  Navigator.push(context, CupertinoPageRoute(builder: (context) => shippingAddress(),));
+                },
+                child: Container(
+                  width: w*0.9,
+                  height: h*0.07,
+                  decoration: BoxDecoration(
+                      color: ColorConst.primaryColor,
+                      borderRadius: BorderRadius.circular(w*0.02),
+                      boxShadow: [BoxShadow(
+                          color: ColorConst.primaryColor.withOpacity(0.25),offset: Offset(0, 4),spreadRadius: 1,blurRadius: 3
+                      )]
+                  ),
+                  child: Center(child: Text('SAVE ADDRESS',style: TextStyle(color: ColorConst.secondaryColor,fontWeight: FontWeight.w500,fontSize: w*0.045),)),
                 ),
-                child: Center(child: Text('ADD NEW CARD',style: TextStyle(color: ColorConst.secondaryColor,fontWeight: FontWeight.w500,fontSize: w*0.045),)),
               )
             ],
           ),

@@ -51,7 +51,11 @@ class _shippingAddressState extends State<shippingAddress> {
         backgroundColor: ColorConst.secondaryColor,
         leading: Padding(
           padding: EdgeInsets.all(w*0.05),
-          child: SvgPicture.asset(IconConst.backIcon),
+          child: InkWell(
+                onTap: () {
+                  Navigator.pop(context);
+                },
+              child: SvgPicture.asset(IconConst.backIcon)),
         ),
         elevation: 0,
         centerTitle: true,

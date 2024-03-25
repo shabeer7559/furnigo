@@ -5,6 +5,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:furnigo/features/constants/color_const.dart';
 import 'package:furnigo/features/constants/icon_const.dart';
 import 'package:furnigo/features/constants/image_const.dart';
+import 'package:furnigo/features/payments/screen/add_newcard.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../../main.dart';
 
@@ -21,12 +22,23 @@ class _paymentMethodState extends State<paymentMethod> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            Navigator.push(context, CupertinoPageRoute(builder: (context) => addNewcard(),));
+            },
+        child: Icon(CupertinoIcons.plus),backgroundColor: ColorConst.secondaryColor,
+      ),
+
       backgroundColor: ColorConst.secondaryColor,
       appBar: AppBar(
         backgroundColor: ColorConst.secondaryColor,
         leading: Padding(
           padding: EdgeInsets.all(w * 0.05),
-          child: SvgPicture.asset(IconConst.backIcon),
+          child: InkWell(
+            onTap: () {
+              Navigator.pop(context);
+            },
+              child: SvgPicture.asset(IconConst.backIcon)),
         ),
         elevation: 0,
         centerTitle: true,
