@@ -17,7 +17,11 @@ class _MyOrdersState extends State<MyOrders> {
     return DefaultTabController(
       length: 3,
       child: Scaffold(
-        appBar: AppBar(),
+        appBar: AppBar(
+          centerTitle: true,
+          title: Text("My order"),
+          leading: Icon(Icons.arrow_back_ios_new),
+        ),
          body:  Column(
            children: [
              TabBar(
