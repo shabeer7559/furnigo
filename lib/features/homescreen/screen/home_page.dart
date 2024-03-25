@@ -34,7 +34,7 @@ class _homeState extends State<home> {
       "text":"Table"
     },
     {
-   "icon":IconConst.sofaIcon,
+   "icon":IconConst.sofa1Icon,
       "text":"Sofa"
     },
     {

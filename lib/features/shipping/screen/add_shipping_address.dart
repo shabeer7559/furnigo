@@ -1,5 +1,7 @@
+import 'package:country_state_city_picker/country_state_city_picker.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -15,6 +17,9 @@ class Addshipping extends StatefulWidget {
 }
 
 class _AddshippingState extends State<Addshipping> {
+  late String countryValue;
+  late String stateValue;
+  late String cityValue;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,7 +43,7 @@ class _AddshippingState extends State<Addshipping> {
               Center(
                 child: Container(
                   width: w*0.9,
-                  height: h*0.67,
+                  height: h*0.6,
                   child: Column(
         
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -89,55 +94,73 @@ class _AddshippingState extends State<Addshipping> {
         
         
                       ),
-                      Container(
-                        width: w*0.9,
-                        height: h*0.08,
-                        decoration: BoxDecoration(
-                            color: ColorConst.grey.withOpacity(0.25),
-                            borderRadius:BorderRadius.circular(w*0.02)
-                        ),
-        
-                        child: TextFormField(
-        
-                          decoration: InputDecoration(
-                            suffixIcon: Icon(CupertinoIcons.chevron_down),
-                              hintText: "Country",
-                              border: InputBorder.none,
-                              constraints: BoxConstraints()
-                          ),
-                        ),
-                      ),
-                      TextFormField(
-                        decoration: InputDecoration(
-                            suffixIcon: Icon(CupertinoIcons.chevron_down),
-                            hintText: "City",
-                            border: OutlineInputBorder(
-                                borderSide: BorderSide(color:ColorConst.grey.withOpacity(0.15))
+                      Column(
+                        children: [
+                          Container(
+                            color: Colors.white,
+                            child: SelectState(
+                              style: TextStyle(
+                                fontSize: w*0.0
+                              ),
+                              onCountryChanged: (value) {
+                                setState(() {
+                                  countryValue = value;
+                                });
+                              },
+                              onStateChanged:(value) {
+                                setState(() {
+                                  stateValue = value;
+                                });
+                              },
+                              onCityChanged:(value) {
+                                setState(() {
+                                  cityValue = value;
+                                });
+                              },
+                              // child: TextFormField(
+                              //
+                              //   decoration: InputDecoration(
+                              //     suffixIcon: Icon(CupertinoIcons.chevron_down),
+                              //       hintText: "Country",
+                              //       border: InputBorder.none,
+                              //       constraints: BoxConstraints()
+                              //   ),
+                              // ),
                             ),
-                            constraints: BoxConstraints(
-                            )
-                        ),
-        
-        
-                      ),
-                      Container(
-                        width: w*0.9,
-                        height: h*0.08,
-                        decoration: BoxDecoration(
-                            color: ColorConst.grey.withOpacity(0.25),
-                            borderRadius:BorderRadius.circular(w*0.02)
-                        ),
-        
-                        child: TextFormField(
-        
-                          decoration: InputDecoration(
-                              suffixIcon: Icon(CupertinoIcons.chevron_down),
-                              hintText: "District",
-                              border: InputBorder.none,
-                              constraints: BoxConstraints()
                           ),
-                        ),
+                        ],
                       ),
+                      // TextFormField(
+                      //   decoration: InputDecoration(
+                      //       suffixIcon: Icon(CupertinoIcons.chevron_down),
+                      //       hintText: "City",
+                      //       border: OutlineInputBorder(
+                      //           borderSide: BorderSide(color:ColorConst.grey.withOpacity(0.15))
+                      //       ),
+                      //       constraints: BoxConstraints(
+                      //       )
+                      //   ),
+                      //
+                      //
+                      // ),
+                      // Container(
+                      //   width: w*0.9,
+                      //   height: h*0.08,
+                      //   decoration: BoxDecoration(
+                      //       color: ColorConst.grey.withOpacity(0.25),
+                      //       borderRadius:BorderRadius.circular(w*0.02)
+                      //   ),
+                      //
+                      //   child: TextFormField(
+                      //
+                      //     decoration: InputDecoration(
+                      //         suffixIcon: Icon(CupertinoIcons.chevron_down),
+                      //         hintText: "District",
+                      //         border: InputBorder.none,
+                      //         constraints: BoxConstraints()
+                      //     ),
+                      //   ),
+                      // ),
         
                     ],
                   ),

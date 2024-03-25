@@ -6,10 +6,12 @@ import 'package:furnigo/features/homescreen/screen/bottomNavi.dart';
 import 'package:furnigo/cart/check_in.dart';
 import 'package:furnigo/cart/cart.dart';
 import 'package:furnigo/features/homescreen/screen/home_page.dart';
+import 'package:furnigo/features/payments/screen/payment_methods.dart';
 import 'package:furnigo/features/homescreen/screen/notification.dart';
 import 'package:furnigo/cart/product_details.dart';
 import 'package:furnigo/features/homescreen/screen/success.dart';
 import 'package:furnigo/features/reviews/screen/my_review.dart';
+import 'package:furnigo/features/shipping/screen/add_shipping_address.dart';
 import 'package:furnigo/features/splash/screen/splash_screen.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -40,7 +42,7 @@ class _MyAppState extends State<MyApp> {
         textTheme: GoogleFonts.nunitoSansTextTheme()
         ),
         debugShowCheckedModeBanner: false,
-        home: home(),
+        home: Addshipping(),
       ),
     );
   }

@@ -40,6 +40,7 @@ dependencies:
   flutter_svg: ^2.0.9
   flutter_flip_card: ^0.0.4
   givestarreviews: ^1.0.2
+  country_state_city_picker: ^1.2.8
 
 
 dev_dependencies:
