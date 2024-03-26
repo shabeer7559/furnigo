@@ -107,7 +107,7 @@ class _NewPasswordState extends State<NewPassword> {
                       },),
                     Text("Remember me",
                       style: TextStyle(
-                          color: ColorConst.green,
+                          color: ColorConst.primaryColor,
                           fontSize: w*0.045,
                           fontWeight: FontWeight.w500
                       ),),
