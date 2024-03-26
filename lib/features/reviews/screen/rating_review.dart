@@ -80,7 +80,7 @@ class _ratingState extends State<rating> {
                       children: [
                         SvgPicture.asset(IconConst.yellowStar,width: w*0.08,),
                         SizedBox(
-                          width: w*0.02,
+                          width: w*0.02 ,
                         ),
                         Text("4.5",style: TextStyle(
                           fontWeight: FontWeight.w700,

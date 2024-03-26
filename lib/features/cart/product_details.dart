@@ -21,6 +21,7 @@ class ProductDetails extends StatefulWidget {
 }
 
 class _ProductDetailsState extends State<ProductDetails> {
+  int count=1;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -162,28 +163,44 @@ class _ProductDetailsState extends State<ProductDetails> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
-                          Container(
-                            height: h*0.04,
-                            width: w*0.1,
-                            child: Center(child: Icon(Icons.add)),
-                            decoration: BoxDecoration(
-                              color: ColorConst.containerGrey,
-                              borderRadius: BorderRadius.circular(w*0.03)
+                          InkWell(
+                            onTap: () {
+                              count++;
+                              setState(() {
+
+                              });
+                            },
+                            child: Container(
+                              height: h*0.04,
+                              width: w*0.1,
+                              child: Center(child: Icon(Icons.add)),
+                              decoration: BoxDecoration(
+                                color: ColorConst.containerGrey,
+                                borderRadius: BorderRadius.circular(w*0.03)
+                              ),
                             ),
                           ),
-                          Text("1",
+                          Text(count.toString(),
                           style: TextStyle(
                             fontSize: w*0.045,
                             fontWeight: FontWeight.w600,
                             color: ColorConst.primaryColor
                           ),),
-                          Container(
-                            height: h*0.04,
-                            width: w*0.1,
-                            child: Center(child: Icon(Icons.remove)),
-                            decoration: BoxDecoration(
-                              color: ColorConst.containerGrey,
-                              borderRadius: BorderRadius.circular(w*0.03)
+                          InkWell(
+                            onTap: () {
+                              count<=0?0:count--;
+                              setState(() {
+
+                              });
+                            },
+                            child: Container(
+                              height: h*0.04,
+                              width: w*0.1,
+                              child: Center(child: Icon(Icons.remove)),
+                              decoration: BoxDecoration(
+                                color: ColorConst.containerGrey,
+                                borderRadius: BorderRadius.circular(w*0.03)
+                              ),
                             ),
                           ),
                         ],

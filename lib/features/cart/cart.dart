@@ -20,36 +20,42 @@ class MyCart extends StatefulWidget {
 }
 
 class _MyCartState extends State<MyCart> {
+  int count=0;
+
   List cartItems=[
     {
      "name":"Minimal Stand" ,
       "image":ImageConst.minimalStand,
-      "price":"\$25"
+      "price":"\$25",
+      "qty":0
     },
     {
      "name":"Coffee Table" ,
       "image":ImageConst.coffeetable,
-      "price":"\$35"
+      "price":"\$35",
+      "qty":0
     },
     {
      "name":"Minimal Desk" ,
       "image":ImageConst.simpleDesk,
-      "price":"\$50"
+      "price":"\$50",
+      "qty":0
     },
   ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: Icon(Icons.arrow_back_ios_sharp),
-        title: Center(
-          child: Text("My cart",
-          style: GoogleFonts.merriweather(
-            fontWeight: FontWeight.w700,
-            fontSize: w*0.05,
-            color: ColorConst.primaryColor
-          ),),
-        ),
+        centerTitle: true,
+        leading: InkWell(
+          onTap: () => Navigator.pop(context),
+            child: Icon(Icons.arrow_back_ios_sharp)),
+        title: Text("My cart",
+        style: GoogleFonts.merriweather(
+          fontWeight: FontWeight.w700,
+          fontSize: w*0.05,
+          color: ColorConst.primaryColor
+        ),),
       ),
       floatingActionButton: Container(
         height: h*0.2,
@@ -163,6 +169,7 @@ class _MyCartState extends State<MyCart> {
                         ),
                       ),
                       Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
                           Text(cartItems[index]["name"],
@@ -183,29 +190,46 @@ class _MyCartState extends State<MyCart> {
                             child:Row(
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
-                                Container(
-                                  height: h*0.045,
-                                  width: w*0.1,
-                                  decoration: BoxDecoration(
-                                      color: ColorConst.containerGrey,
-                                      borderRadius: BorderRadius.circular(w*0.03)
+                                InkWell(
+                                  onTap: () {
+                                    cartItems[index]["qty"]++;
+                                    setState(() {
+
+                                    });
+                                  },
+                                  child: Container(
+                                    height: h*0.045,
+                                    width: w*0.1,
+                                    decoration: BoxDecoration(
+                                        color: ColorConst.containerGrey,
+                                        borderRadius: BorderRadius.circular(w*0.03)
+                                    ),
+                                    child: Center(child: Icon(Icons.add,color: ColorConst.primaryColor,)),
                                   ),
-                                  child: Center(child: Icon(Icons.add,color: ColorConst.primaryColor,)),
                                 ),
-                                Text("01",
+                                Text(
+                                  cartItems[index]["qty"].toString(),
                                   style: TextStyle(
                                       fontSize: w*0.045,
                                       fontWeight: FontWeight.w700,
                                       color: ColorConst.primaryColor
                                   ),),
-                                Container(
-                                  height: h*0.045,
-                                  width: w*0.1,
-                                  decoration: BoxDecoration(
-                                      color: ColorConst.containerGrey,
-                                      borderRadius: BorderRadius.circular(w*0.03)
+                                InkWell(
+                                  onTap: () {
+                                   cartItems[index]["qty"]<=0?0: cartItems[index]["qty"]--;
+                                    setState(() {
+
+                                    });
+                                  },
+                                  child: Container(
+                                    height: h*0.045,
+                                    width: w*0.1,
+                                    decoration: BoxDecoration(
+                                        color: ColorConst.containerGrey,
+                                        borderRadius: BorderRadius.circular(w*0.03)
+                                    ),
+                                    child: Center(child: Icon(Icons.remove,color: ColorConst.primaryColor,)),
                                   ),
-                                  child: Center(child: Icon(Icons.remove,color: ColorConst.primaryColor,)),
                                 ),
                               ],
                             ),

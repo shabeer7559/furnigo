@@ -49,7 +49,7 @@ class _favoriteState extends State<favorite> {
       appBar: AppBar(
         leading: Padding(
           padding:  EdgeInsets.all(w*0.04),
-          child: SvgPicture.asset(IconConst.searchIcon),
+          child: SvgPicture.asset(IconConst.searchIcon,color: ColorConst.primaryColor,),
         ),
         title: Row(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -58,7 +58,7 @@ class _favoriteState extends State<favorite> {
           ],
         ),
         actions: [
-          SvgPicture.asset(IconConst.cartIcon),
+          SvgPicture.asset(IconConst.cartIcon,color: ColorConst.primaryColor,),
           SizedBox(
             width: w*0.05,
           )
@@ -76,7 +76,7 @@ class _favoriteState extends State<favorite> {
                 return Container(
                   margin: EdgeInsets.all(w*0.04),
                   width: w*1,
-                  height: h*0.18,
+                  height: h*0.15,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(w*0.03),
                   ),
@@ -84,8 +84,8 @@ class _favoriteState extends State<favorite> {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       Container(
-                        height: h*0.3,
-                        width: w*0.35,
+                        height: h*0.15,
+                        width: w*0.3,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(w*0.03),
                             image: DecorationImage(image: AssetImage(fav[index]["image"]),fit: BoxFit.cover)
@@ -103,7 +103,7 @@ class _favoriteState extends State<favorite> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           SvgPicture.asset(IconConst.closeIcon),
-                          SvgPicture.asset(IconConst.bookingIcon),
+                          SvgPicture.asset(IconConst.bookingIcon,),
                         ],
                       )
                     ],
@@ -111,7 +111,9 @@ class _favoriteState extends State<favorite> {
                 );
               },
               separatorBuilder: (BuildContext context, int index) {
-                return SizedBox();
+                return Divider(
+                  color: Colors.grey.shade200,
+                );
               },
               itemCount: fav.length,
             
@@ -128,6 +130,13 @@ class _favoriteState extends State<favorite> {
           width: w*0.9,
           height: h*0.08,
           decoration: BoxDecoration(
+            boxShadow: [
+              BoxShadow(
+                  offset: Offset(0, 4),
+                  blurRadius: w*0.2,
+                  color: ColorConst.shadow
+              )
+            ],
             borderRadius: BorderRadius.circular(w*0.03),
             color: ColorConst.primaryColor
           ),
