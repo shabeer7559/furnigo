@@ -21,6 +21,7 @@ class ProductDetails extends StatefulWidget {
 }
 
 class _ProductDetailsState extends State<ProductDetails> {
+  bool tap=true;
   int count=1;
   @override
   Widget build(BuildContext context) {
@@ -31,16 +32,24 @@ class _ProductDetailsState extends State<ProductDetails> {
        child: Row(
          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
          children: [
-           Container(
-             height: h*0.075,
-             width: w*0.16,
-            decoration: BoxDecoration(
-              color: ColorConst.containerGrey,
-              borderRadius: BorderRadius.circular(w*0.03)
-            ),
-             child: Padding(
-               padding:  EdgeInsets.all(w*0.04),
-               child: SvgPicture.asset(IconConst.savedIcon,color: ColorConst.primaryColor,),
+           InkWell(
+             onTap: () {
+               tap=!tap;
+               setState(() {
+
+               });
+             },
+             child: Container(
+               height: h*0.075,
+               width: w*0.16,
+              decoration: BoxDecoration(
+                color: tap==true?ColorConst.primaryColor:ColorConst.containerGrey,
+                borderRadius: BorderRadius.circular(w*0.03)
+              ),
+               child: Padding(
+                 padding:  EdgeInsets.all(w*0.04),
+                 child: SvgPicture.asset(IconConst.savedIcon,color:tap==true?ColorConst.secondaryColor: ColorConst.primaryColor,),
+               ),
              ),
            ),
            InkWell(
@@ -98,28 +107,31 @@ class _ProductDetailsState extends State<ProductDetails> {
               Positioned(
                 right: w*0.8,
                 top: w*0.15,
-                child: Container(
-                  height: h*0.05,
-                    width: w*0.1,
-                  decoration: BoxDecoration(
-                    color: ColorConst.secondaryColor,
-                    boxShadow: [
-                      BoxShadow(
-                        offset: Offset(0, 4),
-                        blurRadius: w*0.2,
-                        color: ColorConst.shadow
-                      )
-                    ],
-                    borderRadius: BorderRadius.circular(w*0.02)
+                child: InkWell(
+                  onTap: () => Navigator.pop(context),
+                  child: Container(
+                    height: h*0.05,
+                      width: w*0.1,
+                    decoration: BoxDecoration(
+                      color: ColorConst.secondaryColor,
+                      boxShadow: [
+                        BoxShadow(
+                          offset: Offset(0, 4),
+                          blurRadius: w*0.2,
+                          color: ColorConst.shadow
+                        )
+                      ],
+                      borderRadius: BorderRadius.circular(w*0.02)
+                    ),
+                    child: Center(child: Icon(Icons.arrow_back_ios_sharp)),
                   ),
-                  child: Center(child: Icon(Icons.arrow_back_ios_sharp)),
                 ),
               ),
               Positioned(
                 right: w*0.78,
                 top: w*0.4,
                 child: Container(
-                  height: h*0.19,
+                  height: h*0.24,
                   width: w*0.13,
                   decoration: BoxDecoration(
                       boxShadow: [
