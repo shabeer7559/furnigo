@@ -103,7 +103,7 @@ class _favoriteState extends State<favorite> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           SvgPicture.asset(IconConst.closeIcon),
-                          SvgPicture.asset(IconConst.bookingIcon),
+                          SvgPicture.asset(IconConst.blackcartIcon),
                         ],
                       )
                     ],

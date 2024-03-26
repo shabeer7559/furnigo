@@ -1,3 +1,5 @@
+import 'package:flutter/cupertino.dart';
+
 class IconConst{
   static const homeIcon="assets/icon/homeIcon.svg";
   static const searchIcon="assets/icon/searchIcon.svg";
@@ -21,5 +23,5 @@ class IconConst{
   static const closeIcon="assets/icon/closeIcon.svg";
   static const arrowback="assets/icon/arrowBack.svg";
   static const yellowStar="assets/icon/yellowStar.svg";
-
+  static const blackcartIcon="assets/icon/blacksaved.svg";
 }

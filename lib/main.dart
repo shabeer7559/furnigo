@@ -27,6 +27,8 @@ import 'package:furnigo/features/homescreen/screen/success.dart';
 import 'package:furnigo/features/profile/screen/profile_page.dart';
 import 'package:furnigo/features/reviews/screen/my_review.dart';
 import 'package:furnigo/features/settings/settings.dart';
+import 'package:furnigo/features/settings/settings.dart';
+import 'package:furnigo/features/shipping/screen/add_shipping_address.dart';
 import 'package:furnigo/features/splash/screen/splash_screen.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -57,8 +59,7 @@ class _MyAppState extends State<MyApp> {
         textTheme: GoogleFonts.nunitoSansTextTheme()
         ),
         debugShowCheckedModeBanner: false,
-        home:MyOrders(),
-
+        home: ForgetPassword(),
       ),
     );
   }
