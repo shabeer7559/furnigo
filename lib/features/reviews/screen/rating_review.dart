@@ -49,7 +49,11 @@ class _ratingState extends State<rating> {
         centerTitle: true,
         leading: Padding(
           padding:  EdgeInsets.all(w*0.05),
-          child: SvgPicture.asset(IconConst.arrowback),
+          child: InkWell(
+              onTap: () {
+                Navigator.pop(context);
+              },
+              child: SvgPicture.asset(IconConst.arrowback)),
         ),
         title: Text("Rating & Review",style: GoogleFonts.gelasio(fontSize: w*0.055,fontWeight: FontWeight.w700),),
       ),
