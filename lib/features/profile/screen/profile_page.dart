@@ -35,9 +35,9 @@ class _profile_pageState extends State<profile_page> {
       appBar: AppBar(
         centerTitle: true,
         leading: Padding(
-          padding: EdgeInsets.all(w * 0.03),
+          padding: EdgeInsets.all(w * 0.04),
           child: SvgPicture.asset(
-            IconConst.searchIcon,
+            IconConst.searchIcon,color: ColorConst.primaryColor,
             width: w * 0.04,
             height: h * 0.04,
           ),
@@ -49,9 +49,9 @@ class _profile_pageState extends State<profile_page> {
         ),
         actions: [
           Padding(
-            padding:  EdgeInsets.all(w*0.03),
+            padding:  EdgeInsets.all(w*0.04),
             child: SvgPicture.asset(
-              IconConst.logoutIcon,
+              IconConst.logoutIcon,color: ColorConst.primaryColor,
               width: w * 0.1,
             ),
           )
@@ -103,14 +103,16 @@ class _profile_pageState extends State<profile_page> {
                   },
                   child: Container(
                     width: w * 0.9,
-                    height: h*0.1,
+                    height: h*0.11,
                     margin: EdgeInsets.only(left: w*0.02,right: w*0.02),
                     decoration: BoxDecoration(
                         color: ColorConst.whit, boxShadow: [
                       BoxShadow(
-                        color: Colors.grey,
-                        blurRadius: w * 0.03,
-                        offset: Offset(0, 7),
+                        color: ColorConst.primaryColor.withOpacity(0.25),
+                        blurRadius: 3,
+                        spreadRadius: 1,
+
+                        offset: Offset(0, 4),
 
                       )
                     ]),

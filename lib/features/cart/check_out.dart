@@ -23,16 +23,22 @@ class _checkOutState extends State<checkOut> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar:  AppBar(
+        centerTitle: true,
         leading: Padding(
           padding:  EdgeInsets.all(w*0.05),
-          child: SvgPicture.asset(IconConst.arrowback),
+          child: InkWell(
+              onTap: () {
+                Navigator.pop(context);
+              },
+              child: SvgPicture.asset(IconConst.arrowback)),
         ),
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text("Check out",style: GoogleFonts.gelasio(),),
-          ],
-        ),
+        title:
+            Text("Check out",style: GoogleFonts.merriweather(
+              fontSize: w*0.045,
+              fontWeight: FontWeight.w700,
+              color: ColorConst.primaryColor
+
+            ),),
       ),
       body: Column(
         children: [Padding(
@@ -77,7 +83,7 @@ class _checkOutState extends State<checkOut> {
                   ),
                   Text("25 rue Robert Latouche, Nice, 06200, Côte D’azur, France",
                   style: TextStyle(
-                    fontSize: w*0.04,
+                    fontSize: w*0.035,
                     color: ColorConst.grey
                   ),)
                 ],
@@ -183,27 +189,27 @@ class _checkOutState extends State<checkOut> {
                     children: [
                       Text("Order:",style: TextStyle(
                         color: ColorConst.grey,
-                        fontSize: w*0.05
+                        fontSize: w*0.045
                       ),),
                       Text("\$95.00",
                       style: TextStyle(
-                          fontSize: w*0.05
+                          fontSize: w*0.045
                       ),),
                     ],
                   ),
                 ),
                 Padding(
-                  padding:  EdgeInsets.all(w*0.03),
+                  padding:  EdgeInsets.all(w*0.02),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text("Delivery:",style: TextStyle(
                         color: ColorConst.grey,
-                        fontSize: w*0.05
+                        fontSize: w*0.045
                       ),),
                       Text("\$5.00",
                       style: TextStyle(
-                          fontSize: w*0.05
+                          fontSize: w*0.045
                       ),),
                     ],
                   ),
@@ -215,11 +221,11 @@ class _checkOutState extends State<checkOut> {
                     children: [
                       Text("Total:",style: TextStyle(
                         color: ColorConst.grey,
-                        fontSize: w*0.05
+                        fontSize: w*0.045
                       ),),
                       Text("\$100.00",
                       style: TextStyle(
-                          fontSize: w*0.05
+                          fontSize: w*0.045
                       ),),
                     ],
                   ),

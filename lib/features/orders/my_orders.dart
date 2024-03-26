@@ -75,7 +75,7 @@ class _MyOrdersState extends State<MyOrders> {
                                        ),),
                                    ),
                                    Container(
-                                     padding: EdgeInsets.only(top: h*0.03,left: w*0.2),
+                                     padding: EdgeInsets.only(top: h*0.03,left: w*0.25),
                                      child: Text("20/03/2020",
                                        style: TextStyle(
                                            fontWeight: FontWeight.w400,
@@ -109,7 +109,7 @@ class _MyOrdersState extends State<MyOrders> {
                                      ],
                                    ),
                                    Container(
-                                     padding: EdgeInsets.only(top: h*0.02,left: w*0.2 ),
+                                     padding: EdgeInsets.only(top: h*0.02,left: w*0.25 ),
                                      child: Text("Total Amount:",
                                        style: TextStyle(
                                            fontWeight: FontWeight.w600,
@@ -133,9 +133,9 @@ class _MyOrdersState extends State<MyOrders> {
                                Row(
                                  children: [
                                    Padding(
-                                     padding:  EdgeInsets.only(top: h*0.03,left: w*0.05),
+                                     padding:  EdgeInsets.only(top: h*0.03,right: w*0.05),
                                      child: Container(
-                                       width: w*0.2,
+                                       width: w*0.25,
                                        height: h*0.05,
                                        child: Center(
                                          child: Text("Detail",
@@ -146,7 +146,7 @@ class _MyOrdersState extends State<MyOrders> {
                                        ),
                                        decoration: BoxDecoration(
                                            color: ColorConst.primaryColor,
-                                           borderRadius: BorderRadius.circular(w*0.03)
+                                           borderRadius: BorderRadius.only(topRight: Radius.circular(w*0.01),bottomRight: Radius.circular(w*0.01))
                                        ),
 
                                      ),
@@ -201,7 +201,7 @@ class _MyOrdersState extends State<MyOrders> {
                                        ),),
                                    ),
                                    Container(
-                                     padding: EdgeInsets.only(top: h*0.03,left: w*0.2),
+                                     padding: EdgeInsets.only(top: h*0.03,left: w*0.25),
                                      child: Text("20/03/2020",
                                        style: TextStyle(
                                            fontWeight: FontWeight.w400,
@@ -235,7 +235,7 @@ class _MyOrdersState extends State<MyOrders> {
                                      ],
                                    ),
                                    Container(
-                                     padding: EdgeInsets.only(top: h*0.02,left: w*0.2 ),
+                                     padding: EdgeInsets.only(top: h*0.02,left: w*0.25  ),
                                      child: Text("Total Amount:",
                                        style: TextStyle(
                                            fontWeight: FontWeight.w600,
@@ -259,9 +259,9 @@ class _MyOrdersState extends State<MyOrders> {
                                Row(
                                  children: [
                                    Padding(
-                                     padding:  EdgeInsets.only(top: h*0.03,left: w*0.05),
+                                     padding:  EdgeInsets.only(top: h*0.03,right: w*0.05),
                                      child: Container(
-                                       width: w*0.2,
+                                       width: w*0.25,
                                        height: h*0.05,
                                        child: Center(
                                          child: Text("Detail",
@@ -272,7 +272,7 @@ class _MyOrdersState extends State<MyOrders> {
                                        ),
                                        decoration: BoxDecoration(
                                            color: ColorConst.primaryColor,
-                                           borderRadius: BorderRadius.circular(w*0.03)
+                                           borderRadius: BorderRadius.only(topRight: Radius.circular(w*0.01),bottomRight: Radius.circular(w*0.01))
                                        ),
 
                                      ),
@@ -327,7 +327,7 @@ class _MyOrdersState extends State<MyOrders> {
                                        ),),
                                    ),
                                    Container(
-                                     padding: EdgeInsets.only(top: h*0.03,left: w*0.2),
+                                     padding: EdgeInsets.only(top: h*0.03,left: w*0.25),
                                      child: Text("20/03/2020",
                                        style: TextStyle(
                                            fontWeight: FontWeight.w400,
@@ -361,7 +361,7 @@ class _MyOrdersState extends State<MyOrders> {
                                      ],
                                    ),
                                    Container(
-                                     padding: EdgeInsets.only(top: h*0.02,left: w*0.2 ),
+                                     padding: EdgeInsets.only(top: h*0.02,left: w*0.25 ),
                                      child: Text("Total Amount:",
                                        style: TextStyle(
                                            fontWeight: FontWeight.w600,
@@ -385,9 +385,9 @@ class _MyOrdersState extends State<MyOrders> {
                                Row(
                                  children: [
                                    Padding(
-                                     padding:  EdgeInsets.only(top: h*0.03,left: w*0.05),
+                                     padding:  EdgeInsets.only(top: h*0.03,right: w*0.05),
                                      child: Container(
-                                       width: w*0.2,
+                                       width: w*0.25,
                                        height: h*0.05,
                                        child: Center(
                                          child: Text("Detail",
@@ -398,7 +398,7 @@ class _MyOrdersState extends State<MyOrders> {
                                        ),
                                        decoration: BoxDecoration(
                                            color: ColorConst.primaryColor,
-                                           borderRadius: BorderRadius.circular(w*0.03)
+                                           borderRadius: BorderRadius.only(topRight: Radius.circular(w*0.01),bottomRight: Radius.circular(w*0.01))
                                        ),
 
                                      ),

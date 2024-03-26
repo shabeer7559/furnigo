@@ -46,16 +46,12 @@ class _ratingState extends State<rating> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
         leading: Padding(
           padding:  EdgeInsets.all(w*0.05),
           child: SvgPicture.asset(IconConst.arrowback),
         ),
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text("Rating & Review",style: GoogleFonts.gelasio(),),
-          ],
-        ),
+        title: Text("Rating & Review",style: GoogleFonts.gelasio(fontSize: w*0.055,fontWeight: FontWeight.w700),),
       ),
       body: Column(
         children: [
@@ -67,7 +63,7 @@ class _ratingState extends State<rating> {
                 Padding(
                   padding:  EdgeInsets.all(w*0.04),
                   child: Container(
-                    width: w*0.35,
+                    width: w*0.3,
                     height: h*0.18,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(w*0.03),
@@ -77,23 +73,24 @@ class _ratingState extends State<rating> {
                 ),
                 Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text("Minimal Stand",style: TextStyle(fontSize: w*0.05),),
                     Row(
                       children: [
-                        SvgPicture.asset(IconConst.yellowStar,width: w*0.09,),
+                        SvgPicture.asset(IconConst.yellowStar,width: w*0.08,),
                         SizedBox(
                           width: w*0.02,
                         ),
                         Text("4.5",style: TextStyle(
                           fontWeight: FontWeight.w700,
-                          fontSize: w*0.09
+                          fontSize: w*0.08
                         ),),
                       ],
                     ),
                     Text("10 reviews",style: TextStyle(
                       fontWeight: FontWeight.w500,
-                      fontSize: w*0.06
+                      fontSize: w*0.055
                     ),)
                   ],
                 )
@@ -136,9 +133,12 @@ class _ratingState extends State<rating> {
                                     ],
                                   ),
                                 ),
-                                StarRating(
-                                  onChanged: (index) {
-                                  },
+                                Padding(
+                                  padding: EdgeInsets.only(left: w*0.03),
+                                  child: StarRating(
+                                    onChanged: (index) {
+                                    },
+                                  ),
                                 ),
                                 Padding(
                                   padding:  EdgeInsets.all(w*0.03),
@@ -146,7 +146,7 @@ class _ratingState extends State<rating> {
                                 )
                               ],
                             ),
-                            height: h*0.25,
+                            height: h*0.26,
                             width: w*0.9,
                             decoration:BoxDecoration(
                                 color: ColorConst.secondaryColor,
@@ -188,7 +188,7 @@ class _ratingState extends State<rating> {
       floatingActionButton:
       Container(
         width: w*0.9,
-        height: h*0.08,
+        height: h*0.074,
         decoration: BoxDecoration(
           boxShadow: [
             BoxShadow(

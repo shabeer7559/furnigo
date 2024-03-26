@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:furnigo/features/constants/color_const.dart';
 import 'package:furnigo/features/constants/image_const.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -53,16 +54,8 @@ class _notificationState extends State<notification> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: Padding(
-          padding:  EdgeInsets.all(w*0.04),
-          child: SvgPicture.asset(IconConst.searchIcon),
-        ),
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text("Notification",style: GoogleFonts.gelasio(),),
-          ],
-        ),
+        centerTitle: true,
+        title: Text("Notification",style:GoogleFonts.merriweather(fontWeight: FontWeight.w700,fontSize: w*0.045) ,),
       ),
       body: Column(
         children: [
@@ -74,14 +67,14 @@ class _notificationState extends State<notification> {
               itemBuilder: (BuildContext context, int index) {
                 return Container(
                   width: w*1,
-                  height: h*0.18,
+                  height: h*0.14,
                   child: Row(
                     children: [
                       Padding(
                         padding:  EdgeInsets.all(w*0.03),
                         child: Container(
                           height: h*0.17,
-                          width: w*0.3,
+                          width: w*0.25,
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(w*0.03),
                               image: DecorationImage(image: AssetImage(notification[index]["image"]),fit: BoxFit.fill)
@@ -93,21 +86,21 @@ class _notificationState extends State<notification> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Container(
-                            width: w*0.6,
-                            height: h*0.06,
+                            width: w*0.68,
+                            height: h*0.05,
                             child: Text(notification[index]['title'],
                               textAlign: TextAlign.left,
                               style: TextStyle(
                                 fontWeight: FontWeight.w700,
-                                fontSize: w*0.05,
+                                fontSize: w*0.035,
             
             
                               ),),
                           ),
                           Container(
-                              width: w*0.6,
+                              width: w*0.68,
                               height: h*0.09,
-                              child: Text(notification[index]["note"]))
+                              child: Text(notification[index]["note"],style: TextStyle(fontSize: w*0.032),))
                         ],
                       )
                     ],
