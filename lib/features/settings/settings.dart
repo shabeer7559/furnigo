@@ -15,12 +15,13 @@ class settings extends StatefulWidget {
 }
 
 class _settingsState extends State<settings> {
-  bool switch1=true;
-  bool switch2=true;
+  bool switch1=false;
+  bool switch2=false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+       backgroundColor: ColorConst.whit,
         centerTitle: true,
         leading: InkWell(
           onTap: () {
@@ -29,7 +30,7 @@ class _settingsState extends State<settings> {
             child: Icon(Icons.arrow_back_ios_sharp,color: ColorConst.primaryColor,)),
         title: Text(
           "Setting",
-          style: GoogleFonts.aBeeZee(
+          style: GoogleFonts.merriweather(
             fontSize: w*0.045   ,
               color: ColorConst.primaryColor,
               fontWeight: FontWeight.w700,),
@@ -38,7 +39,7 @@ class _settingsState extends State<settings> {
       body: SingleChildScrollView(
         child: Container(
           height: h*0.9,
-          margin: EdgeInsets.only(left: w*0.04,right: w*0.03),
+          margin: EdgeInsets.only(left: w*0.05,right: w*0.03),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,

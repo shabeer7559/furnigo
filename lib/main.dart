@@ -13,6 +13,7 @@ import 'package:furnigo/features/homescreen/screen/notification.dart';
 // import 'package:furnigo/features/homescreen/screen/product_details.dart';
 import 'package:furnigo/features/homescreen/screen/success.dart';
 import 'package:furnigo/features/orders/my_orders.dart';
+import 'package:furnigo/features/payments/screen/add_newcard.dart';
 import 'package:furnigo/features/payments/screen/payment_methods.dart';
 import 'package:furnigo/features/reviews/screen/rating_review.dart';
 import 'package:furnigo/features/homescreen/screen/notification.dart';
@@ -59,7 +60,7 @@ class _MyAppState extends State<MyApp> {
         textTheme: GoogleFonts.nunitoSansTextTheme()
         ),
         debugShowCheckedModeBanner: false,
-        home: ForgetPassword(),
+        home: paymentMethod(),
       ),
     );
   }
