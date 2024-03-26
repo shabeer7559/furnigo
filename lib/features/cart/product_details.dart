@@ -21,7 +21,7 @@ class ProductDetails extends StatefulWidget {
 }
 
 class _ProductDetailsState extends State<ProductDetails> {
-  bool tap=true;
+  bool tap=false;
   int count=1;
   @override
   Widget build(BuildContext context) {
