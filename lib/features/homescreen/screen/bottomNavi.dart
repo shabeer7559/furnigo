@@ -9,6 +9,7 @@ import 'package:furnigo/features/homescreen/screen/home_page.dart';
 import 'package:furnigo/features/homescreen/screen/notification.dart';
 import 'package:furnigo/features/profile/screen/profile_page.dart';
 
+import '../../../main.dart';
 import '../../cart/favorite.dart';
 
 class bottomNavi extends StatefulWidget {
@@ -30,31 +31,25 @@ List pages=[
   Widget build(BuildContext context) {
     return Scaffold(
       body: pages[selectedIndex],
-      bottomNavigationBar:BottomNavigationBar(
-        selectedItemColor: ColorConst.primaryColor,
-        unselectedItemColor: ColorConst.secondaryColor,
-        showSelectedLabels: true,
-        showUnselectedLabels: true,
-        currentIndex: selectedIndex,
-        onTap:(value) {
-          selectedIndex=value!;
+      bottomNavigationBar:BottomBarDefault(
+        iconSize: w*0.065,
+        indexSelected: selectedIndex,
+        onTap: (index) {
+          selectedIndex=index!;
           setState(() {
+
           });
         },
-        items:[
-          BottomNavigationBarItem(
-              label: "",
-              icon: SvgPicture.asset(IconConst.homeIcon)),
-          BottomNavigationBarItem(
-              label: "",
-              icon: SvgPicture.asset(IconConst.savedIcon)),
-          BottomNavigationBarItem(
-              label: "",
-              icon: SvgPicture.asset(IconConst.notifIcon)),
-          BottomNavigationBarItem(
-              label: "",
-              icon: SvgPicture.asset(IconConst.profileIcon)),
-        ],)
+          items: [
+            TabItem(icon: Icons.home_outlined),
+            TabItem(icon: Icons.bookmark_border_outlined),
+            TabItem(icon: Icons.notifications_none),
+            TabItem(icon: Icons.person_outline),
+          ],
+          backgroundColor: ColorConst.secondaryColor,
+          color: ColorConst.grey,
+          colorSelected: ColorConst.primaryColor
+      ),
     );
   }
 }

@@ -64,7 +64,7 @@ class _addNewcardState extends State<addNewcard> {
                     child: Stack(
                       children: [
                         Padding(
-                          padding: EdgeInsets.only(),
+                          padding: EdgeInsets.only(left: w*0.06,top: h*0.03),
                           child: Row(
                             children: [
                               Image(
@@ -188,11 +188,14 @@ class _addNewcardState extends State<addNewcard> {
                       decoration: BoxDecoration(
                           color: ColorConst.grey.withOpacity(0.25),
                           borderRadius: BorderRadius.circular(w * 0.02)),
-                      child: TextFormField(
-                        decoration: InputDecoration(
-                            hintText: "CardHolder Name",
-                            border: InputBorder.none,
-                            constraints: BoxConstraints()),
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: TextFormField(
+                          decoration: InputDecoration(
+                              labelText: "CardHolder Name",
+                              border: InputBorder.none,
+                              constraints: BoxConstraints()),
+                        ),
                       ),
                     ),
                     TextFormField(
@@ -214,9 +217,12 @@ class _addNewcardState extends State<addNewcard> {
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(w * 0.02),
                                 color: ColorConst.grey.withOpacity(0.25)),
-                            child: TextFormField(
-                              decoration: InputDecoration(
-                                  hintText: "CVV", border: InputBorder.none),
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: TextFormField(
+                                decoration: InputDecoration(
+                                    hintText: "CVV", border: InputBorder.none),
+                              ),
                             ),
                           ),
                           Container(
@@ -226,10 +232,13 @@ class _addNewcardState extends State<addNewcard> {
                                 borderRadius: BorderRadius.circular(w * 0.02),
                                 border: Border.all(
                                     color: ColorConst.grey.withOpacity(0.15))),
-                            child: TextFormField(
-                              decoration: InputDecoration(
-                                  hintText: "Experation Date",
-                                  border: InputBorder.none),
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: TextFormField(
+                                decoration: InputDecoration(
+                                    hintText: "Experation Date",
+                                    border: InputBorder.none),
+                              ),
                             ),
                           ),
                         ],

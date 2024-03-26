@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:furnigo/features/constants/color_const.dart';
 import 'package:furnigo/main.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class MyOrders extends StatefulWidget {
   const MyOrders({super.key});
@@ -19,7 +20,7 @@ class _MyOrdersState extends State<MyOrders> {
       child: Scaffold(
         appBar: AppBar(
           centerTitle: true,
-          title: Text("My order"),
+          title: Text("My order",style: GoogleFonts.merriweather(fontWeight: FontWeight.w700,fontSize: w*0.05),),
           leading: Icon(Icons.arrow_back_ios_new),
         ),
          body:  Column(
@@ -59,8 +60,13 @@ class _MyOrdersState extends State<MyOrders> {
                            height: h*0.23,
                            decoration: BoxDecoration(
                                color: ColorConst.whit,
-                               boxShadow: [BoxShadow(color: ColorConst.shadow,
-                                   blurRadius: w*0.03)]
+                               boxShadow:[
+                                 BoxShadow(
+                                     color:Colors.grey.shade200,
+                                     blurRadius: 5,
+                                     spreadRadius: 5,
+                                     offset: Offset(0, 6)
+                                 )]
                            ),
                            child: Column(
                              children: [
@@ -185,8 +191,13 @@ class _MyOrdersState extends State<MyOrders> {
                            height: h*0.23,
                            decoration: BoxDecoration(
                                color: ColorConst.whit,
-                               boxShadow: [BoxShadow(color: ColorConst.shadow,
-                                   blurRadius: w*0.03)]
+                               boxShadow:[
+                                 BoxShadow(
+                                     color:Colors.grey.shade200,
+                                     blurRadius: 5,
+                                     spreadRadius: 5,
+                                     offset: Offset(0, 6)
+                                 )]
                            ),
                            child: Column(
                              children: [
@@ -311,8 +322,13 @@ class _MyOrdersState extends State<MyOrders> {
                            height: h*0.23,
                            decoration: BoxDecoration(
                                color: ColorConst.whit,
-                               boxShadow: [BoxShadow(color: ColorConst.shadow,
-                                   blurRadius: w*0.03)]
+                               boxShadow:[
+                                 BoxShadow(
+                                     color:Colors.grey.shade200,
+                                     blurRadius: 5,
+                                     spreadRadius: 5,
+                                     offset: Offset(0, 6)
+                                 )]
                            ),
                            child: Column(
                              children: [

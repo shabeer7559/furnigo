@@ -21,6 +21,7 @@ class home extends StatefulWidget {
 
 class _homeState extends State<home> {
   int selectedIndex=0;
+  List bookMark=[];
   List<Map<String,dynamic>>suggessions=[
     { "icon":IconConst.starIcon,
       "text":"Popular"
@@ -35,7 +36,6 @@ class _homeState extends State<home> {
     },
     {
    "icon":IconConst.sofa,
-   "icon":IconConst.sofa1Icon,
       "text":"Sofa"
     },
     {
@@ -67,7 +67,7 @@ class _homeState extends State<home> {
       backgroundColor: Colors.white,
       appBar: AppBar(
         leading: Padding(
-          padding:  EdgeInsets.all(w*0.05),
+          padding:  EdgeInsets.all(w*0.04),
           child: SvgPicture.asset(IconConst.searchIcon,),
         ),
         title: Row(
@@ -114,19 +114,23 @@ class _homeState extends State<home> {
                           });
                         },
                         child: Container(
-                          width: w*0.2,
-                          height: w*0.2,
+                          width: w*0.18,
+                          height: w*0.18,
                           decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(w*0.03),
-                              color:selectedIndex==index?ColorConst.primaryColor: ColorConst.containerGrey
+                              borderRadius: BorderRadius.circular(w*0.04),
+                              color:selectedIndex==index?ColorConst.primaryColor: ColorConst.containerGrey.withOpacity(0.25)
                           ),
                           child: Padding(
                             padding:  EdgeInsets.all(w*0.05),
-                            child: SvgPicture.asset(suggessions[index]["icon"]),
+                            child: SvgPicture.asset(suggessions[index]["icon"],color: selectedIndex==index?ColorConst.secondaryColor:ColorConst.primaryColor,),
                           ),
                         ),
                       ),
-                      Text(suggessions[index]["text"])
+                      Text(suggessions[index]["text"],style: TextStyle(
+                        fontWeight: FontWeight.w500,
+                        color: ColorConst.grey,
+                        fontSize: w*0.04
+                      ),)
                     ],
                   );
                 },
@@ -169,8 +173,21 @@ class _homeState extends State<home> {
                             ),
                               Positioned(
                                 left: w*0.34,
-                                  bottom: w*0.05,
-                                  child: SvgPicture.asset(IconConst.bookingIcon))
+                                bottom: w*0.05,
+                                child: InkWell(
+                                  onTap:  () {
+                                    if (bookMark.contains(index)){
+                                      bookMark.remove(index);
+                                    }else{
+                                      bookMark.add(index);
+                                    }
+                                    setState(() {
+
+                                    });
+                                  },
+                                  child: SvgPicture.asset(bookMark.contains(index)?IconConst.blackcartIcon:IconConst.bookingIcon),
+                                ),
+                              )
                             ]
                           ),
                           Text(items[index]["name"],style: TextStyle(
