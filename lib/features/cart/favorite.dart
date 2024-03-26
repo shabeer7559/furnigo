@@ -76,15 +76,15 @@ class _favoriteState extends State<favorite> {
                 return Container(
                   margin: EdgeInsets.all(w*0.04),
                   width: w*1,
-                  height: h*0.15,
+                  height: h*0.14,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(w*0.03),
                   ),
                   child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       Container(
-                        height: h*0.15,
+                        height: h*0.13,
                         width: w*0.3,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(w*0.03),
@@ -103,7 +103,7 @@ class _favoriteState extends State<favorite> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           SvgPicture.asset(IconConst.closeIcon),
-                          SvgPicture.asset(IconConst.bookingIcon,),
+                          SvgPicture.asset(IconConst.blackcartIcon,),
                         ],
                       )
                     ],

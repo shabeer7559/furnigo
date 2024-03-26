@@ -107,31 +107,28 @@ class _ProductDetailsState extends State<ProductDetails> {
               Positioned(
                 right: w*0.8,
                 top: w*0.15,
-                child: InkWell(
-                  onTap: () => Navigator.pop(context),
-                  child: Container(
-                    height: h*0.05,
-                      width: w*0.1,
-                    decoration: BoxDecoration(
-                      color: ColorConst.secondaryColor,
-                      boxShadow: [
-                        BoxShadow(
-                          offset: Offset(0, 4),
-                          blurRadius: w*0.2,
-                          color: ColorConst.shadow
-                        )
-                      ],
-                      borderRadius: BorderRadius.circular(w*0.02)
-                    ),
-                    child: Center(child: Icon(Icons.arrow_back_ios_sharp)),
+                child: Container(
+                  height: h*0.05,
+                    width: w*0.1,
+                  decoration: BoxDecoration(
+                    color: ColorConst.secondaryColor,
+                    boxShadow: [
+                      BoxShadow(
+                        offset: Offset(0, 4),
+                        blurRadius: w*0.2,
+                        color: ColorConst.shadow
+                      )
+                    ],
+                    borderRadius: BorderRadius.circular(w*0.02)
                   ),
+                  child: Center(child: Icon(Icons.arrow_back_ios_sharp)),
                 ),
               ),
               Positioned(
                 right: w*0.78,
                 top: w*0.4,
                 child: Container(
-                  height: h*0.24,
+                  height: h*0.19,
                   width: w*0.13,
                   decoration: BoxDecoration(
                       boxShadow: [
