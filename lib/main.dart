@@ -1,3 +1,4 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:furnigo/features/authentication/screen/create_new_password.dart';
@@ -33,9 +34,14 @@ import 'package:google_fonts/google_fonts.dart';
 
 import 'features/cart/product_details.dart';
 import 'features/shipping/screen/shipping_address.dart';
+import 'firebase_options.dart';
 var h;
 var w;
-void main(){
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+      options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(MyApp());
 }
 class MyApp extends StatefulWidget {
@@ -59,7 +65,7 @@ class _MyAppState extends State<MyApp> {
         textTheme: GoogleFonts.nunitoSansTextTheme()
         ),
         debugShowCheckedModeBanner: false,
-        home:SignUp(),
+        home:SplashScreen(),
 
       ),
     );
