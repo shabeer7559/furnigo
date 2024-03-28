@@ -43,6 +43,8 @@ dependencies:
   country_state_city_picker: ^1.2.8
   pinput: ^3.0.1
   awesome_bottom_bar: ^1.2.4
+  image_picker: ^1.0.4
+  firebase_core: ^2.24.2
 
 
 dev_dependencies:

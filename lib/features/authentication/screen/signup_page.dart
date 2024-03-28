@@ -1,9 +1,14 @@
+
+import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:furnigo/features/authentication/screen/login_page.dart';
 import 'package:furnigo/features/constants/color_const.dart';
+import 'package:furnigo/features/constants/image_const.dart';
 import 'package:furnigo/features/homescreen/screen/bottomNavi.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:image_picker/image_picker.dart';
 
 import '../../../main.dart';
 import '../../constants/icon_const.dart';
@@ -16,6 +21,15 @@ class SignUp extends StatefulWidget {
 }
 
 class _SignUpState extends State<SignUp> {
+  var files;
+  pickImage(ImageSource)async{
+    final imgfile=await ImagePicker.platform.pickImage(source: ImageSource);
+    files=File(imgfile!.path);
+    if(mounted){
+      setState(() {
+        files=File(imgfile.path);
+      });
+    }}
   bool password=true;
   bool password1=true;
   @override
@@ -30,31 +44,90 @@ class _SignUpState extends State<SignUp> {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                Row(
-                  children: [
-                    Expanded(
-                      child: Divider(
-                        color: Colors.grey,
-                        endIndent: w * 0.01,
-                        indent: w * 0.03,
-                      ),
-                    ),
-                    Image.asset(IconConst.sofa1Icon,width: w*0.17,),
-                    Expanded(
-                      child: Divider(
-                        color: Colors.grey,
-                        indent: w * 0.01,
-                        endIndent: w * 0.07,
-                      ),
-                    ),
-                  ],
+                Padding(
+                  padding:  EdgeInsets.only(top: h*0.05),
+                  child: Text("WELCOME",
+                  style: GoogleFonts.merriweather(
+                    color: ColorConst.primaryColor,
+                    fontWeight: FontWeight.w700,
+                    fontSize: w*0.08,
+                  ),),
                 ),
-                Text("WELCOME",
-                style: GoogleFonts.merriweather(
-                  color: ColorConst.primaryColor,
-                  fontWeight: FontWeight.w700,
-                  fontSize: w*0.08,
-                ),),
+            Center(
+              child: Stack(
+                children: [
+                  files!=null?
+                  CircleAvatar(
+                    backgroundImage: FileImage(files),
+                    radius: w*0.1,
+                  ):
+                      CircleAvatar(
+                       radius: w*0.1,
+                        backgroundImage:AssetImage(ImageConst.avatar,)
+                      ),
+                  Padding(
+                    padding:  EdgeInsets.only(top: h*0.06,left: w*0.15),
+                    child: InkWell(
+                      onTap: () {
+                        showCupertinoModalPopup(
+                          context: context,
+                          builder: (context) {
+                            return
+                              CupertinoActionSheet(
+                                actions: [
+                                  CupertinoActionSheetAction(
+
+                                    onPressed: () {
+                                      pickImage(ImageSource.gallery);
+                                    },
+                                    child: Text("Photo Gallery",style:
+                                    TextStyle(
+                                        fontWeight: FontWeight.w400,
+                                        fontSize: w*0.045,
+                                        color:ColorConst.green
+                                    ),),isDefaultAction: true,),
+                                  CupertinoActionSheetAction(onPressed: () {
+                                    pickImage(ImageSource.camera);
+                                  }, child: Text("Camera",style: TextStyle(
+                                      fontWeight: FontWeight.w400,
+                                      fontSize: w*0.045,
+                                      color: ColorConst.green
+                                  ),),isDefaultAction: true,)
+                                ],
+                                cancelButton: CupertinoActionSheetAction(
+                                    onPressed: () {
+                                      Navigator.pop(context);
+                                    },
+                                    child: Text("Cancel",style: TextStyle(
+                                        fontWeight: FontWeight.w400,
+                                        fontSize: w*0.045,
+                                        color: ColorConst.primaryColor
+                                    ),)),
+                              );
+                          },);
+                      },
+                      child: Container(
+                        width: w*0.065,
+                        height: w*0.065,
+                        child: Icon(Icons.edit,
+                          color:ColorConst.primaryColor,),
+                        decoration: BoxDecoration(
+                          boxShadow: [
+                            BoxShadow(
+                                color: ColorConst.shadow,
+                                offset: Offset(0, 7),
+                                blurRadius: w*0.04
+                            )],
+                          color:ColorConst.whit,
+                          borderRadius: BorderRadius.only(bottomRight: Radius.circular(w*0.015,),topRight: Radius.circular(w*0.015),topLeft: Radius.circular(w*0.015)),
+
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
                 Container(
                   height: h*0.7,
                   width: w*0.9,
