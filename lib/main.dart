@@ -59,7 +59,7 @@ class _MyAppState extends State<MyApp> {
         textTheme: GoogleFonts.nunitoSansTextTheme()
         ),
         debugShowCheckedModeBanner: false,
-        home:SplashScreen(),
+        home:SignUp(),
 
       ),
     );

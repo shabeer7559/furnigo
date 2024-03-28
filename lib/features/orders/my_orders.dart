@@ -21,11 +21,7 @@ class _MyOrdersState extends State<MyOrders> {
         appBar: AppBar(
           centerTitle: true,
           title: Text("My order",style: GoogleFonts.merriweather(fontWeight: FontWeight.w700,fontSize: w*0.05),),
-          leading: InkWell(
-              onTap: () {
-                Navigator.pop(context);
-              },
-              child: Icon(Icons.arrow_back_ios_new)),
+          leading: Icon(Icons.arrow_back_ios_new),
         ),
          body:  Column(
            children: [
