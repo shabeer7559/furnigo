@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "174596478041",
+    "project_id": "furnigo-e74ea",
+    "storage_bucket": "furnigo-e74ea.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:174596478041:android:cf651aa71832e49931cd48",
+        "android_client_info": {
+          "package_name": "com.example.furnigo"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBuQAxXsS5TcSHH11BfNxIyBDmC7EDDGRA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
