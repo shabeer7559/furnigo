@@ -1,37 +1,67 @@
 
 import 'dart:io';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:furnigo/features/authentication/controller/controller.dart';
+import 'package:furnigo/features/authentication/repository/repository_page.dart';
 import 'package:furnigo/features/authentication/screen/login_page.dart';
 import 'package:furnigo/features/constants/color_const.dart';
 import 'package:furnigo/features/constants/image_const.dart';
 import 'package:furnigo/features/homescreen/screen/bottomNavi.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../main.dart';
 import '../../constants/icon_const.dart';
 
-class SignUp extends StatefulWidget {
+class SignUp extends ConsumerStatefulWidget {
   const SignUp({super.key});
 
   @override
-  State<SignUp> createState() => _SignUpState();
+  ConsumerState<SignUp> createState() => _SignUpState();
 }
 
-class _SignUpState extends State<SignUp> {
+class _SignUpState extends ConsumerState<SignUp> {
+  String imgurl='https://images.rawpixel.com/image_png_800/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIzLTAxL3JtNjA5LXNvbGlkaWNvbi13LTAwMi1wLnBuZw.png';
+  bool loading=false;
+  TextEditingController nameController=TextEditingController();
+  TextEditingController emailController=TextEditingController();
+  TextEditingController passwordController=TextEditingController();
+   data(){
+     ref.watch(addingControllerProvider).addingRepo(emailController.text, passwordController.text, nameController.text,imgurl);
+   }
   var files;
   pickImage(ImageSource)async{
     final imgfile=await ImagePicker.platform.pickImage(source: ImageSource);
-    files=File(imgfile!.path);
+    // files=File(imgfile!.path);
     if(mounted){
       setState(() {
-        files=File(imgfile.path);
+        files=File(imgfile!.path);
       });
+      uploadFile();
+      Navigator.pop(context);
     }}
+  uploadFile()async{
+    setState(() {
+      loading=true;
+    });
+    var uploadTask=await FirebaseStorage.instance.ref('uploads').child(DateTime.now().toString()).putFile(files,SettableMetadata(
+        contentType: 'image/jpge'
+    ));
+    var getUrl=await uploadTask.ref.getDownloadURL();
+    imgurl=getUrl;
+    setState(() {
+      loading=false;
+    });
+    print("-----------------------------------------------------");
+    print(getUrl);
+  }
   bool password=true;
   bool password1=true;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -54,16 +84,12 @@ class _SignUpState extends State<SignUp> {
                   ),),
                 ),
             Center(
-              child: Stack(
+              child:  loading?
+              CircularProgressIndicator():Stack(
                 children: [
-                  files!=null?
-                  CircleAvatar(
-                    backgroundImage: FileImage(files),
-                    radius: w*0.1,
-                  ):
                       CircleAvatar(
                        radius: w*0.1,
-                        backgroundImage:AssetImage(ImageConst.avatar,)
+                        backgroundImage:NetworkImage(imgurl)
                       ),
                   Padding(
                     padding:  EdgeInsets.only(top: h*0.06,left: w*0.15),
@@ -84,14 +110,14 @@ class _SignUpState extends State<SignUp> {
                                     TextStyle(
                                         fontWeight: FontWeight.w400,
                                         fontSize: w*0.045,
-                                        color:ColorConst.green
+                                        color:ColorConst.primaryColor
                                     ),),isDefaultAction: true,),
                                   CupertinoActionSheetAction(onPressed: () {
                                     pickImage(ImageSource.camera);
                                   }, child: Text("Camera",style: TextStyle(
                                       fontWeight: FontWeight.w400,
                                       fontSize: w*0.045,
-                                      color: ColorConst.green
+                                      color: ColorConst.primaryColor
                                   ),),isDefaultAction: true,)
                                 ],
                                 cancelButton: CupertinoActionSheetAction(
@@ -145,6 +171,7 @@ class _SignUpState extends State<SignUp> {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       TextFormField(
+                        controller: nameController,
                         textInputAction: TextInputAction.done,
                         decoration: InputDecoration(
                           labelText: "Name",
@@ -155,6 +182,7 @@ class _SignUpState extends State<SignUp> {
                         ),
                       ),
                       TextFormField(
+                        controller: emailController,
                         keyboardType: TextInputType.emailAddress,
                         textInputAction: TextInputAction.done,
                         decoration: InputDecoration(
@@ -166,6 +194,7 @@ class _SignUpState extends State<SignUp> {
                         ),
                       ),
                       TextFormField(
+                        controller: passwordController,
                         keyboardType: TextInputType.emailAddress,
                         textInputAction: TextInputAction.done,
                         obscureText: password?false:true,
@@ -206,6 +235,7 @@ class _SignUpState extends State<SignUp> {
                       ),
                       InkWell(
                         onTap: () {
+                          data();
                           Navigator.pushAndRemoveUntil(context, CupertinoPageRoute(builder: (context) => bottomNavi(),), (route) => false);
                         },
                         child: Container(
