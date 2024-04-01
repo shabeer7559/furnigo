@@ -61,18 +61,7 @@ class _EmailOtpState extends State<EmailOtp> {
                         ),),
                       ],
                     ),
-                    Pinput(
-                      length: 4,
-                      defaultPinTheme: PinTheme(
-                          margin: EdgeInsets.all(w*0.02),
-                          width: w*0.17,
-                          height: w*0.17,
-                          decoration: BoxDecoration(
-                              color: ColorConst.grey.withOpacity(0.25),
-                              borderRadius: BorderRadius.circular(w*0.03)
-                          )
-                      ),
-                    ),
+
                   ],
                 ),
               ),
