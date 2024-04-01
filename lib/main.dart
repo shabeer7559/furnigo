@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:furnigo/features/authentication/screen/create_new_password.dart';
 import 'package:furnigo/features/authentication/screen/foget_password.dart';
 import 'package:furnigo/features/authentication/screen/login_page.dart';
@@ -42,7 +43,7 @@ Future<void> main() async {
   await Firebase.initializeApp(
       options: DefaultFirebaseOptions.currentPlatform,
   );
-  runApp(MyApp());
+  runApp(ProviderScope(child: MyApp()));
 }
 class MyApp extends StatefulWidget {
   const MyApp({super.key});
@@ -65,7 +66,7 @@ class _MyAppState extends State<MyApp> {
         textTheme: GoogleFonts.nunitoSansTextTheme()
         ),
         debugShowCheckedModeBanner: false,
-        home:SplashScreen(),
+        home:LoginPage(),
 
       ),
     );
