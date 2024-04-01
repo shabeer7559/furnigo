@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:furnigo/features/constants/color_const.dart';
 import 'package:furnigo/features/constants/image_const.dart';
-import 'package:furnigo/features/homescreen/screen/bottomNavi.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../../main.dart';
@@ -94,24 +93,20 @@ class _SuccessState extends State<Success> {
                       ),),
                     ),
                   ),
-                  InkWell(
-                    onTap: () => Navigator.push(context, CupertinoPageRoute(
-                        builder: (context) => bottomNavi(),)),
-                    child: Container(
-                      height: h*0.08,
-                      width: w*0.8,
-                     decoration: BoxDecoration(
-                       border: Border.all(color: ColorConst.primaryColor),
-                       borderRadius: BorderRadius.circular(w*0.03)
-                     ),
-                      child: Center(
-                        child: Text("BACK TO HOME",
-                        style: TextStyle(
-                          fontSize: w*0.045,
-                          fontWeight: FontWeight.w600,
-                          color: ColorConst.primaryColor
-                        ),),
-                      ),
+                  Container(
+                    height: h*0.08,
+                    width: w*0.8,
+                   decoration: BoxDecoration(
+                     border: Border.all(color: ColorConst.primaryColor),
+                     borderRadius: BorderRadius.circular(w*0.03)
+                   ),
+                    child: Center(
+                      child: Text("BACK TO HOME",
+                      style: TextStyle(
+                        fontSize: w*0.045,
+                        fontWeight: FontWeight.w600,
+                        color: ColorConst.primaryColor
+                      ),),
                     ),
                   ),
                 ],
