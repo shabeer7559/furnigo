@@ -49,8 +49,6 @@ dependencies:
   cloud_firestore: ^4.15.8
   firebase_storage: ^11.6.0
   email_otp: ^2.1.2
-
-
 dev_dependencies:
   flutter_test:
     sdk: flutter
