@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:furnigo/features/authentication/screen/login_page.dart';
 import 'package:furnigo/features/constants/color_const.dart';
 import 'package:furnigo/features/constants/icon_const.dart';
 import 'package:furnigo/features/constants/image_const.dart';
@@ -48,11 +49,16 @@ class _profile_pageState extends State<profile_page> {
                fontWeight: FontWeight.w700),
         ),
         actions: [
-          Padding(
-            padding:  EdgeInsets.all(w*0.04),
-            child: SvgPicture.asset(
-              IconConst.logoutIcon,color: ColorConst.primaryColor,
-              width: w * 0.1,
+          InkWell(
+            onTap: () {
+              Navigator.pushAndRemoveUntil(context, CupertinoPageRoute(builder: (context) => LoginPage(),), (route) => false);
+            },
+            child: Padding(
+              padding:  EdgeInsets.all(w*0.04),
+              child: SvgPicture.asset(
+                IconConst.logoutIcon,color: ColorConst.primaryColor,
+                width: w * 0.1,
+              ),
             ),
           )
         ],

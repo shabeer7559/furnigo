@@ -1,5 +1,6 @@
 
 import 'dart:io';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -35,7 +36,7 @@ class _SignUpState extends ConsumerState<SignUp> {
   final passwordValidation=RegExp(r"^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}");
   final formkey=GlobalKey<FormState>();
    data(){
-     ref.watch(addingControllerProvider).addingRepo(emailController.text, passwordController.text, nameController.text,imgurl);
+     ref.watch(addingControllerProvider).addingRepo(nameController.text, emailController.text, passwordController.text,imgurl);
    }
   var files;
   pickImage(ImageSource)async{
@@ -242,6 +243,7 @@ class _SignUpState extends ConsumerState<SignUp> {
                         TextFormField(
                           obscureText: password1?false:true,
                           textInputAction: TextInputAction.done,
+                          controller: confirmPasswordController,
                           validator: (value) {
                             if(passwordController.text==confirmPasswordController.text){
                               return null;
@@ -275,13 +277,15 @@ class _SignUpState extends ConsumerState<SignUp> {
                                 passwordController.text!=""&&
                                  confirmPasswordController.text!=""&&
                                 formkey.currentState!.validate())
-                              Navigator.pushAndRemoveUntil(context, CupertinoPageRoute(builder: (context) => bottomNavi(),), (route) => false);
+                             FirebaseAuth.instance.createUserWithEmailAndPassword(
+                                 email: emailController.text.trim(),
+                                 password: passwordController.text.trim()).then((value) =>  Navigator.pushAndRemoveUntil(context, CupertinoPageRoute(builder: (context) => bottomNavi(),), (route) => false));
                             else {
                               imgurl==""?ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Please choos a photo"))):
                               nameController.text==""?ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Pleas Enter your Name"))):
                               emailController.text==""?ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Pleas Enter Your Email"))):
                               passwordController.text==""?ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Pleas Enter Your Password"))):
-                              confirmPasswordController.text==""?ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("pleas confitrm your password"))):
+                              confirmPasswordController.text==""?ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("pleas confirm your password"))):
                               ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Pleas Enter Valid Details")));
 
                             }

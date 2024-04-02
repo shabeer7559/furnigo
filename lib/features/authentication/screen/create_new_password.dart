@@ -140,11 +140,8 @@ class _NewPasswordState extends State<NewPassword> {
                                 fontSize: w*0.045,
                                 fontWeight: FontWeight.w500
                             ),),
-
-
                         ],
                       ),
-
                       InkWell(
                         onTap: () {
                           if(

@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -150,15 +151,17 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                       InkWell(
                         onTap: () {
+
                           if(emailController.text!=""&&
                           passwordController.text!=""&&
                           formkey.currentState!.validate())
-                            Navigator.pushAndRemoveUntil(context, CupertinoPageRoute(builder: (context) => bottomNavi(),), (route) => false);
+                            FirebaseAuth.instance.signInWithEmailAndPassword(
+                                email: emailController.text.trim(),
+                                password: passwordController.text).then((value) => Navigator.pushAndRemoveUntil(context, CupertinoPageRoute(builder: (context) => bottomNavi(),), (route) => false));
                          else {
                             emailController.text==""?ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Enter Your Email"))):
                             passwordController.text==""?ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Enter Your Password"))):
                             ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Enter Valid Details")));
-
                           }
                         },
                         child: Container(
