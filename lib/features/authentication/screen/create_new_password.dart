@@ -155,10 +155,10 @@ class _NewPasswordState extends State<NewPassword> {
                           Navigator.push(context, CupertinoPageRoute(builder: (context) => LoginPage(),));
                           else{
                             passwordController.text!=""?
-                                ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Please Enter Valid Password"))):
+                                ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Please Enter Your Password"))):
                                 newpasswordController.text!=""?
                                 ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Please Conform Your Password"))):
-                                ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Please Enter YOur Valid Details")));
+                                ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Please Enter Valid Password")));
                           }
                         },
                         child: Container(
