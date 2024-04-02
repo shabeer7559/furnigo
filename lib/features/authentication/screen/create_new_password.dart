@@ -126,8 +126,8 @@ class _NewPasswordState extends State<NewPassword> {
                         children: [
                           Checkbox(
                             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(w*0.01)),
-                            side: BorderSide(color:ColorConst.green ),
-                            activeColor: Colors.green,
+                            side: BorderSide(color:ColorConst.primaryColor ),
+                            activeColor: ColorConst.primaryColor,
                             value: remember,
                             onChanged: (value) {
                               setState(() {
