@@ -37,7 +37,7 @@ class UserModel {
         name: name ?? this.name,
         email: email ?? this.email,
         password: password ?? this.password,
-        image: password ?? this.image
+        image: image ?? this.image
     );
   }
 }

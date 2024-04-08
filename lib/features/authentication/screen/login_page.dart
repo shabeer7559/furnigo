@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -7,6 +8,7 @@ import 'package:furnigo/features/authentication/screen/signup_page.dart';
 import 'package:furnigo/features/constants/color_const.dart';
 import 'package:furnigo/features/constants/icon_const.dart';
 import 'package:furnigo/features/homescreen/screen/bottomNavi.dart';
+import 'package:furnigo/features/homescreen/screen/home_page.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../../main.dart';
@@ -19,17 +21,32 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  TextEditingController emailController=TextEditingController();
-  TextEditingController passwordController=TextEditingController();
-  final emailValidation=RegExp(r"^.+@[a-zA-Z]+\.{1}[a-zA-Z]+(\.{0,1}[a-zA-Z]+)$");
-  final passwordValidation=RegExp(r"^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}");
-  final formkey=GlobalKey<FormState>();
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+
+  final emailValidation =
+      RegExp(r"^.+@[a-zA-Z]+\.{1}[a-zA-Z]+(\.{0,1}[a-zA-Z]+)$");
+  final passwordValidation =
+      RegExp(r"^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}");
+  final formkey = GlobalKey<FormState>();
+ Future<void> SignInwithEmailandPassword() async {
+
+    try {
+      UserCredential userCredential = await FirebaseAuth.instance
+          .signInWithEmailAndPassword(email: emailController.text.trim(), password: passwordController.text.trim());
+
+      Navigator.pushAndRemoveUntil(context, CupertinoPageRoute(builder: (context) => bottomNavi(),), (route) => false);
+    } on FirebaseAuthException catch(e){
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Email Or Password Is Incorrect")));
+    }
+  }
+  
   @override
-  bool password=false;
+  bool password = false;
   Widget build(BuildContext context) {
     return Scaffold(
       body: Padding(
-        padding:  EdgeInsets.all(w*0.04),
+        padding: EdgeInsets.all(w * 0.04),
         child: SingleChildScrollView(
           child: Form(
             key: formkey,
@@ -38,7 +55,7 @@ class _LoginPageState extends State<LoginPage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Container(
-                  height: h*0.3,
+                  height: h * 0.3,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -52,7 +69,10 @@ class _LoginPageState extends State<LoginPage> {
                               indent: w * 0.03,
                             ),
                           ),
-                        Image.asset(IconConst.sofa1Icon,width: w*0.17,),
+                          Image.asset(
+                            IconConst.sofa1Icon,
+                            width: w * 0.17,
+                          ),
                           Expanded(
                             child: Divider(
                               color: Colors.grey,
@@ -62,33 +82,34 @@ class _LoginPageState extends State<LoginPage> {
                           ),
                         ],
                       ),
-                     Text("Hello !",
-                     style: GoogleFonts.merriweather(
-                       fontSize:w*0.08,
-                       color: ColorConst.grey,
-                       fontWeight: FontWeight.w400
-                     ),),
-                     Text("WELCOME BACK",
-                     style: GoogleFonts.merriweather(
-                       fontSize:w*0.08,
-                       color: ColorConst.primaryColor,
-                       fontWeight: FontWeight.w400
-                     ),),
+                      Text(
+                        "Hello !",
+                        style: GoogleFonts.merriweather(
+                            fontSize: w * 0.08,
+                            color: ColorConst.grey,
+                            fontWeight: FontWeight.w400),
+                      ),
+                      Text(
+                        "WELCOME BACK",
+                        style: GoogleFonts.merriweather(
+                            fontSize: w * 0.08,
+                            color: ColorConst.primaryColor,
+                            fontWeight: FontWeight.w400),
+                      ),
                     ],
                   ),
                 ),
                 Container(
-                  height: h*0.6,
-                  width: w*0.9,
+                  height: h * 0.6,
+                  width: w * 0.9,
                   decoration: BoxDecoration(
                       color: ColorConst.secondaryColor,
                       boxShadow: [
                         BoxShadow(
                             color: ColorConst.shadow,
                             offset: Offset(0, 7),
-                            blurRadius: w*0.04
-                        )]
-                  ),
+                            blurRadius: w * 0.04)
+                      ]),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
@@ -97,106 +118,117 @@ class _LoginPageState extends State<LoginPage> {
                         controller: emailController,
                         textInputAction: TextInputAction.done,
                         validator: (value) {
-                          if(!emailValidation.hasMatch(value!)){
+                          if (!emailValidation.hasMatch(value!)) {
                             return "Enter Valid Email";
-                          }else{
+                          } else {
                             return null;
                           }
                         },
                         decoration: InputDecoration(
                           labelText: "Email",
                           hintText: "Enter Your Email",
-                          constraints: BoxConstraints(
-                              maxWidth: w*0.8
-                          ),
+                          constraints: BoxConstraints(maxWidth: w * 0.8),
                         ),
                       ),
                       TextFormField(
                         keyboardType: TextInputType.emailAddress,
                         controller: passwordController,
                         textInputAction: TextInputAction.done,
-                        validator:  (value) {
-                          if(!passwordValidation.hasMatch(value!)){
+                        validator: (value) {
+                          if (!passwordValidation.hasMatch(value!)) {
                             return "Enter Valid Password";
-                          }else{
+                          } else {
                             return null;
                           }
                         },
-                        obscureText: password?false:true,
+                        obscureText: password ? false : true,
                         decoration: InputDecoration(
-                          suffixIcon: InkWell(onTap: () {
-                            password=!password;
-                            setState(() {
-
-                            });
-                          },
-                              child: Icon(password==true?Icons.remove_red_eye_outlined:Icons.visibility_off_outlined)),
+                          suffixIcon: InkWell(
+                              onTap: () {
+                                password = !password;
+                                setState(() {});
+                              },
+                              child: Icon(password == true
+                                  ? Icons.remove_red_eye_outlined
+                                  : Icons.visibility_off_outlined)),
                           labelText: "Password",
                           hintText: "Enter Your Password",
-                          constraints: BoxConstraints(
-                              maxWidth: w*0.8
-                          ),
+                          constraints: BoxConstraints(maxWidth: w * 0.8),
                         ),
                       ),
                       InkWell(
                         onTap: () {
-                          Navigator.push(context, CupertinoPageRoute(builder: (context) => ForgetPassword(),));
-
+                          Navigator.push(
+                              context,
+                              CupertinoPageRoute(
+                                builder: (context) => ForgetPassword(),
+                              ));
                         },
-                        child: Text("Forgot Password",
+                        child: Text(
+                          "Forgot Password",
                           style: TextStyle(
-                              fontWeight: FontWeight.w600,
-                              fontSize: w*0.045
-                          ),),
+                              fontWeight: FontWeight.w600, fontSize: w * 0.045),
+                        ),
                       ),
                       InkWell(
                         onTap: () {
-
-                          if(emailController.text!=""&&
-                          passwordController.text!=""&&
-                          formkey.currentState!.validate())
-                            FirebaseAuth.instance.signInWithEmailAndPassword(
-                                email: emailController.text.trim(),
-                                password: passwordController.text).then((value) => Navigator.pushAndRemoveUntil(context, CupertinoPageRoute(builder: (context) => bottomNavi(),), (route) => false));
-                         else {
-                            emailController.text==""?ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Enter Your Email"))):
-                            passwordController.text==""?ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Enter Your Password"))):
-                            ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Enter Valid Details")));
+                          setState(() {});
+                          if (emailController.text != "" &&
+                              passwordController.text != "" &&
+                              formkey.currentState!.validate())
+                           SignInwithEmailandPassword();
+                          else {
+                            emailController.text == ""
+                                ? ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(content: Text("Enter Your Email")))
+                                : passwordController.text == ""
+                                    ? ScaffoldMessenger.of(context)
+                                        .showSnackBar(SnackBar(
+                                            content:
+                                                Text("Enter Your Password")))
+                                    : ScaffoldMessenger.of(context)
+                                        .showSnackBar(SnackBar(
+                                            content:
+                                                Text("Enter Valid Details")));
                           }
                         },
                         child: Container(
-                          height: h*0.06,
-                          width: w*0.7,
+                          height: h * 0.06,
+                          width: w * 0.7,
                           decoration: BoxDecoration(
                               boxShadow: [
                                 BoxShadow(
                                     offset: Offset(0, 10),
                                     blurRadius: 20,
-                                    color: ColorConst.primaryColor.withOpacity(0.25)
-                                )
+                                    color: ColorConst.primaryColor
+                                        .withOpacity(0.25))
                               ],
                               color: ColorConst.primaryColor,
-                              borderRadius: BorderRadius.circular(w*0.02)
-                          ),
+                              borderRadius: BorderRadius.circular(w * 0.02)),
                           child: Center(
-                            child: Text("Log in",
+                            child: Text(
+                              "Log in",
                               style: TextStyle(
                                   color: ColorConst.secondaryColor,
                                   fontWeight: FontWeight.w600,
-                                  fontSize: w*0.05
-                              ),),
+                                  fontSize: w * 0.05),
+                            ),
                           ),
                         ),
                       ),
                       InkWell(
                         onTap: () {
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => SignUp(),));
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => SignUp(),
+                              ));
                         },
-                        child: Text("SIGN UP",
+                        child: Text(
+                          "SIGN UP",
                           style: TextStyle(
-                              fontSize: w*0.06,
-                              fontWeight: FontWeight.w600
-                          ),),
+                              fontSize: w * 0.06, fontWeight: FontWeight.w600),
+                        ),
                       )
                     ],
                   ),
