@@ -10,6 +10,7 @@ import 'package:furnigo/features/constants/icon_const.dart';
 import 'package:furnigo/features/homescreen/screen/bottomNavi.dart';
 import 'package:furnigo/features/homescreen/screen/home_page.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../main.dart';
 
@@ -23,6 +24,15 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+  setLoggedIn() async {
+SharedPreferences prefs=await SharedPreferences.getInstance();
+prefs.setBool("login", true);
+prefs.setString("userId", emailController.text);
+userId=emailController.text;
+Navigator.pushAndRemoveUntil(context, CupertinoPageRoute(
+    builder: (context) =>
+  bottomNavi(),), (route) => false);
+  }
 
   final emailValidation =
       RegExp(r"^.+@[a-zA-Z]+\.{1}[a-zA-Z]+(\.{0,1}[a-zA-Z]+)$");
@@ -172,6 +182,12 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                       InkWell(
                         onTap: () {
+                          FirebaseAuth.instance
+                              .signInWithEmailAndPassword(
+                              email: emailController.text.trim(),
+                              password: passwordController.text)
+                              .then((value) => setLoggedIn());
+
                           setState(() {});
                           if (emailController.text != "" &&
                               passwordController.text != "" &&

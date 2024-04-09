@@ -12,6 +12,7 @@ import 'package:furnigo/features/reviews/screen/my_review.dart';
 import 'package:furnigo/features/settings/settings.dart';
 import 'package:furnigo/features/shipping/screen/shipping_address.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../main.dart';
 
@@ -50,8 +51,12 @@ class _profile_pageState extends State<profile_page> {
         ),
         actions: [
           InkWell(
-            onTap: () {
-              Navigator.pushAndRemoveUntil(context, CupertinoPageRoute(builder: (context) => LoginPage(),), (route) => false);
+            onTap: () async {
+               SharedPreferences prefs=await SharedPreferences.getInstance();
+               prefs.clear();
+              Navigator.pushAndRemoveUntil(
+                  context, CupertinoPageRoute(
+                builder: (context) => LoginPage(),), (route) => false);
             },
             child: Padding(
               padding:  EdgeInsets.all(w*0.04),

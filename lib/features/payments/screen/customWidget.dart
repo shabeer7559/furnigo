@@ -19,7 +19,7 @@ class _CustViewState extends State<CustView> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: h*0.3,
+      height: h*0.31,
       child: Column(
         children: [
           Row(
@@ -42,7 +42,8 @@ class _CustViewState extends State<CustView> {
               width: w * 1,
               height: w * 0.4,
               decoration: BoxDecoration(
-                  boxShadow: [BoxShadow(
+                  boxShadow: [
+                    BoxShadow(
                       color: ColorConst.primaryColor.withOpacity(0.25),
                       offset: Offset(0, 4),
                       blurRadius: 3,
@@ -56,8 +57,8 @@ class _CustViewState extends State<CustView> {
                 children: [
                   Row(
                     children: [
-                      Container(height: w*0.15,
-
+                      Container(
+                        height: w*0.1,
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
@@ -94,8 +95,6 @@ class _CustViewState extends State<CustView> {
                         ),
                         Container(
                           width: w*0.8,
-
-
                           child: Text(widget.Address[widget.index]["address"],style: TextStyle(color: ColorConst.grey),),
                         )
                       ],
