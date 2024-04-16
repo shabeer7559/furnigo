@@ -1,3 +1,6 @@
+import 'dart:math';
+
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:furnigo/features/authentication/screen/email_otp.dart';
@@ -19,6 +22,24 @@ class _ForgetPasswordState extends State<ForgetPassword> {
   final emailValidator =
   RegExp(r"^.+@[a-zA-Z]+\.{1}[a-zA-Z]+(\.{0,1}[a-zA-Z]+)$");
   final formKey =GlobalKey<FormState>();
+  void dispose(){
+    emailController.dispose();
+    super.dispose();
+  }
+  Future passwordRest() async {
+   try{
+     await FirebaseAuth.instance.sendPasswordResetEmail(email: emailController.text.trim());
+     showDialog(context: context, builder: (context) {
+       return AlertDialog(content: Text("Password reset link sent! Check your email"),);
+     },);
+
+}on FirebaseAuthException catch (e){
+     print(e);
+     showDialog(context: context, builder: (context) {
+       return AlertDialog(content: Text(e.message.toString()),);
+     },);
+   }
+}
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -113,6 +134,7 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                 InkWell(
 
                   onTap: () {
+                    // passwordRest();
                     if(emailController.text!=""&&
                     formKey.currentState!.validate())
                     Navigator.push(context, CupertinoPageRoute(builder: (context) => EmailOtp(),));

@@ -17,7 +17,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../main.dart';
 import '../../constants/icon_const.dart';
-
+String imgurl='';
+String userName='';
 class SignUp extends ConsumerStatefulWidget {
   const SignUp({super.key});
 
@@ -26,12 +27,13 @@ class SignUp extends ConsumerStatefulWidget {
 }
 
 class _SignUpState extends ConsumerState<SignUp> {
-  String imgurl='';
+
   bool loading=false;
   TextEditingController nameController=TextEditingController();
   TextEditingController emailController=TextEditingController();
   TextEditingController passwordController=TextEditingController();
   TextEditingController confirmPasswordController=TextEditingController();
+
   final emailValidation=RegExp(r"^.+@[a-zA-Z]+\.{1}[a-zA-Z]+(\.{0,1}[a-zA-Z]+)$");
   final passwordValidation=RegExp(r"^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}");
   final formkey=GlobalKey<FormState>();
@@ -66,7 +68,12 @@ class _SignUpState extends ConsumerState<SignUp> {
   }
   bool password=false;
   bool password1=false;
-
+@override
+  void initState() {
+  userName=nameController.text;
+    // TODO: implement initState
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -279,7 +286,8 @@ class _SignUpState extends ConsumerState<SignUp> {
                                 formkey.currentState!.validate())
                              FirebaseAuth.instance.createUserWithEmailAndPassword(
                                  email: emailController.text.trim(),
-                                 password: passwordController.text.trim()).then((value) =>  Navigator.pushAndRemoveUntil(context, CupertinoPageRoute(builder: (context) => bottomNavi(),), (route) => false));
+                                 password: passwordController.text.trim())
+                                 .then((value) =>  Navigator.pushAndRemoveUntil(context, CupertinoPageRoute(builder: (context) => bottomNavi(),), (route) => false));
                             else {
                               imgurl==""?ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Please choos a photo"))):
                               nameController.text==""?ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Pleas Enter your Name"))):

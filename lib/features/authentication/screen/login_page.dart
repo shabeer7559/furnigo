@@ -43,13 +43,18 @@ Navigator.pushAndRemoveUntil(context, CupertinoPageRoute(
 
     try {
       UserCredential userCredential = await FirebaseAuth.instance
-          .signInWithEmailAndPassword(email: emailController.text.trim(), password: passwordController.text.trim());
+          .signInWithEmailAndPassword(
+        email: emailController.text.trim(),
+        password: passwordController.text.trim(),
+
+      );
 
       Navigator.pushAndRemoveUntil(context, CupertinoPageRoute(builder: (context) => bottomNavi(),), (route) => false);
     } on FirebaseAuthException catch(e){
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Email Or Password Is Incorrect")));
     }
   }
+
   
   @override
   bool password = false;
@@ -182,11 +187,7 @@ Navigator.pushAndRemoveUntil(context, CupertinoPageRoute(
                       ),
                       InkWell(
                         onTap: () {
-                          FirebaseAuth.instance
-                              .signInWithEmailAndPassword(
-                              email: emailController.text.trim(),
-                              password: passwordController.text)
-                              .then((value) => setLoggedIn());
+
 
                           setState(() {});
                           if (emailController.text != "" &&

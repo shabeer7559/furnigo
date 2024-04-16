@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:furnigo/features/authentication/screen/login_page.dart';
+import 'package:furnigo/features/authentication/screen/signup_page.dart';
 import 'package:furnigo/features/constants/color_const.dart';
 import 'package:furnigo/features/constants/icon_const.dart';
 import 'package:furnigo/features/constants/image_const.dart';
@@ -11,13 +12,19 @@ import 'package:furnigo/features/payments/screen/payment_methods.dart';
 import 'package:furnigo/features/reviews/screen/my_review.dart';
 import 'package:furnigo/features/settings/settings.dart';
 import 'package:furnigo/features/shipping/screen/shipping_address.dart';
+import 'package:furnigo/main.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../main.dart';
+import '../../../main.dart';
+import '../../../main.dart';
+import '../../../main.dart';
+import '../../../main.dart';
 
 class profile_page extends StatefulWidget {
-  profile_page({super.key});
+
+  profile_page({super.key,});
 
   @override
   State<profile_page> createState() => _profile_pageState();
@@ -80,19 +87,20 @@ class _profile_pageState extends State<profile_page> {
               children: [
                 CircleAvatar(
                     radius: w * 0.12,
-                    backgroundImage: AssetImage(ImageConst.profile),),
+                    backgroundImage: NetworkImage(imgurl),),
                 SizedBox(width: w*0.03,),
                 Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "Bruno Pham",
+                      userName
+                      ,
                       style: TextStyle(
                         fontSize: w*0.045,
                           fontWeight: FontWeight.w700),
                     ),
-                    Text("bruno203@gmail.com",
+                    Text(userId.toString(),
                     style: TextStyle(
                       color: ColorConst.grey
                     ),)

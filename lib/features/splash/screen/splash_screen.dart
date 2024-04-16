@@ -25,6 +25,7 @@ class _SplashScreenState extends State<SplashScreen> {
     login = prefs.getBool("login") ?? false;
     userId = prefs.getString("userId") ?? "";
 
+
   }
 
   void initState() {
