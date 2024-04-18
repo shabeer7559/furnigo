@@ -3,7 +3,10 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:furnigo/core/providers/firebase_providers.dart';
 import 'package:furnigo/models/categoryModel.dart';
 import 'package:furnigo/models/productModel.dart';
+
+
 final addinRepositoryProvider=Provider((ref) => AddingRepository(firestore: ref.watch(firestoreProvider)));
+
 class AddingRepository{
 final FirebaseFirestore _firestore;
 AddingRepository({
