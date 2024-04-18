@@ -109,7 +109,7 @@ class _homeState extends ConsumerState<home> {
                       shrinkWrap: true,
                       itemBuilder: (BuildContext context, int index) {
                         return Column(
-                          mainAxisAlignment: MainAxisAlignment.center,f
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             InkWell(
                               onTap: () {
