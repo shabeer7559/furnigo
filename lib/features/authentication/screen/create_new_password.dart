@@ -1,13 +1,16 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:furnigo/features/authentication/screen/login_page.dart';
+import 'package:furnigo/models/user_model.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../../main.dart';
 import '../../constants/color_const.dart';
 
 class NewPassword extends StatefulWidget {
-  const NewPassword({super.key});
+  final String email;
+  const NewPassword({super.key, required this.email});
 
   @override
   State<NewPassword> createState() => _NewPasswordState();
@@ -22,6 +25,20 @@ class _NewPasswordState extends State<NewPassword> {
   bool password=false;
   bool password1=false;
   bool remember=false;
+  // passwordChange() async {
+  //   QuerySnapshot userDetail=await FirebaseFirestore.instance.collection("users").where("email",isEqualTo: widget.email).get();
+  //   if(userDetail.docs.isNotEmpty){
+  //   UserModel data=UserModel(
+  //     password: ""
+  //   );
+  //   UserModel datas=data.copyWith(
+  //     password: passwordController.text.trim()
+  //   );
+  //    FirebaseFirestore.instance.collection("users").add(data.toMap()).then((value) => value.update(datas.toMap()));
+  //   }else{
+  //     ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Email Is Not Exist")));
+  //   }
+  // }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -149,7 +166,7 @@ class _NewPasswordState extends State<NewPassword> {
                           newpasswordController.text!=""&&
                           formKey.currentState!.validate()
                           )
-                          Navigator.push(context, CupertinoPageRoute(builder: (context) => LoginPage(),));
+                         Navigator.pushAndRemoveUntil(context, CupertinoPageRoute(builder: (context) => LoginPage(),), (route) => false);
                           else{
                             passwordController.text!=""?
                                 ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Please Enter Your Password"))):

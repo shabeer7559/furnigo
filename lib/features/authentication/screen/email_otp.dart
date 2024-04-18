@@ -10,7 +10,8 @@ import '../../../main.dart';
 import '../../constants/color_const.dart';
 
 class EmailOtp extends StatefulWidget {
-  const EmailOtp({super.key});
+  final String email;
+  const EmailOtp({super.key, required this.email});
 
   @override
   State<EmailOtp> createState() => _EmailOtpState();
@@ -67,7 +68,7 @@ class _EmailOtpState extends State<EmailOtp> {
               ),
               InkWell(
                 onTap: () {
-                  Navigator.push(context, CupertinoPageRoute(builder: (context) => NewPassword(),));
+                  Navigator.push(context, CupertinoPageRoute(builder: (context) => NewPassword(email: widget.email,),));
                 },
                 child: Container(
                   height: h*0.08,

@@ -10,7 +10,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../main.dart';
-
+String userId='';
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
 

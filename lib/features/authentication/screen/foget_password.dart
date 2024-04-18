@@ -9,7 +9,6 @@ import 'package:furnigo/features/constants/image_const.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../../main.dart';
-
 class ForgetPassword extends StatefulWidget {
   const ForgetPassword({super.key});
 
@@ -137,7 +136,7 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                     // passwordRest();
                     if(emailController.text!=""&&
                     formKey.currentState!.validate())
-                    Navigator.push(context, CupertinoPageRoute(builder: (context) => EmailOtp(),));
+                    Navigator.push(context, CupertinoPageRoute(builder: (context) => EmailOtp(email: emailController.text.trim(),),));
                     else{
                       ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("please enter your valid email")));
                     }

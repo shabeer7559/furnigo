@@ -21,6 +21,7 @@ import '../../../main.dart';
 import '../../../main.dart';
 import '../../../main.dart';
 import '../../../main.dart';
+import '../../splash/screen/splash_screen.dart';
 
 class profile_page extends StatefulWidget {
 

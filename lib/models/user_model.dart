@@ -5,10 +5,10 @@ class UserModel {
   String? image;
 
   UserModel({
-    required this.name,
-    required this.email,
-    required this.password,
-    required this.image
+     this.name,
+    this.email,
+    this.password,
+     this.image
   });
 
   Map<String,dynamic> toMap(){

@@ -3,7 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:furnigo/core/providers/firebase_providers.dart';
 import 'package:furnigo/models/user_model.dart';
 
-final addingRepocitryProvider=Provider((ref) => AddingRepocitry(firestore: ref.watch(firestoreProvider)));
+final userAaddingRepocitryProvider=Provider((ref) => AddingRepocitry(firestore: ref.watch(firestoreProvider)));
 class AddingRepocitry{
  final FirebaseFirestore _firestore;
   AddingRepocitry({

@@ -38,7 +38,6 @@ import 'features/shipping/screen/shipping_address.dart';
 import 'firebase_options.dart';
 var h;
 var w;
-String userId="";
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
@@ -67,7 +66,7 @@ class _MyAppState extends State<MyApp> {
         textTheme: GoogleFonts.nunitoSansTextTheme()
         ),
         debugShowCheckedModeBanner: false,
-        home:SplashScreen(),
+        home:LoginPage(),
 
       ),
     );
