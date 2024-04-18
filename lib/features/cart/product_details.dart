@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:furnigo/features/cart/cart.dart';
 import 'package:furnigo/features/cart/favorite.dart';
@@ -13,14 +14,19 @@ import 'package:google_fonts/google_fonts.dart';
 import '../../main.dart';
 
 
-class ProductDetails extends StatefulWidget {
-  const ProductDetails({super.key});
+class ProductDetails extends ConsumerStatefulWidget {
+  final image;
+  final name;
+  final price;
+  final review;
+  final qnty;
+  const ProductDetails(this.image, this.name, this.price, this.review, this.qnty, {super.key});
 
   @override
-  State<ProductDetails> createState() => _ProductDetailsState();
+  ConsumerState<ProductDetails> createState() => _ProductDetailsState();
 }
 
-class _ProductDetailsState extends State<ProductDetails> {
+class _ProductDetailsState extends ConsumerState<ProductDetails> {
   bool tap=false;
   int count=1;
   @override
@@ -98,7 +104,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                   height: h*0.5,
                   width: w*0.85,
                   decoration: BoxDecoration(
-                    image: DecorationImage(image: AssetImage(ImageConst.minimalStand),fit: BoxFit.fill),
+                    image: DecorationImage(image: NetworkImage(widget.image),fit: BoxFit.fill),
                       // color: Colors.green,
                       borderRadius: BorderRadius.only(bottomLeft: Radius.circular(w*0.1))
                   ),
@@ -155,7 +161,7 @@ class _ProductDetailsState extends State<ProductDetails> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text("Minimal Stand",style:
+                  Text(widget.name,style:
                     GoogleFonts.gelasio(
                       fontSize: w*0.06,
                       fontWeight: FontWeight.w500,
@@ -164,7 +170,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text("\$ 50",
+                      Text("\$${widget.price.toString()}",
                       style: TextStyle(
                         fontWeight: FontWeight.w700,
                         fontSize: w*0.06
@@ -177,10 +183,11 @@ class _ProductDetailsState extends State<ProductDetails> {
                         children: [
                           InkWell(
                             onTap: () {
-                              count++;
-                              setState(() {
-
-                              });
+                              widget.qnty+1;
+                              // count++;
+                              // setState(() {
+                              //
+                              // });
                             },
                             child: Container(
                               height: h*0.04,
@@ -192,7 +199,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                               ),
                             ),
                           ),
-                          Text(count.toString(),
+                          Text(widget.qnty.toString(),
                           style: TextStyle(
                             fontSize: w*0.045,
                             fontWeight: FontWeight.w600,
@@ -200,10 +207,10 @@ class _ProductDetailsState extends State<ProductDetails> {
                           ),),
                           InkWell(
                             onTap: () {
-                              count<=0?0:count--;
-                              setState(() {
-
-                              });
+                              widget.qnty<=0?0:widget.qnty-1;
+                              // count<=0?0:count--;
+                              // setState(() {
+                              // });
                             },
                             child: Container(
                               height: h*0.04,
@@ -252,7 +259,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                       ],
                     ),
                   ),
-                  Text("Minimal Stand is made of by natural wood. The design that is very simple and minimal. This is truly one of the best furnitures in any family for now. With 3 different colors, you can easily select the best match for your home.",
+                  Text(widget.review,
                   style: TextStyle(
                     fontWeight: FontWeight.w300,
                     fontSize: w*0.045,

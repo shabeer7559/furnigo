@@ -25,45 +25,45 @@ class _homeState extends ConsumerState<home> {
   int selectedIndex=0;
   String docId="";
   List bookMark=[];
-  List<Map<String,dynamic>>suggessions=[
-    { "icon":IconConst.starIcon,
-      "text":"Popular"
-  },
-    {
-   "icon":IconConst.chairIcon,
-      "text":"Chair"
-    },
-    {
-   "icon":IconConst.tabeIcon,
-      "text":"Table"
-    },
-    {
-   "icon":IconConst.sofa,
-      "text":"Sofa"
-    },
-    {
-   "icon":IconConst.bedIcon,
-      "text":"Bed"
-    },
-  ];
-  List items=[
-    {"products":ImageConst.lamp,
-      "name":"Black Simple Lamp",
-      "price":"\$12.00"
-    },
-    {"products":ImageConst.minimalStand,
-      "name":"Minimal Stand",
-      "price":"\$25.00"
-    },
-    {"products":ImageConst.coffieChair,
-      "name":"Coffie Chair",
-      "price":"\$20.00"
-    },
-    {"products":ImageConst.simpleDesk,
-      "name":"Simple Desk",
-      "price":"\$50.00"
-    },
-  ];
+  // List<Map<String,dynamic>>suggessions=[
+  //   { "icon":IconConst.starIcon,
+  //     "text":"Popular"
+  // },
+  //   {
+  //  "icon":IconConst.chairIcon,
+  //     "text":"Chair"
+  //   },
+  //   {
+  //  "icon":IconConst.tabeIcon,
+  //     "text":"Table"
+  //   },
+  //   {
+  //  "icon":IconConst.sofa,
+  //     "text":"Sofa"
+  //   },
+  //   {
+  //  "icon":IconConst.bedIcon,
+  //     "text":"Bed"
+  //   },
+  // ];
+  // List items=[
+  //   {"products":ImageConst.lamp,
+  //     "name":"Black Simple Lamp",
+  //     "price":"\$12.00"
+  //   },
+  //   {"products":ImageConst.minimalStand,
+  //     "name":"Minimal Stand",
+  //     "price":"\$25.00"
+  //   },
+  //   {"products":ImageConst.coffieChair,
+  //     "name":"Coffie Chair",
+  //     "price":"\$20.00"
+  //   },
+  //   {"products":ImageConst.simpleDesk,
+  //     "name":"Simple Desk",
+  //     "price":"\$50.00"
+  //   },
+  // ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -164,7 +164,12 @@ class _homeState extends ConsumerState<home> {
                       itemBuilder: (BuildContext context, int index) {
                         return InkWell(
                           onTap: () {
-                            Navigator.push(context,   CupertinoPageRoute(builder: (context) => ProductDetails(),));
+                            Navigator.push(context,   CupertinoPageRoute(builder: (context) => ProductDetails(
+                                data[index].image.toString(),
+                                data[index].name,
+                                data[index].price,
+                                data[index].review,
+                                data[index].quantity),));
                           },
                           child: Container(
                             width: w*0.5,
