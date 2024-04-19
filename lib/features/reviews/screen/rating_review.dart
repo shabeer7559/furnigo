@@ -190,25 +190,131 @@ class _ratingState extends State<rating> {
         ],
       ),
       floatingActionButton:
-      Container(
-        width: w*0.9,
-        height: h*0.074,
-        decoration: BoxDecoration(
-          boxShadow: [
-            BoxShadow(
-                color:Colors.grey.shade200,
-                blurRadius: 5,
-                spreadRadius: 5,
-                offset: Offset(0, 6)
-            )
-          ],
-            borderRadius: BorderRadius.circular(w*0.03),
-            color: ColorConst.primaryColor
-        ),
-        child: Center(
-          child: Text("Write a review",style: TextStyle(
-              color: ColorConst.secondaryColor,fontSize: w*0.06
-          ),),
+      InkWell(
+        onTap: () {
+      showDialog(
+          context: context,
+          builder: (context) {
+            return AlertDialog(
+                elevation: 0,
+              content: Container(
+                width: w*1,
+                height: h*0.5,
+                padding: EdgeInsets.all(w*0.03),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            CircleAvatar(
+                              radius: w*0.07,
+                              backgroundImage: AssetImage(ImageConst.profile),
+                            ),
+                          ],
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text("sulaiman",style: TextStyle(
+                                fontWeight: FontWeight.w700
+                            ),),
+                            Text(DateTime.now().toString().substring(0,10),style: TextStyle(
+                                color: Colors.grey.shade500
+                            ),)
+                          ],
+                        ),
+                        StarRating(
+                          onChanged: (index) {
+                          },
+                        ),
+                        TextFormField(
+
+                            keyboardType:TextInputType.multiline ,
+                            textInputAction: TextInputAction.newline,
+                            maxLines: 5,
+                            decoration: InputDecoration(
+                              // constraints: BoxConstraints(
+                              //   minHeight:h*0.15,
+                              //   maxWidth:w*0.85,
+                              // ),
+                                fillColor: ColorConst.whit,
+                                filled: true,
+                                hintText: "Pleas enter your review",
+                                border: OutlineInputBorder(
+
+                                    borderRadius: BorderRadius.circular(w*0.03)
+                                )
+                            )
+                        ),
+                        SizedBox(
+                          height: h*0.02,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            Container(
+                              child: Center(child: Text("Cancel",style: TextStyle(
+                                  color: ColorConst.whit
+                              ),)),
+                              width: w*0.2,
+                              height: h*0.04,
+                              decoration: BoxDecoration(
+                                  color: ColorConst.primaryColor,
+                                  borderRadius: BorderRadius.circular(w*0.03)
+                              ),
+
+                            ),
+                            // SizedBox(
+                            //   width: w*0.03,
+                            // ),
+                            Container(
+                              child: Center(
+                                child: Text("Submit",style: TextStyle(
+                                    color: ColorConst.whit
+                                ),),
+                              ),
+                              width: w*0.2,
+                              height: h*0.04,
+                              decoration: BoxDecoration(
+                                  color: ColorConst.primaryColor,
+                                  borderRadius: BorderRadius.circular(w*0.03)
+                              ),
+                            ),
+                          ],
+                        )
+                      ],
+                    ),
+                  ],
+                )
+
+              )
+            );
+          },);
+        },
+        child: Container(
+          width: w*0.9,
+          height: h*0.074,
+          decoration: BoxDecoration(
+            boxShadow: [
+              BoxShadow(
+                  color:Colors.grey.shade200,
+                  blurRadius: 5,
+                  spreadRadius: 5,
+                  offset: Offset(0, 6)
+              )
+            ],
+              borderRadius: BorderRadius.circular(w*0.03),
+              color: ColorConst.primaryColor
+          ),
+          child: Center(
+            child: Text("Write a review",style: TextStyle(
+                color: ColorConst.secondaryColor,fontSize: w*0.06
+            ),),
+          ),
         ),
       ),
     );

@@ -68,7 +68,7 @@ class _EmailOtpState extends State<EmailOtp> {
               ),
               InkWell(
                 onTap: () {
-                  Navigator.push(context, CupertinoPageRoute(builder: (context) => NewPassword(email: widget.email,),));
+                  Navigator.push(context, CupertinoPageRoute(builder: (context) => NewPassword(),));
                 },
                 child: Container(
                   height: h*0.08,
