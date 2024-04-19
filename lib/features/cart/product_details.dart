@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:furnigo/features/authentication/controller/controller.dart';
 import 'package:furnigo/features/cart/cart.dart';
+import 'package:furnigo/features/cart/controller/controller.dart';
 import 'package:furnigo/features/cart/favorite.dart';
 import 'package:furnigo/features/constants/color_const.dart';
 import 'package:furnigo/features/constants/icon_const.dart';
@@ -20,7 +22,6 @@ class ProductDetails extends ConsumerStatefulWidget {
   final price;
   final review;
   final qnty;
-
   const ProductDetails(this.image, this.name, this.price, this.review, this.qnty, {super.key});
 
   @override
@@ -30,6 +31,9 @@ class ProductDetails extends ConsumerStatefulWidget {
 class _ProductDetailsState extends ConsumerState<ProductDetails> {
   bool tap=false;
   int count=1;
+  cartAdding(){
+    ref.watch(addingCartControllerProvider).addingcartRepo(widget.image, widget.name, widget.price, widget.qnty, "");
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -61,7 +65,8 @@ class _ProductDetailsState extends ConsumerState<ProductDetails> {
            ),
            InkWell(
              onTap: () {
-               Navigator.push(context, CupertinoPageRoute(builder: (context) => favorite(),));
+               cartAdding();
+               Navigator.push(context, CupertinoPageRoute(builder: (context) => MyCart(),));
              },
              child: Container(
                height: h*0.075,

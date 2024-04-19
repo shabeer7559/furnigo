@@ -1,7 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:furnigo/features/cart/controller/controller.dart';
 import 'package:furnigo/features/constants/color_const.dart';
 import 'package:furnigo/features/constants/icon_const.dart';
 import 'package:furnigo/features/constants/image_const.dart';
@@ -12,36 +14,37 @@ import '../../main.dart';
 
 import 'check_out.dart';
 
-class MyCart extends StatefulWidget {
+class MyCart extends ConsumerStatefulWidget {
   const MyCart({super.key});
 
   @override
-  State<MyCart> createState() => _MyCartState();
+  ConsumerState<MyCart> createState() => _MyCartState();
 }
 
-class _MyCartState extends State<MyCart> {
+class _MyCartState extends ConsumerState<MyCart> {
   int count=0;
 
-  List cartItems=[
-    {
-     "name":"Minimal Stand" ,
-      "image":ImageConst.minimalStand,
-      "price":"\$25",
-      "qty":0
-    },
-    {
-     "name":"Coffee Table" ,
-      "image":ImageConst.coffeetable,
-      "price":"\$35",
-      "qty":0
-    },
-    {
-     "name":"Minimal Desk" ,
-      "image":ImageConst.simpleDesk,
-      "price":"\$50",
-      "qty":0
-    },
-  ];
+  // List cartItems=[
+  //   {
+  //    "name":"Minimal Stand" ,
+  //     "image":ImageConst.minimalStand,
+  //     "price":"\$25",
+  //     "qty":0
+  //   },
+  //   {
+  //    "name":"Coffee Table" ,
+  //     "image":ImageConst.coffeetable,
+  //     "price":"\$35",
+  //     "qty":0
+  //   },
+  //   {
+  //    "name":"Minimal Desk" ,
+  //     "image":ImageConst.simpleDesk,
+  //     "price":"\$50",
+  //     "qty":0
+  //   },
+  // ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -148,115 +151,149 @@ class _MyCartState extends State<MyCart> {
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       body: Column(
         children: [
-        Expanded(
-          child: ListView.separated(
-            shrinkWrap: true,
-              physics: BouncingScrollPhysics(),
-              scrollDirection: Axis.vertical,
-              itemBuilder: (context, index) {
-                return   Container(
-                  height: h*0.2,
-                  width: w*1,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Container(
-                        height: h*0.18,
-                        width: w*0.35,
-                        decoration: BoxDecoration(
-                            image:DecorationImage(image: AssetImage(cartItems[index]["image"]),fit: BoxFit.fill) ,
-                            borderRadius: BorderRadius.circular(w*0.03)
-                        ),
-                      ),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          Text(cartItems[index]["name"],
-                            style: TextStyle(
-                                fontWeight: FontWeight.w600,
-                                fontSize: w*0.05,
-                                color: ColorConst.grey
-                            ),),
-                          Text(cartItems[index]["price"],
-                            style: TextStyle(
-                                fontWeight: FontWeight.w700,
-                                fontSize: w*0.05,
-                                color: ColorConst.primaryColor
-                            ),),
-                          Container(
-                            height: h*0.045,
-                            width: w*0.35,
-                            child:Row(
+        ref.watch(cartStreamProvider).when(
+            data:(data) {
+              return Expanded(
+                child: ListView.separated(
+                    shrinkWrap: true,
+                    physics: BouncingScrollPhysics(),
+                    scrollDirection: Axis.vertical,
+                    itemBuilder: (context, index) {
+                      return   Container(
+                        height: h*0.2,
+                        width: w*1,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            Container(
+                              height: h*0.18,
+                              width: w*0.35,
+                              decoration: BoxDecoration(
+                                  image:DecorationImage(image: NetworkImage(data[index].image.toString()),fit: BoxFit.fill) ,
+                                  borderRadius: BorderRadius.circular(w*0.03)
+                              ),
+                            ),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                Text(data[index].name,
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.w600,
+                                      fontSize: w*0.05,
+                                      color: ColorConst.grey
+                                  ),),
+                                Text("\$  ${data[index].price.toString()}",
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.w700,
+                                      fontSize: w*0.05,
+                                      color: ColorConst.primaryColor
+                                  ),),
+                                Container(
+                                  height: h*0.045,
+                                  width: w*0.35,
+                                  child:Row(
+                                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                    children: [
+                                      InkWell(
+                                        onTap: () {
+                                          // cartItems[index]["qty"]++;
+                                          setState(() {
+
+                                          });
+                                        },
+                                        child: Container(
+                                          height: h*0.045,
+                                          width: w*0.1,
+                                          decoration: BoxDecoration(
+                                              color: ColorConst.containerGrey,
+                                              borderRadius: BorderRadius.circular(w*0.03)
+                                          ),
+                                          child: Center(child: Icon(Icons.add,color: ColorConst.primaryColor,)),
+                                        ),
+                                      ),
+                                      Text(
+                                        data[index].quantity.toString(),
+                                        style: TextStyle(
+                                            fontSize: w*0.045,
+                                            fontWeight: FontWeight.w700,
+                                            color: ColorConst.primaryColor
+                                        ),),
+                                      InkWell(
+                                        onTap: () {
+                                          // cartItems[index]["qty"]<=0?0: cartItems[index]["qty"]--;
+                                          setState(() {
+
+                                          });
+                                        },
+                                        child: Container(
+                                          height: h*0.045,
+                                          width: w*0.1,
+                                          decoration: BoxDecoration(
+                                              color: ColorConst.containerGrey,
+                                              borderRadius: BorderRadius.circular(w*0.03)
+                                          ),
+                                          child: Center(child: Icon(Icons.remove,color: ColorConst.primaryColor,)),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                )
+                              ],
+                            ),
+                            Column(
                               children: [
                                 InkWell(
                                   onTap: () {
-                                    cartItems[index]["qty"]++;
-                                    setState(() {
+                                    showDialog(
+                                      context: context,
+                                      builder: (context) {
+                                        return CupertinoAlertDialog(
+                                          content: Text("Are you Sure You Want to remove this item ?"),
+                                          actions: [
+                                            CupertinoActionSheetAction(
+                                                onPressed:  () {
 
-                                    });
+                                                  ref.watch(addingCartControllerProvider).deleteItemController(data[index].id);
+                                                  Navigator.pop(context);
+                                                },
+                                                child: Text("Yes")),
+                                            CupertinoActionSheetAction(
+                                                onPressed:  () {
+                                                  Navigator.pop(context);
+                                                },
+                                                child: Text("No")),
+                                          ],
+                                        );
+                                      },);
                                   },
                                   child: Container(
-                                    height: h*0.045,
-                                    width: w*0.1,
-                                    decoration: BoxDecoration(
-                                        color: ColorConst.containerGrey,
-                                        borderRadius: BorderRadius.circular(w*0.03)
+                                    height: h*0.06,
+                                    width: w*0.15,
+                                    child: Padding(
+                                      padding:  EdgeInsets.all(w*0.025),
+                                      child: SvgPicture.asset(IconConst.closeIcon),
                                     ),
-                                    child: Center(child: Icon(Icons.add,color: ColorConst.primaryColor,)),
-                                  ),
-                                ),
-                                Text(
-                                  cartItems[index]["qty"].toString(),
-                                  style: TextStyle(
-                                      fontSize: w*0.045,
-                                      fontWeight: FontWeight.w700,
-                                      color: ColorConst.primaryColor
-                                  ),),
-                                InkWell(
-                                  onTap: () {
-                                   cartItems[index]["qty"]<=0?0: cartItems[index]["qty"]--;
-                                    setState(() {
-
-                                    });
-                                  },
-                                  child: Container(
-                                    height: h*0.045,
-                                    width: w*0.1,
-                                    decoration: BoxDecoration(
-                                        color: ColorConst.containerGrey,
-                                        borderRadius: BorderRadius.circular(w*0.03)
-                                    ),
-                                    child: Center(child: Icon(Icons.remove,color: ColorConst.primaryColor,)),
                                   ),
                                 ),
                               ],
-                            ),
-                          )
-                        ],
-                      ),
-                      Column(
-                        children: [
-                          Container(
-                            height: h*0.06,
-                            width: w*0.15,
-                            child: Padding(
-                              padding:  EdgeInsets.all(w*0.025),
-                              child: SvgPicture.asset(IconConst.closeIcon),
-                            ),
-                          ),
-                        ],
-                      )
-                    ],
-                  ),
-                );
-              },
-              separatorBuilder: (context, index) {
-                return SizedBox(height: h*0.03,);
-              },
-              itemCount: cartItems.length),
-        )
+                            )
+                          ],
+                        ),
+                      );
+                    },
+                    separatorBuilder: (context, index) {
+                      return SizedBox(height: h*0.03,);
+                    },
+                    itemCount: data.length),
+              );
+            },
+            error: (error, stackTrace) {
+              return Text(error.toString());
+            },
+            loading: () {
+              return CircularProgressIndicator();
+            },)
         ],
       ),
     );

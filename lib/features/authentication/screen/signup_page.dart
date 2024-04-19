@@ -14,7 +14,6 @@ import 'package:furnigo/features/homescreen/screen/bottomNavi.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
 import '../../../main.dart';
 import '../../constants/icon_const.dart';
 String imgurl='';
