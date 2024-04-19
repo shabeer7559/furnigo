@@ -12,7 +12,9 @@ import '../../../main.dart';
 import '../../constants/icon_const.dart';
 
 class rating extends StatefulWidget {
-  const rating({super.key});
+  final String image;
+  final String name;
+  const rating({super.key, required this.image, required this.name});
 
   @override
   State<rating> createState() => _ratingState();
@@ -71,7 +73,7 @@ class _ratingState extends State<rating> {
                     height: h*0.18,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(w*0.03),
-                      image: DecorationImage(image: AssetImage(ImageConst.minimalStand),fit: BoxFit.fill)
+                      image: DecorationImage(image: NetworkImage(widget.image),fit: BoxFit.fill)
                     ),
                   ),
                 ),
@@ -79,7 +81,7 @@ class _ratingState extends State<rating> {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text("Minimal Stand",style: TextStyle(fontSize: w*0.05),),
+                    Text(widget.name,style: TextStyle(fontSize: w*0.05),),
                     Row(
                       children: [
                         SvgPicture.asset(IconConst.yellowStar,width: w*0.08,),
