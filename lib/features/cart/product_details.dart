@@ -20,6 +20,7 @@ class ProductDetails extends ConsumerStatefulWidget {
   final price;
   final review;
   final qnty;
+
   const ProductDetails(this.image, this.name, this.price, this.review, this.qnty, {super.key});
 
   @override

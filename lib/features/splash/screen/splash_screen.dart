@@ -23,9 +23,12 @@ class _SplashScreenState extends State<SplashScreen> {
   getLoggedIn() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     login = prefs.getBool("login") ?? false;
-    userId = prefs.getString("userId") ?? "";
-
-
+    // userId = prefs.getString("userId") ?? "";
+    Navigator.push(
+        context,
+        CupertinoPageRoute(
+            builder: (context) =>
+            login==false?LoginPage() : bottomNavi()));
   }
 
   void initState() {
@@ -96,11 +99,7 @@ class _SplashScreenState extends State<SplashScreen> {
                 left: w * 0.25,
                 child: InkWell(
                   onTap: () {
-                    Navigator.push(
-                        context,
-                        CupertinoPageRoute(
-                            builder: (context) =>
-                            login == false ? LoginPage() : bottomNavi()));
+                  getLoggedIn();
 
                   },
                   child: Container(

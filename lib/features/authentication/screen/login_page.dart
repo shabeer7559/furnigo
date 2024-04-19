@@ -28,11 +28,8 @@ class _LoginPageState extends State<LoginPage> {
   setLoggedIn() async {
 SharedPreferences prefs=await SharedPreferences.getInstance();
 prefs.setBool("login", true);
-prefs.setString("userId", emailController.text);
-userId=emailController.text;
-Navigator.pushAndRemoveUntil(context, CupertinoPageRoute(
-    builder: (context) =>
-  bottomNavi(),), (route) => false);
+// prefs.setString("userId", emailController.text);
+// userId=emailController.text;
   }
 
   final emailValidation =
@@ -41,16 +38,14 @@ Navigator.pushAndRemoveUntil(context, CupertinoPageRoute(
       RegExp(r"^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}");
   final formkey = GlobalKey<FormState>();
  Future<void> SignInwithEmailandPassword() async {
-
     try {
       UserCredential userCredential = await FirebaseAuth.instance
           .signInWithEmailAndPassword(
         email: emailController.text.trim(),
         password: passwordController.text.trim(),
-
       );
-
-      Navigator.pushAndRemoveUntil(context, CupertinoPageRoute(builder: (context) => bottomNavi(),), (route) => false);
+      Navigator.pushAndRemoveUntil(context, CupertinoPageRoute(builder: (context) => bottomNavi(),),
+              (route) => false).then((value) => setLoggedIn());
     } on FirebaseAuthException catch(e){
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Email Or Password Is Incorrect")));
     }
