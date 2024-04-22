@@ -1,5 +1,6 @@
 
 import 'dart:io';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
@@ -64,6 +65,23 @@ class _SignUpState extends ConsumerState<SignUp> {
     });
     print("-----------------------------------------------------");
     print(getUrl);
+  }
+  bool emailExist=false;
+  Future<void>emailChecking()async{
+   try{
+     if(!emailExist){
+       await FirebaseAuth.instance.createUserWithEmailAndPassword(
+           email: emailController.text.trim(),
+           password: passwordController.text.trim());
+       data();
+       Navigator.pushAndRemoveUntil(context, CupertinoPageRoute(builder: (context) => bottomNavi(),), (route) => false).then((value) => data());
+     }else{
+       return null;
+     }
+   }catch(e){
+     print("eroor$e");
+     ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("The Email Already Exist")));
+   }
   }
   bool password=false;
   bool password1=false;
@@ -275,7 +293,6 @@ class _SignUpState extends ConsumerState<SignUp> {
                         ),
                         InkWell(
                           onTap: () {
-                            data();
                             if(
                              imgurl!=""&&
                             nameController.text!=""&&
@@ -283,10 +300,7 @@ class _SignUpState extends ConsumerState<SignUp> {
                                 passwordController.text!=""&&
                                  confirmPasswordController.text!=""&&
                                 formkey.currentState!.validate())
-                             FirebaseAuth.instance.createUserWithEmailAndPassword(
-                                 email: emailController.text.trim(),
-                                 password: passwordController.text.trim())
-                                 .then((value) =>  Navigator.pushAndRemoveUntil(context, CupertinoPageRoute(builder: (context) => bottomNavi(),), (route) => false));
+                            emailChecking();
                             else {
                               imgurl==""?ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Please choos a photo"))):
                               nameController.text==""?ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Pleas Enter your Name"))):
@@ -294,7 +308,6 @@ class _SignUpState extends ConsumerState<SignUp> {
                               passwordController.text==""?ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Pleas Enter Your Password"))):
                               confirmPasswordController.text==""?ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("pleas confirm your password"))):
                               ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Pleas Enter Valid Details")));
-
                             }
                             // Navigator.pushAndRemoveUntil(context, CupertinoPageRoute(builder: (context) => bottomNavi(),), (route) => false);
                           },

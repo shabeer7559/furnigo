@@ -293,7 +293,8 @@ class _MyCartState extends ConsumerState<MyCart> {
             },
             loading: () {
               return CircularProgressIndicator();
-            },)
+            },),
+          SizedBox(height: h*0.2,)
         ],
       ),
     );
