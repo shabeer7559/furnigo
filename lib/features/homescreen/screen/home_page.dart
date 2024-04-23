@@ -9,25 +9,21 @@ import 'package:furnigo/features/constants/color_const.dart';
 import 'package:furnigo/features/constants/icon_const.dart';
 import 'package:furnigo/features/constants/image_const.dart';
 import 'package:furnigo/features/homescreen/controller/controller.dart';
-import 'package:furnigo/features/homescreen/repository/repository.dart';
-import 'package:furnigo/models/favourite_model.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../../main.dart';
 import '../../cart/product_details.dart';
 
 class home extends ConsumerStatefulWidget {
-
-  const home( {super.key});
+  const home({super.key});
 
   @override
   ConsumerState<home> createState() => _homeState();
 }
 
 class _homeState extends ConsumerState<home> {
-
   int selectedIndex=0;
-  String docId="4zTSJ96StUheNnvi1UPH";
+  String docId="";
   List bookMark=[];
   @override
   Widget build(BuildContext context) {
@@ -79,7 +75,7 @@ class _homeState extends ConsumerState<home> {
                             InkWell(
                               onTap: () {
                                 selectedIndex=index;
-                                 docId=data[index].id;
+                                docId=data[index].id;
                                 setState(() {
 
                                 });
@@ -113,7 +109,7 @@ class _homeState extends ConsumerState<home> {
                   return Text(error.toString());
                 },
                 loading: () {
-                  return  CircularProgressIndicator();
+                  return CircularProgressIndicator();
                 },),
             ref.watch(streamProductsProvider(docId)).when(
                 data: (data) {
@@ -129,7 +125,6 @@ class _homeState extends ConsumerState<home> {
                       itemBuilder: (BuildContext context, int index) {
                         return InkWell(
                           onTap: () {
-
                             Navigator.push(context,   CupertinoPageRoute(builder: (context) => ProductDetails(
                                 data[index].image.toString(),
                                 data[index].name,
@@ -152,26 +147,21 @@ class _homeState extends ConsumerState<home> {
                                             borderRadius: BorderRadius.circular(w*0.03),
                                             image: DecorationImage(image: NetworkImage(data[index].image.toString()),fit: BoxFit.fill)
 
-                                        ),
+                                        ) ,
                                       ),
                                       Positioned(
                                         left: w*0.34,
                                         bottom: w*0.05,
                                         child: InkWell(
                                           onTap:  () {
-                                         if(bookMark.contains(index)){
-                                           bookMark.remove(index);
-                                           // ref.watch(changeProvider).deleteFavController();
+                                            if (bookMark.contains(index)){
+                                              bookMark.remove(index);
+                                            }else{
+                                              bookMark.add(index);
+                                            }
+                                            setState(() {
 
-                                         }
-                                         else{
-                                           bookMark.add(index);
-                                           ref.watch(changeProvider).favoriteAdd(data[index].image, data[index].name, data[index].price, "");
-                                           ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Item Added to favourite list")));
-                                         }
-                                         setState(() {
-
-                                         });
+                                            });
                                           },
                                           child: SvgPicture.asset(bookMark.contains(index)?IconConst.blackcartIcon:IconConst.bookingIcon),
                                         ),

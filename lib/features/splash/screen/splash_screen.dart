@@ -10,8 +10,11 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../main.dart';
-String userId='';
+ String userId='';
+
+
 class SplashScreen extends StatefulWidget {
+
   const SplashScreen({super.key});
 
   @override
@@ -19,7 +22,9 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
+
   bool login = false;
+
   getLoggedIn() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     login = prefs.getBool("login") ?? false;
@@ -34,6 +39,7 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     getLoggedIn();
   }
+
 
   @override
   Widget build(BuildContext context) {

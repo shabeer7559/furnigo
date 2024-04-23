@@ -10,7 +10,6 @@ import 'package:furnigo/features/cart/favorite.dart';
 import 'package:furnigo/features/constants/color_const.dart';
 import 'package:furnigo/features/constants/icon_const.dart';
 import 'package:furnigo/features/constants/image_const.dart';
-import 'package:furnigo/features/homescreen/controller/controller.dart';
 import 'package:furnigo/features/reviews/screen/rating_review.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -46,8 +45,7 @@ class _ProductDetailsState extends ConsumerState<ProductDetails> {
          children: [
            InkWell(
              onTap: () {
-             tap=!tap;
-             tap? ref.watch(changeProvider).favoriteAdd(widget.image, widget.name, widget.price, "id"):null;
+               tap=!tap;
                setState(() {
 
                });
@@ -176,13 +174,63 @@ class _ProductDetailsState extends ConsumerState<ProductDetails> {
                       color: ColorConst.primaryColor,
                     ),),
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text("\$${widget.price.toString()}",
                       style: TextStyle(
                         fontWeight: FontWeight.w700,
                         fontSize: w*0.06
                       ),),
+                      Container(
+                        height: h*0.045,
+                          width: w*0.35,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          InkWell(
+                            onTap: () {
+                              widget.qnty+1;
+                              // count++;
+                              // setState(() {
+                              //
+                              // });
+                            },
+                            child: Container(
+                              height: h*0.04,
+                              width: w*0.1,
+                              child: Center(child: Icon(Icons.add)),
+                              decoration: BoxDecoration(
+                                color: ColorConst.containerGrey,
+                                borderRadius: BorderRadius.circular(w*0.03)
+                              ),
+                            ),
+                          ),
+                          Text(widget.qnty.toString(),
+                          style: TextStyle(
+                            fontSize: w*0.045,
+                            fontWeight: FontWeight.w600,
+                            color: ColorConst.primaryColor
+                          ),),
+                          InkWell(
+                            onTap: () {
+                              widget.qnty<=0?0:widget.qnty-1;
+                              // count<=0?0:count--;
+                              // setState(() {
+                              // });
+                            },
+                            child: Container(
+                              height: h*0.04,
+                              width: w*0.1,
+                              child: Center(child: Icon(Icons.remove)),
+                              decoration: BoxDecoration(
+                                color: ColorConst.containerGrey,
+                                borderRadius: BorderRadius.circular(w*0.03)
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      )
                     ],
                   ),
                   Container(

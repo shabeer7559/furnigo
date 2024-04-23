@@ -1,17 +1,19 @@
-class ProductModels{
+ class ProductModels{
   String? image;
   String? name;
   String? review;
   int? price;
   int?quantity;
   String?id;
+  List?rating;
   ProductModels({
     this.image,
     this.name,
     this.review,
     this.price,
     this.quantity,
-    this.id
+    this.id,
+    this.rating
   });
   Map<String,dynamic>toMap(){
     return{
@@ -20,7 +22,8 @@ class ProductModels{
       "review":this.review,
       "price":this.price,
       "quantity":this.quantity,
-      "id":this.id
+      "id":this.id,
+      "rating":this.rating,
     };
   }
   factory ProductModels.fromMap(Map<String,dynamic>map){
@@ -30,7 +33,8 @@ class ProductModels{
         review: map["review"]??"",
         price: map["price"]??0,
         quantity: map["quantity"]??0,
-        id :map["id"]??""
+        id :map["id"]??"",
+        rating :map["rating"]??[],
     );
   }
   ProductModels copyWith({
@@ -39,7 +43,8 @@ class ProductModels{
     String?review,
     int?price,
     int?quantity,
-    String? id
+    String? id,
+    List? rating,
   }){
     return ProductModels(
         image: image??this.image,
@@ -47,7 +52,8 @@ class ProductModels{
         review: review?? this.review,
         price: price?? this.price,
         quantity: quantity?? this.quantity,
-        id: id??this.id
+        id: id??this.id,
+        rating: rating??this.rating,
     );
   }
 }
