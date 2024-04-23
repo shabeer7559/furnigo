@@ -21,7 +21,7 @@ final cartAddingRepositoryProvider=Provider((ref) => Cartadding(firestore: ref.w
       );value.update(updatedid.toMap());
     });
   }
-  Streamcart(){
+Streamcart(){
     return _cartItems.snapshots().map((event) =>
     event.docs.map((e) => CartModels.fromMap(e.data()as Map<String,dynamic>)).toList());
 

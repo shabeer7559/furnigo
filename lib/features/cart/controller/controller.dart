@@ -19,4 +19,5 @@ Stream cartDetails(){
 deleteItemController(String id){
   return _cartadding.deleteItem(id: id);
 }
+
 }
