@@ -27,7 +27,7 @@ class home extends ConsumerStatefulWidget {
 class _homeState extends ConsumerState<home> {
 
   int selectedIndex=0;
-  String docId="";
+  String docId="4zTSJ96StUheNnvi1UPH";
   List bookMark=[];
   @override
   Widget build(BuildContext context) {
@@ -79,7 +79,7 @@ class _homeState extends ConsumerState<home> {
                             InkWell(
                               onTap: () {
                                 selectedIndex=index;
-                                docId=data[index].id;
+                                 docId=data[index].id;
                                 setState(() {
 
                                 });
@@ -113,7 +113,7 @@ class _homeState extends ConsumerState<home> {
                   return Text(error.toString());
                 },
                 loading: () {
-                  return CircularProgressIndicator();
+                  return  CircularProgressIndicator();
                 },),
             ref.watch(streamProductsProvider(docId)).when(
                 data: (data) {
