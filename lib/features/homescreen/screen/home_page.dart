@@ -129,6 +129,7 @@ class _homeState extends ConsumerState<home> {
                       itemBuilder: (BuildContext context, int index) {
                         return InkWell(
                           onTap: () {
+
                             Navigator.push(context,   CupertinoPageRoute(builder: (context) => ProductDetails(
                                 data[index].image.toString(),
                                 data[index].name,
