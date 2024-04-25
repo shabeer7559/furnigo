@@ -85,8 +85,8 @@ class _homeState extends ConsumerState<home> {
                                 height: w*0.18,
                                 decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(w*0.04),
-                                    image: DecorationImage(image: NetworkImage(data[index].image.toString()),fit: BoxFit.fill),
-                                    color:selectedIndex==index?ColorConst.primaryColor: ColorConst.secondaryColor.withOpacity(0.25)
+                                    image: DecorationImage(image: NetworkImage(data[index].image.toString()),fit: BoxFit.fill,),
+                                    color:selectedIndex==index?ColorConst.primaryColor: ColorConst.secondaryColor
                                 ),
                               ),
                             ),

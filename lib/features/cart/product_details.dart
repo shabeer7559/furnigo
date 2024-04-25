@@ -256,10 +256,10 @@ class _ProductDetailsState extends ConsumerState<ProductDetails> {
                         InkWell(
                           onTap: () {
                             Navigator.push(context, CupertinoPageRoute(builder: (context) => rating(
-                                widget.proId,
-                                widget.catId,
                                 image: widget.image.toString(),
-                                name: widget.name)));
+                                name: widget.name,
+                                productId: widget.proId,
+                                categoryId: widget.catId),));
                           },
                           child: Text("(50 reviews)",style:
                             TextStyle(

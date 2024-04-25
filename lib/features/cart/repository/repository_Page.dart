@@ -14,12 +14,8 @@ final cartAddingRepositoryProvider=Provider((ref) => Cartadding(firestore: ref.w
   adding({
     required image,required name, required price, required quantity,required id
     }){
-    CartModels cartdata=CartModels(image: image,name: name,price: price, quantity: quantity,id: id);
-    _cartItems.add(cartdata.toMap()).then((value)  {
-      CartModels updatedid= cartdata.copyWith(
-        id: value.id,
-      );value.update(updatedid.toMap());
-    });
+    CartModels cartdata=CartModels(image: image,name: name,price: price, quantity: quantity);
+    _cartItems.add(cartdata.toMap());
   }
 Streamcart(){
     return _cartItems.snapshots().map((event) =>

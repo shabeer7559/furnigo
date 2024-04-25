@@ -1,15 +1,13 @@
 class CartModels{
-  String? image;
-  String? name;
-  int? price;
-  int?quantity;
-  String?id;
+  String image;
+  String name;
+  int price;
+  int quantity;
   CartModels({
-    this.image,
-    this.name,
-    this.price,
-    this.quantity,
-    this.id
+    required this.image,
+    required this.name,
+    required this.price,
+    required this.quantity,
   });
   Map<String,dynamic>toMap(){
     return{
@@ -17,7 +15,7 @@ class CartModels{
       "name":this.name,
       "price":this.price,
       "quantity":this.quantity,
-      "id":this.id
+
     };
   }
   factory CartModels.fromMap(Map<String,dynamic>map){
@@ -26,7 +24,7 @@ class CartModels{
         name: map["name"]??"",
         price: map["price"]??0,
         quantity: map["quantity"]??0,
-        id :map["id"]??""
+
     );
   }
   CartModels copyWith({
@@ -35,14 +33,14 @@ class CartModels{
     String?review,
     int?price,
     int?quantity,
-    String? id
+
   }){
     return CartModels(
         image: image??this.image,
         name: name?? this.name,
         price: price?? this.price,
         quantity: quantity?? this.quantity,
-        id: id??this.id
+
     );
   }
 }

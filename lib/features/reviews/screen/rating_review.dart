@@ -19,7 +19,7 @@ class rating extends ConsumerStatefulWidget {
   final String name;
  final String productId;
   final String categoryId;
-  const rating(this.productId, this.categoryId,  {super.key, required this.image, required this.name});
+  const rating( {super.key, required this.image, required this.name,required this.productId,required this.categoryId});
 
   @override
   ConsumerState<rating> createState() => _ratingState();
