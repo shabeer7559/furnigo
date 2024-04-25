@@ -1,19 +1,19 @@
  class ProductModels{
-  String? image;
-  String? name;
-  String? review;
-  int? price;
-  int?quantity;
-  String?id;
-  List?rating;
+  String image;
+  String name;
+  String review;
+  int price;
+  int quantity;
+  String id;
+  List rating;
   ProductModels({
-    this.image,
-    this.name,
-    this.review,
-    this.price,
-    this.quantity,
-    this.id,
-    this.rating
+     required this.image,
+    required this.name,
+    required this.review,
+    required  this.price,
+    required this.quantity,
+    required this.id,
+    required this.rating
   });
   Map<String,dynamic>toMap(){
     return{

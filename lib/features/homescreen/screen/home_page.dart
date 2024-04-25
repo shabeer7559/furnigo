@@ -23,7 +23,7 @@ class home extends ConsumerStatefulWidget {
 
 class _homeState extends ConsumerState<home> {
   int selectedIndex=0;
-  String docId="";
+  String docId="4zTSJ96StUheNnvi1UPH";
   List bookMark=[];
   @override
   Widget build(BuildContext context) {
@@ -130,7 +130,10 @@ class _homeState extends ConsumerState<home> {
                                 data[index].name,
                                 data[index].price,
                                 data[index].review,
-                                data[index].quantity),));
+                                data[index].quantity,
+                                 docId,
+                              data[index].id
+                            )));
                           },
                           child: Container(
                             width: w*0.5,

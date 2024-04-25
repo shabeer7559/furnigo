@@ -22,7 +22,9 @@ class ProductDetails extends ConsumerStatefulWidget {
   final price;
   final review;
   final qnty;
-  const ProductDetails(this.image, this.name, this.price, this.review, this.qnty, {super.key});
+  final catId;
+  final proId;
+  const ProductDetails(this.image, this.name, this.price, this.review, this.qnty, this.catId, this.proId, {super.key});
 
   @override
   ConsumerState<ProductDetails> createState() => _ProductDetailsState();
@@ -253,7 +255,11 @@ class _ProductDetailsState extends ConsumerState<ProductDetails> {
                           ),),
                         InkWell(
                           onTap: () {
-                            Navigator.push(context, CupertinoPageRoute(builder: (context) => rating(image: widget.image.toString(), name: widget.name,),));
+                            Navigator.push(context, CupertinoPageRoute(builder: (context) => rating(
+                                widget.proId,
+                                widget.catId,
+                                image: widget.image.toString(),
+                                name: widget.name)));
                           },
                           child: Text("(50 reviews)",style:
                             TextStyle(
