@@ -6,7 +6,6 @@ class UserModel {
   List favourite;
   List cartItems;
   List reviews;
-
   UserModel({
     required  this.name,
     required this.email,
