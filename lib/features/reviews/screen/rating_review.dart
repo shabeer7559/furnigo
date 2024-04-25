@@ -17,7 +17,7 @@ import '../../constants/icon_const.dart';
 class rating extends ConsumerStatefulWidget {
   final String image;
   final String name;
-  final String productId;
+ final String productId;
   final String categoryId;
   const rating(this.productId, this.categoryId,  {super.key, required this.image, required this.name});
 
@@ -51,6 +51,7 @@ class _ratingState extends ConsumerState<rating> {
   // },
   // ];
   int starRate=0;
+  List reviews=[];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -117,6 +118,9 @@ class _ratingState extends ConsumerState<rating> {
           ),
           ref.watch(streamedReviewProvider(widget.categoryId)).when(
               data: (data) {
+                 reviews=data!.rating;
+                print("-----------------------");
+                print(reviews.toString());
                 return  Expanded(
                   child: ListView.separated(
                     scrollDirection: Axis.vertical,
@@ -139,10 +143,10 @@ class _ratingState extends ConsumerState<rating> {
                                           child: Row(
                                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                             children: [
-                                              Text(data[index].rating[index].name,style: TextStyle(
+                                              Text(reviews[index]["name"],style: TextStyle(
                                                   fontWeight: FontWeight.w700
                                               ),),
-                                              Text(data[index].rating[index].date,style: TextStyle(
+                                              Text(reviews[index]["date"],style: TextStyle(
                                                   color: Colors.grey.shade500
                                               ),)
                                             ],
@@ -152,13 +156,13 @@ class _ratingState extends ConsumerState<rating> {
                                           padding: EdgeInsets.only(left: w*0.03),
                                           child: StarRating(
                                             onChanged: (index) {
-                                              index=data[index].rating[index].starRate;
+                                              index=reviews[index]["starRate"];
                                             },
                                           ),
                                         ),
                                         Padding(
                                           padding:  EdgeInsets.all(w*0.03),
-                                          child: Text(data[index].rating[index].review),
+                                          child: Text(reviews[index]["review"]),
                                         )
                                       ],
                                     ),
@@ -184,7 +188,7 @@ class _ratingState extends ConsumerState<rating> {
                                     left: w*0.43),
                                 child: CircleAvatar(
                                   radius: w*0.07,
-                                  backgroundImage: NetworkImage(data[index].rating[index].image),
+                                  backgroundImage: NetworkImage(reviews[index]["image"].toString()),
                                 ),
                               )
                             ]
@@ -195,7 +199,7 @@ class _ratingState extends ConsumerState<rating> {
                     separatorBuilder: (BuildContext context, int index) {
                       return SizedBox();
                     },
-                    itemCount:1,
+                    itemCount:reviews.length,
 
                   ),
                 ) ;
@@ -304,6 +308,7 @@ class _ratingState extends ConsumerState<rating> {
                                 print(widget.categoryId);
                                 print("---------------------------");
                                 print(widget.productId);
+                                print(reviews.toString());
                                 FirebaseFirestore.instance.collection("category").doc(widget.categoryId).collection("Products").doc(widget.productId)
                                     .update({
                                   "rating":FieldValue.arrayUnion([
