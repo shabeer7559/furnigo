@@ -5,7 +5,7 @@
   int price;
   int quantity;
   String id;
-  List rating;
+
   ProductModels({
      required this.image,
     required this.name,
@@ -13,7 +13,7 @@
     required  this.price,
     required this.quantity,
     required this.id,
-    required this.rating
+
   });
   Map<String,dynamic>toMap(){
     return{
@@ -23,7 +23,7 @@
       "price":this.price,
       "quantity":this.quantity,
       "id":this.id,
-      "rating":this.rating,
+
     };
   }
   factory ProductModels.fromMap(Map<String,dynamic>map){
@@ -34,7 +34,7 @@
         price: map["price"]??0,
         quantity: map["quantity"]??0,
         id :map["id"]??"",
-        rating :map["rating"]??[],
+
     );
   }
   ProductModels copyWith({
@@ -44,7 +44,7 @@
     int?price,
     int?quantity,
     String? id,
-    List? rating,
+
   }){
     return ProductModels(
         image: image??this.image,
@@ -53,7 +53,7 @@
         price: price?? this.price,
         quantity: quantity?? this.quantity,
         id: id??this.id,
-        rating: rating??this.rating,
+
     );
   }
 }
