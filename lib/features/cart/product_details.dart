@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -11,6 +12,7 @@ import 'package:furnigo/features/constants/color_const.dart';
 import 'package:furnigo/features/constants/icon_const.dart';
 import 'package:furnigo/features/constants/image_const.dart';
 import 'package:furnigo/features/reviews/screen/rating_review.dart';
+import 'package:furnigo/models/cartModel.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../main.dart';
@@ -34,7 +36,7 @@ class _ProductDetailsState extends ConsumerState<ProductDetails> {
   bool tap=false;
   int count=1;
   cartAdding(){
-    ref.watch(addingCartControllerProvider).addingcartRepo(widget.image, widget.name, widget.price, widget.qnty, "");
+    ref.watch(addingCartControllerProvider).addingcartRepo("JDfwl0MqToHTMwTxfBvo", widget.image, widget.price, widget.qnty, widget.name);
   }
   @override
   Widget build(BuildContext context) {
@@ -67,7 +69,12 @@ class _ProductDetailsState extends ConsumerState<ProductDetails> {
            ),
            InkWell(
              onTap: () {
-               cartAdding();
+               FirebaseFirestore.instance.collection("users").doc("i0YWExxkRwbMc8ql3E9s").update(
+                   {
+                     "cartItems":FieldValue.arrayUnion([
+                       CartModels(image: widget.image, name: widget.name, price: widget.price, quantity: widget.qnty).toMap()
+                     ])
+                   });
                Navigator.push(context, CupertinoPageRoute(builder: (context) => MyCart(),));
              },
              child: Container(

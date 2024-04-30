@@ -5,6 +5,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:furnigo/features/cart/cart.dart';
 import 'package:furnigo/features/constants/color_const.dart';
 import 'package:furnigo/features/constants/icon_const.dart';
 import 'package:furnigo/features/constants/image_const.dart';
@@ -49,7 +50,11 @@ class _homeState extends ConsumerState<home> {
           ],
         ),
         actions: [
-          SvgPicture.asset(IconConst.cartIcon),
+          InkWell(
+            onTap: () {
+              Navigator.push(context, CupertinoPageRoute(builder: (context) => MyCart(),));
+            },
+              child: SvgPicture.asset(IconConst.cartIcon)),
           SizedBox(
             width: w*0.05,
           )
