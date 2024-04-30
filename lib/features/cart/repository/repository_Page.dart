@@ -15,7 +15,7 @@ final cartAddingRepositoryProvider=Provider((ref) => Cartadding(firestore: ref.w
 
   CollectionReference get _userDetails=>_firestore.collection("users");
   adding({
-    required usrDocId,required image,required name,required price,required quantity
+    required usrDocId,required image,required name,required price,required quantity,
     // required image,required name, required price, required quantity,required id
     }){
     _userDetails.doc(usrDocId).update(({
@@ -33,6 +33,9 @@ final cartAddingRepositoryProvider=Provider((ref) => Cartadding(firestore: ref.w
 
   Stream<UserModel> streamcart({required String docId})  {
     return _userDetails.doc(docId).snapshots().map((event) => UserModel.fromMap(event.data() as Map<String,dynamic>));
+  }
+  Stream streamFav({required String docId}){
+    return _userDetails.doc(docId).snapshots().map((event) => UserModel.fromMap(event.data()as Map<String,dynamic>));
   }
 
 

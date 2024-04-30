@@ -7,6 +7,7 @@ import 'package:furnigo/features/cart/repository/repository_Page.dart';
 import 'package:furnigo/models/user_model.dart';
 
 final cartStreamProvider=StreamProvider.family((ref,String docId) => addingController(cartadding: ref.watch(cartAddingRepositoryProvider)).cartDetails(docId: docId));
+final favStreamProvider=StreamProvider.family((ref,String docId) => addingController(cartadding: ref.watch(cartAddingRepositoryProvider)).favDetails(docId: docId));
 final addingCartControllerProvider = Provider(
         (ref) =>addingController(cartadding: ref.watch(cartAddingRepositoryProvider)));
 
@@ -21,6 +22,9 @@ addingcartRepo(String usrDocId,String image,int price,int quantity,String name){
 }
 Stream<UserModel> cartDetails({required String docId}){
   return _cartadding.streamcart(docId:docId );
+}
+Stream favDetails({required String docId}){
+  return _cartadding.streamFav(docId: docId);
 }
 deleteItemController(String id){
   return _cartadding.deleteItem(id: id);

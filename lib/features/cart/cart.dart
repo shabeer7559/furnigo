@@ -214,7 +214,7 @@ class _MyCartState extends ConsumerState<MyCart> {
                                       ),
                                     ),
                                     Text(
-                                      cartData[index]["qnty"].toString(),
+                                      cartData[index]["quantity"].toString(),
                                       style: TextStyle(
                                           fontSize: w*0.045,
                                           fontWeight: FontWeight.w700,

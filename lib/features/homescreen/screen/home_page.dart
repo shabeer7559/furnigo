@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
@@ -13,6 +14,7 @@ import 'package:furnigo/features/homescreen/controller/controller.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../../main.dart';
+import '../../../models/favourite_model.dart';
 import '../../cart/product_details.dart';
 
 class home extends ConsumerStatefulWidget {
@@ -166,6 +168,11 @@ class _homeState extends ConsumerState<home> {
                                               bookMark.remove(index);
                                             }else{
                                               bookMark.add(index);
+                                              FirebaseFirestore.instance.collection("users").doc("i0YWExxkRwbMc8ql3E9s").update({
+                                                "favourite":FieldValue.arrayUnion([
+                                                  FavoriteModels(image: data[index].image, name: data[index].name, price: data[index].price).toMap()
+                                                ])
+                                              });
                                             }
                                             setState(() {
 

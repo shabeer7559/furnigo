@@ -13,6 +13,7 @@ import 'package:furnigo/features/constants/icon_const.dart';
 import 'package:furnigo/features/constants/image_const.dart';
 import 'package:furnigo/features/reviews/screen/rating_review.dart';
 import 'package:furnigo/models/cartModel.dart';
+import 'package:furnigo/models/favourite_model.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../main.dart';
@@ -35,9 +36,9 @@ class ProductDetails extends ConsumerStatefulWidget {
 class _ProductDetailsState extends ConsumerState<ProductDetails> {
   bool tap=false;
   int count=1;
-  cartAdding(){
-    ref.watch(addingCartControllerProvider).addingcartRepo("JDfwl0MqToHTMwTxfBvo", widget.image, widget.price, widget.qnty, widget.name);
-  }
+  // cartAdding(){
+  //   ref.watch(addingCartControllerProvider).addingcartRepo("JDfwl0MqToHTMwTxfBvo", widget.image, widget.price, widget.qnty, widget.name);
+  // }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -50,6 +51,13 @@ class _ProductDetailsState extends ConsumerState<ProductDetails> {
            InkWell(
              onTap: () {
                tap=!tap;
+               if(tap=true){
+                 FirebaseFirestore.instance.collection("users").doc("i0YWExxkRwbMc8ql3E9s").update({
+                   "favourite":FieldValue.arrayUnion([
+                     FavoriteModels(image: widget.image, name: widget.name, price: widget.price).toMap()
+                   ])
+                 });
+               }
                setState(() {
 
                });

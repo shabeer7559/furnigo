@@ -3,7 +3,7 @@ class RatingModel{
   String image;
   String review;
   String date;
-  String rating;
+  int rating;
 
  RatingModel({
     required this.name,
@@ -27,7 +27,7 @@ class RatingModel{
         image: map["image"]??"",
         review: map["review"]??"",
         date: map["date"]??"",
-        rating: map["rating"]??"",
+        rating: map["rating"]??0,
     );
  }
   RatingModel copyWith({
@@ -35,7 +35,7 @@ class RatingModel{
     String? image,
     String? review,
     String? date,
-    String? rating,
+    int? rating,
   }){
     return RatingModel(
         name: name??this.name,
