@@ -5,6 +5,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:furnigo/features/authentication/controller/controller.dart';
+import 'package:furnigo/features/authentication/screen/login_page.dart';
 import 'package:furnigo/features/cart/cart.dart';
 import 'package:furnigo/features/cart/controller/controller.dart';
 import 'package:furnigo/features/cart/favorite.dart';
@@ -52,7 +53,7 @@ class _ProductDetailsState extends ConsumerState<ProductDetails> {
              onTap: () {
                tap=!tap;
                if(tap=true){
-                 FirebaseFirestore.instance.collection("users").doc("i0YWExxkRwbMc8ql3E9s").update({
+                 FirebaseFirestore.instance.collection("users").doc(userDocId).update({
                    "favourite":FieldValue.arrayUnion([
                      FavoriteModels(image: widget.image, name: widget.name, price: widget.price).toMap()
                    ])
@@ -77,7 +78,7 @@ class _ProductDetailsState extends ConsumerState<ProductDetails> {
            ),
            InkWell(
              onTap: () {
-               FirebaseFirestore.instance.collection("users").doc("i0YWExxkRwbMc8ql3E9s").update(
+               FirebaseFirestore.instance.collection("users").doc(userDocId).update(
                    {
                      "cartItems":FieldValue.arrayUnion([
                        CartModels(image: widget.image, name: widget.name, price: widget.price, quantity: widget.qnty).toMap()

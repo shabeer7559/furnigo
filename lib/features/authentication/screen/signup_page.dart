@@ -18,7 +18,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../main.dart';
 import '../../constants/icon_const.dart';
 String imgurl='';
-String userName='';
 class SignUp extends ConsumerStatefulWidget {
   const SignUp({super.key});
 
@@ -74,7 +73,7 @@ class _SignUpState extends ConsumerState<SignUp> {
            email: emailController.text.trim(),
            password: passwordController.text.trim());
        data();
-       Navigator.pushAndRemoveUntil(context, CupertinoPageRoute(builder: (context) => bottomNavi(),), (route) => false).then((value) => data());
+       Navigator.pushAndRemoveUntil(context, CupertinoPageRoute(builder: (context) => LoginPage(),), (route) => false).then((value) => data());
      }else{
        return null;
      }
@@ -86,12 +85,6 @@ class _SignUpState extends ConsumerState<SignUp> {
   bool password=false;
   bool password1=false;
 @override
-  void initState() {
-  userName=nameController.text;
-    // TODO: implement initState
-    super.initState();
-  }
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SingleChildScrollView(
