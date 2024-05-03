@@ -6,9 +6,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:furnigo/features/authentication/controller/controller.dart';
 import 'package:furnigo/features/authentication/screen/login_page.dart';
-import 'package:furnigo/features/cart/cart.dart';
+import 'package:furnigo/features/cart/screen/cart.dart';
 import 'package:furnigo/features/cart/controller/controller.dart';
-import 'package:furnigo/features/cart/favorite.dart';
+import 'package:furnigo/features/cart/screen/favorite.dart';
 import 'package:furnigo/features/constants/color_const.dart';
 import 'package:furnigo/features/constants/icon_const.dart';
 import 'package:furnigo/features/constants/image_const.dart';
@@ -17,7 +17,8 @@ import 'package:furnigo/models/cartModel.dart';
 import 'package:furnigo/models/favourite_model.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../../main.dart';
+import '../../../main.dart';
+import '../../splash/screen/splash_screen.dart';
 
 
 class ProductDetails extends ConsumerStatefulWidget {

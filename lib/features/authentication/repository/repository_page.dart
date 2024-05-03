@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:furnigo/core/providers/firebase_providers.dart';
-import 'package:furnigo/features/cart/favorite.dart';
+import 'package:furnigo/features/cart/screen/favorite.dart';
 import 'package:furnigo/models/user_model.dart';
 
 final userAaddingRepocitryProvider=Provider((ref) => AddingRepocitry(firestore: ref.watch(firestoreProvider)));

@@ -15,6 +15,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 import '../../../main.dart';
 import '../../constants/icon_const.dart';
+import '../../splash/screen/splash_screen.dart';
 
 class rating extends ConsumerStatefulWidget {
   final String image;

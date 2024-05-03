@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:furnigo/features/authentication/screen/login_page.dart';
 import 'package:furnigo/features/cart/controller/controller.dart';
 import 'package:furnigo/features/constants/color_const.dart';
 import 'package:furnigo/features/constants/icon_const.dart';
@@ -12,7 +13,8 @@ import 'package:furnigo/features/homescreen/repository/repository.dart';
 
 import 'package:google_fonts/google_fonts.dart';
 
-import '../../main.dart';
+import '../../../main.dart';
+import '../../splash/screen/splash_screen.dart';
 import 'cart.dart';
 
 class favorite extends ConsumerStatefulWidget {
@@ -71,7 +73,7 @@ class _favoriteState extends ConsumerState<favorite> {
       body: Column(
         children: [
 
-         ref.watch(favStreamProvider("i0YWExxkRwbMc8ql3E9s")).when(
+         ref.watch(favStreamProvider(userDocId)).when(
                 data: (data) {
                   List favDetails=data.favourite;
                   return   Expanded(

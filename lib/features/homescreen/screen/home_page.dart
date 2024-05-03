@@ -7,7 +7,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:furnigo/features/authentication/screen/login_page.dart';
-import 'package:furnigo/features/cart/cart.dart';
+import 'package:furnigo/features/cart/screen/cart.dart';
 import 'package:furnigo/features/constants/color_const.dart';
 import 'package:furnigo/features/constants/icon_const.dart';
 import 'package:furnigo/features/constants/image_const.dart';
@@ -16,7 +16,8 @@ import 'package:google_fonts/google_fonts.dart';
 
 import '../../../main.dart';
 import '../../../models/favourite_model.dart';
-import '../../cart/product_details.dart';
+import '../../cart/screen/product_details.dart';
+import '../../splash/screen/splash_screen.dart';
 
 class home extends ConsumerStatefulWidget {
   const home({super.key});
@@ -117,7 +118,7 @@ class _homeState extends ConsumerState<home> {
                   return Text(error.toString());
                 },
                 loading: () {
-                  return CircularProgressIndicator();
+                  return Center(child: CircularProgressIndicator());
                 },),
             ref.watch(streamProductsProvider(docId)).when(
                 data: (data) {
@@ -206,7 +207,7 @@ class _homeState extends ConsumerState<home> {
                   return Text(error.toString());
                 },
                 loading: () {
-                  return CircularProgressIndicator();
+                  return Center(child: CircularProgressIndicator());
                 }),
 
           ],

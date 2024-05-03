@@ -94,8 +94,7 @@ class _profile_pageState extends State<profile_page> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      userName,
+                    Text(userName,
                       style: TextStyle(
                         fontSize: w*0.045,
                           fontWeight: FontWeight.w700),

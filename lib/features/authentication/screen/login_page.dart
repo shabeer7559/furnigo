@@ -18,10 +18,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../main.dart';
 import '../../splash/screen/splash_screen.dart';
- String userDocId='';
- String userName='';
- String userEmail='';
- String userProfile="";
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
 
@@ -32,15 +28,7 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
-  setLoggedIn() async {
-SharedPreferences prefs=await SharedPreferences.getInstance();
-prefs.setBool("login", true);
-prefs.setString("email", userEmail);
-prefs.setString("name", userName);
-prefs.setString("image", userProfile);
-print("------------------------------+++++++++++++++++");
-print("-----------------------------------------------");
-  }
+
 
   final emailValidation =
       RegExp(r"^.+@[a-zA-Z]+\.{1}[a-zA-Z]+(\.{0,1}[a-zA-Z]+)$");
@@ -57,6 +45,16 @@ print("-----------------------------------------------");
    userName=userList[0]["name"];
    userEmail=userList[0]["email"];
    userProfile=userList[0]["image"];
+setLoggedIn();
+  }
+
+  setLoggedIn() async {
+    SharedPreferences prefs=await SharedPreferences.getInstance();
+    prefs.setBool("login", true);
+    prefs.setString("email", userEmail);
+    prefs.setString("name", userName);
+    prefs.setString("image", userProfile);
+    prefs.setString("id", userDocId);
   }
  Future<void> SignInwithEmailandPassword() async {
     try {
@@ -66,14 +64,19 @@ print("-----------------------------------------------");
         password: passwordController.text.trim(),
       );
       getUserId();
-      setLoggedIn();
+
       Navigator.pushAndRemoveUntil(context, CupertinoPageRoute(builder: (context) => bottomNavi(),),
               (route) => false);
     } on FirebaseAuthException catch(e){
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Email Or Password Is Incorrect")));
     }
   }
-
+@override
+  void initState() {
+    getUserId();
+    // TODO: implement initState
+    super.initState();
+  }
   @override
   bool password = false;
   Widget build(BuildContext context) {

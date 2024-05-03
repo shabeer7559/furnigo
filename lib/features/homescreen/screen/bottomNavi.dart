@@ -10,7 +10,7 @@ import 'package:furnigo/features/homescreen/screen/notification.dart';
 import 'package:furnigo/features/profile/screen/profile_page.dart';
 
 import '../../../main.dart';
-import '../../cart/favorite.dart';
+import '../../cart/screen/favorite.dart';
 
 class bottomNavi extends StatefulWidget {
   const bottomNavi({super.key});
