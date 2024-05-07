@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:furnigo/features/cart/controller/controller.dart';
 import 'package:furnigo/features/constants/color_const.dart';
 import 'package:furnigo/features/constants/icon_const.dart';
 import 'package:furnigo/features/constants/image_const.dart';
@@ -70,8 +71,9 @@ class _favoriteState extends ConsumerState<favorite> {
       body: Column(
         children: [
 
-         ref.watch(streamFavProvider).when(
+         ref.watch(favStreamProvider("i0YWExxkRwbMc8ql3E9s")).when(
                 data: (data) {
+                  List favDetails=data.favourite;
                   return   Expanded(
                     child: ListView.separated(
                       physics: BouncingScrollPhysics(),
@@ -94,15 +96,15 @@ class _favoriteState extends ConsumerState<favorite> {
                                 width: w*0.3,
                                 decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(w*0.03),
-                                    image: DecorationImage(image: NetworkImage(data[index].image.toString()),fit: BoxFit.cover)
+                                    image: DecorationImage(image: NetworkImage(favDetails[index]["image"].toString()),fit: BoxFit.cover)
 
                                 ),
                               ),
                               Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Text(data[index].name),
-                                  Text(data[index].price.toString(),style: TextStyle(fontWeight: FontWeight.w700,
+                                  Text(favDetails[index]["name"]),
+                                  Text(favDetails[index]["price"].toString(),style: TextStyle(fontWeight: FontWeight.w700,
                                       fontSize: w*0.05),),
                                 ],),
                               Column(
@@ -110,7 +112,7 @@ class _favoriteState extends ConsumerState<favorite> {
                                 children: [
                                   InkWell(
                                       onTap: () {
-                                        ref.watch(changeProvider).deleteFavController(data[index].id);
+                                        // ref.watch(changeProvider).deleteFavController(data[index].id);
                                       },
                                       child: SvgPicture.asset(IconConst.closeIcon)),
                                   SvgPicture.asset(IconConst.blackcartIcon,),
@@ -125,7 +127,7 @@ class _favoriteState extends ConsumerState<favorite> {
                           color: Colors.grey.shade200,
                         );
                       },
-                      itemCount: data.length,
+                      itemCount: favDetails.length,
 
                     ),
                   );

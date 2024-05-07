@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
@@ -5,6 +6,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:furnigo/features/cart/cart.dart';
 import 'package:furnigo/features/constants/color_const.dart';
 import 'package:furnigo/features/constants/icon_const.dart';
 import 'package:furnigo/features/constants/image_const.dart';
@@ -12,6 +14,7 @@ import 'package:furnigo/features/homescreen/controller/controller.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../../main.dart';
+import '../../../models/favourite_model.dart';
 import '../../cart/product_details.dart';
 
 class home extends ConsumerStatefulWidget {
@@ -49,7 +52,11 @@ class _homeState extends ConsumerState<home> {
           ],
         ),
         actions: [
-          SvgPicture.asset(IconConst.cartIcon),
+          InkWell(
+            onTap: () {
+              Navigator.push(context, CupertinoPageRoute(builder: (context) => MyCart(),));
+            },
+              child: SvgPicture.asset(IconConst.cartIcon)),
           SizedBox(
             width: w*0.05,
           )
@@ -85,8 +92,8 @@ class _homeState extends ConsumerState<home> {
                                 height: w*0.18,
                                 decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(w*0.04),
-                                    image: DecorationImage(image: NetworkImage(data[index].image.toString()),fit: BoxFit.fill),
-                                    color:selectedIndex==index?ColorConst.primaryColor: ColorConst.secondaryColor.withOpacity(0.25)
+                                    image: DecorationImage(image: NetworkImage(data[index].image.toString()),fit: BoxFit.fill,),
+                                    color:selectedIndex==index?ColorConst.primaryColor: ColorConst.secondaryColor
                                 ),
                               ),
                             ),
@@ -161,6 +168,11 @@ class _homeState extends ConsumerState<home> {
                                               bookMark.remove(index);
                                             }else{
                                               bookMark.add(index);
+                                              FirebaseFirestore.instance.collection("users").doc("i0YWExxkRwbMc8ql3E9s").update({
+                                                "favourite":FieldValue.arrayUnion([
+                                                  FavoriteModels(image: data[index].image, name: data[index].name, price: data[index].price).toMap()
+                                                ])
+                                              });
                                             }
                                             setState(() {
 

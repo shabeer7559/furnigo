@@ -38,7 +38,7 @@ class _SignUpState extends ConsumerState<SignUp> {
   final passwordValidation=RegExp(r"^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}");
   final formkey=GlobalKey<FormState>();
    data(){
-     ref.watch(addingControllerProvider).addingRepo(nameController.text, emailController.text, passwordController.text,imgurl);
+     ref.watch(addingControllerProvider).addingRepo(nameController.text, emailController.text, passwordController.text,imgurl,[],[],[]);
    }
   var files;
   pickImage(ImageSource)async{

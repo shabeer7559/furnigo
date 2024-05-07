@@ -28,12 +28,8 @@ streamProducts({required String id}){
 addToFavourite({
   required image,required name,required price,required id
 }){
-  FavoriteModels favouriteData=FavoriteModels(image: image,name: name,price: price,id: id);
-  _favorite.add(favouriteData.toMap()).then((value)  {
-    FavoriteModels newId=favouriteData.copyWith(
-      id: value.id,
-    );value.update(newId.toMap());
-  });
+  FavoriteModels favouriteData=FavoriteModels(image: image,name: name,price: price,);
+  _favorite.add(favouriteData.toMap());
 }
 StreamFav(){
   return _favorite.snapshots().map((event) => event.docs.map((e) => FavoriteModels.fromMap(e.data()as Map<String,dynamic>)).toList());

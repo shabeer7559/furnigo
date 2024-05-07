@@ -6,7 +6,7 @@ import 'package:furnigo/features/reviews/repository/repository.dart';
 
 final addingReviweControllsProvider=Provider((ref) => ReviewController(repository: ref.watch(reviewRepositoryProvider)));
 final reviewNotifierPro=ChangeNotifierProvider((ref) => ReviewController(repository: ref.watch(reviewRepositoryProvider)));
-final streamedReviewProvider=StreamProvider.autoDispose.family((ref,String catId) => ref.watch(addingReviweControllsProvider).streamReview(catId: catId));
+final streamedReviewProvider=StreamProvider.family((ref,String docId) => ref.watch(addingReviweControllsProvider).streamReview(docId: docId));
 
 
 class ReviewController extends ChangeNotifier{
@@ -18,7 +18,7 @@ class ReviewController extends ChangeNotifier{
     _repository.updatingReview(name: name, image: image, review: review, date: date, rating: rating, catDocid: catDocid, proDocId: proDocId);
   }
 
-  Stream streamReview({required String catId}){
-    return _repository.Streamreview(catId: catId);
+  Stream streamReview({required String docId}){
+    return _repository.streamreview(docId: docId);
   }
 }
