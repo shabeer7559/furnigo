@@ -5,6 +5,7 @@ import 'package:flutter/painting.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:furnigo/features/authentication/screen/login_page.dart';
 import 'package:furnigo/features/constants/color_const.dart';
 import 'package:furnigo/features/constants/image_const.dart';
 import 'package:furnigo/features/reviews/controller/controller.dart';
@@ -14,6 +15,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 import '../../../main.dart';
 import '../../constants/icon_const.dart';
+import '../../splash/screen/splash_screen.dart';
 
 class rating extends ConsumerStatefulWidget {
   final String image;
@@ -94,7 +96,7 @@ class _ratingState extends ConsumerState<rating> {
             indent: w*0.03,
             endIndent:w* 0.03,
           ),
-          ref.watch(streamedReviewProvider("i0YWExxkRwbMc8ql3E9s")).when(
+          ref.watch(streamedReviewProvider(userDocId)).when(
               data: (data) {
                 List reviewData=data.reviews;
                 return  Expanded(
@@ -188,7 +190,7 @@ class _ratingState extends ConsumerState<rating> {
         ],
       ),
       floatingActionButton:
-      ref.watch(streamedReviewProvider("i0YWExxkRwbMc8ql3E9s")).when(
+      ref.watch(streamedReviewProvider(userDocId)).when(
           data: (data) {
             return InkWell(
               onTap: () {
@@ -273,7 +275,7 @@ class _ratingState extends ConsumerState<rating> {
 
                                         InkWell(
                                           onTap: () {
-                                            FirebaseFirestore.instance.collection("users").doc("i0YWExxkRwbMc8ql3E9s")
+                                            FirebaseFirestore.instance.collection("users").doc(userDocId)
                                                 .update({
                                               "reviews":FieldValue.arrayUnion([
                                                 RatingModel(

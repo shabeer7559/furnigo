@@ -10,9 +10,11 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../main.dart';
- String userId='';
-
-
+// String userId='';
+String userName='';
+String userEmail='';
+String userProfile="";
+String userDocId='';
 class SplashScreen extends StatefulWidget {
 
   const SplashScreen({super.key});
@@ -22,25 +24,24 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
-
   bool login = false;
-
   getLoggedIn() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     login = prefs.getBool("login") ?? false;
-    // userId = prefs.getString("userId") ?? "";
-    Navigator.push(
-        context,
-        CupertinoPageRoute(
-            builder: (context) =>
-            login==false?LoginPage() : bottomNavi()));
+   userEmail= prefs.getString("email")??"";
+   userName = prefs.getString("name")??"";
+   userDocId = prefs.getString("id")??"";
+   userProfile =  prefs.getString("image")??"https://cdn.vectorstock.com/i/1000v/51/05/male-profile-avatar-with-brown-hair-vector-12055105.jpg";
+   Future.delayed(Duration(seconds: 2)).then((value) =>  Navigator.push(
+       context,
+       CupertinoPageRoute(
+           builder: (context) =>
+           login==false?LoginPage() : bottomNavi())) );
   }
-
   void initState() {
     getLoggedIn();
+    super.initState();
   }
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(

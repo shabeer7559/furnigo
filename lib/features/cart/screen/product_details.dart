@@ -5,9 +5,10 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:furnigo/features/authentication/controller/controller.dart';
-import 'package:furnigo/features/cart/cart.dart';
+import 'package:furnigo/features/authentication/screen/login_page.dart';
+import 'package:furnigo/features/cart/screen/cart.dart';
 import 'package:furnigo/features/cart/controller/controller.dart';
-import 'package:furnigo/features/cart/favorite.dart';
+import 'package:furnigo/features/cart/screen/favorite.dart';
 import 'package:furnigo/features/constants/color_const.dart';
 import 'package:furnigo/features/constants/icon_const.dart';
 import 'package:furnigo/features/constants/image_const.dart';
@@ -16,7 +17,8 @@ import 'package:furnigo/models/cartModel.dart';
 import 'package:furnigo/models/favourite_model.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../../main.dart';
+import '../../../main.dart';
+import '../../splash/screen/splash_screen.dart';
 
 
 class ProductDetails extends ConsumerStatefulWidget {
@@ -52,7 +54,7 @@ class _ProductDetailsState extends ConsumerState<ProductDetails> {
              onTap: () {
                tap=!tap;
                if(tap=true){
-                 FirebaseFirestore.instance.collection("users").doc("i0YWExxkRwbMc8ql3E9s").update({
+                 FirebaseFirestore.instance.collection("users").doc(userDocId).update({
                    "favourite":FieldValue.arrayUnion([
                      FavoriteModels(image: widget.image, name: widget.name, price: widget.price).toMap()
                    ])
@@ -77,7 +79,7 @@ class _ProductDetailsState extends ConsumerState<ProductDetails> {
            ),
            InkWell(
              onTap: () {
-               FirebaseFirestore.instance.collection("users").doc("i0YWExxkRwbMc8ql3E9s").update(
+               FirebaseFirestore.instance.collection("users").doc(userDocId).update(
                    {
                      "cartItems":FieldValue.arrayUnion([
                        CartModels(image: widget.image, name: widget.name, price: widget.price, quantity: widget.qnty).toMap()

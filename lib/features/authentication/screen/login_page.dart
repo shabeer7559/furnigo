@@ -1,3 +1,5 @@
+
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
@@ -10,12 +12,12 @@ import 'package:furnigo/features/constants/color_const.dart';
 import 'package:furnigo/features/constants/icon_const.dart';
 import 'package:furnigo/features/homescreen/screen/bottomNavi.dart';
 import 'package:furnigo/features/homescreen/screen/home_page.dart';
+import 'package:furnigo/models/user_model.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../main.dart';
 import '../../splash/screen/splash_screen.dart';
-
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
 
@@ -26,18 +28,34 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
-  setLoggedIn() async {
-SharedPreferences prefs=await SharedPreferences.getInstance();
-prefs.setBool("login", true);
-// prefs.setString("userId", emailController.text);
-// userId=emailController.text;
-  }
+
 
   final emailValidation =
       RegExp(r"^.+@[a-zA-Z]+\.{1}[a-zA-Z]+(\.{0,1}[a-zA-Z]+)$");
   final passwordValidation =
       RegExp(r"^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}");
   final formkey = GlobalKey<FormState>();
+  List userList=[];
+  getUserId() async {
+   var currentUserDetails = await FirebaseFirestore.instance.collection("users").where("email",isEqualTo: emailController.text).get().then((value) =>
+    value.docs.map((e) =>UserModel.fromMap(e.data()).toMap() ).toList()
+    );
+   userList=currentUserDetails;
+   userDocId=userList[0]["id"];
+   userName=userList[0]["name"];
+   userEmail=userList[0]["email"];
+   userProfile=userList[0]["image"];
+setLoggedIn();
+  }
+
+  setLoggedIn() async {
+    SharedPreferences prefs=await SharedPreferences.getInstance();
+    prefs.setBool("login", true);
+    prefs.setString("email", userEmail);
+    prefs.setString("name", userName);
+    prefs.setString("image", userProfile);
+    prefs.setString("id", userDocId);
+  }
  Future<void> SignInwithEmailandPassword() async {
     try {
       UserCredential userCredential = await FirebaseAuth.instance
@@ -45,14 +63,20 @@ prefs.setBool("login", true);
         email: emailController.text.trim(),
         password: passwordController.text.trim(),
       );
+      getUserId();
+
       Navigator.pushAndRemoveUntil(context, CupertinoPageRoute(builder: (context) => bottomNavi(),),
-              (route) => false).then((value) => setLoggedIn());
+              (route) => false);
     } on FirebaseAuthException catch(e){
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Email Or Password Is Incorrect")));
     }
   }
-
-  
+@override
+  void initState() {
+    getUserId();
+    // TODO: implement initState
+    super.initState();
+  }
   @override
   bool password = false;
   Widget build(BuildContext context) {

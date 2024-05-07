@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:furnigo/features/authentication/screen/login_page.dart';
 import 'package:furnigo/features/cart/controller/controller.dart';
 import 'package:furnigo/features/constants/color_const.dart';
 import 'package:furnigo/features/constants/icon_const.dart';
@@ -10,8 +11,9 @@ import 'package:furnigo/features/constants/image_const.dart';
 
 import 'package:google_fonts/google_fonts.dart';
 
-import '../../main.dart';
+import '../../../main.dart';
 
+import '../../splash/screen/splash_screen.dart';
 import 'check_out.dart';
 
 class MyCart extends ConsumerStatefulWidget {
@@ -23,28 +25,6 @@ class MyCart extends ConsumerStatefulWidget {
 
 class _MyCartState extends ConsumerState<MyCart> {
   int count=0;
-// List cartData=[];
-  // List cartItems=[
-  //   {
-  //    "name":"Minimal Stand" ,
-  //     "image":ImageConst.minimalStand,
-  //     "price":"\$25",
-  //     "qty":0
-  //   },
-  //   {
-  //    "name":"Coffee Table" ,
-  //     "image":ImageConst.coffeetable,
-  //     "price":"\$35",
-  //     "qty":0
-  //   },
-  //   {
-  //    "name":"Minimal Desk" ,
-  //     "image":ImageConst.simpleDesk,
-  //     "price":"\$50",
-  //     "qty":0
-  //   },
-  // ];
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -151,7 +131,7 @@ class _MyCartState extends ConsumerState<MyCart> {
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       body: Column(
         children: [
-        ref.watch(cartStreamProvider("i0YWExxkRwbMc8ql3E9s")).when(
+        ref.watch(cartStreamProvider(userDocId)).when(
           data:(data) {
           List cartData=data.cartItems;
             return Expanded(

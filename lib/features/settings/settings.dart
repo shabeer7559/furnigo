@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:furnigo/features/constants/color_const.dart';
 import 'package:furnigo/features/constants/icon_const.dart';
+import 'package:furnigo/features/splash/screen/splash_screen.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../main.dart';
@@ -79,6 +80,7 @@ class _settingsState extends State<settings> {
                      fontWeight: FontWeight.w600,
                      color: ColorConst.primaryColor
                    ),
+                   initialValue: userName,
                    decoration: InputDecoration(
                      border: InputBorder.none,
                      labelText: "Name",
@@ -113,6 +115,7 @@ class _settingsState extends State<settings> {
                      fontWeight: FontWeight.w600,
                      color: ColorConst.primaryColor
                    ),
+                   initialValue: userEmail,
                    decoration: InputDecoration(
                      border: InputBorder.none,
                      labelText: "Email",

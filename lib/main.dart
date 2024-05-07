@@ -6,7 +6,7 @@ import 'package:furnigo/features/authentication/screen/create_new_password.dart'
 import 'package:furnigo/features/authentication/screen/foget_password.dart';
 import 'package:furnigo/features/authentication/screen/login_page.dart';
 import 'package:furnigo/features/authentication/screen/signup_page.dart';
-import 'package:furnigo/features/cart/cart.dart';
+import 'package:furnigo/features/cart/screen/cart.dart';
 import 'package:furnigo/features/homescreen/screen/bottomNavi.dart';
 
 
@@ -33,7 +33,7 @@ import 'package:furnigo/features/shipping/screen/add_shipping_address.dart';
 import 'package:furnigo/features/splash/screen/splash_screen.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import 'features/cart/product_details.dart';
+import 'features/cart/screen/product_details.dart';
 import 'features/shipping/screen/shipping_address.dart';
 import 'firebase_options.dart';
 var h;

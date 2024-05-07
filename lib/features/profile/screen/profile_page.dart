@@ -88,20 +88,18 @@ class _profile_pageState extends State<profile_page> {
               children: [
                 CircleAvatar(
                     radius: w * 0.12,
-                    backgroundImage: NetworkImage(imgurl),),
+                    backgroundImage: NetworkImage(userProfile),),
                 SizedBox(width: w*0.03,),
                 Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      userName
-                      ,
+                    Text(userName,
                       style: TextStyle(
                         fontSize: w*0.045,
                           fontWeight: FontWeight.w700),
                     ),
-                    Text(userId.toString(),
+                    Text(userEmail,
                     style: TextStyle(
                       color: ColorConst.grey
                     ),)
