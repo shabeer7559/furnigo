@@ -114,7 +114,7 @@ class _favoriteState extends ConsumerState<favorite> {
                                 children: [
                                   InkWell(
                                       onTap: () {
-                                        // ref.watch(changeProvider).deleteFavController(data[index].id);
+                                        ref.watch(addingCartControllerProvider).deleteFavContro(id: userDocId, favDetails: favDetails,index: index);
                                       },
                                       child: SvgPicture.asset(IconConst.closeIcon)),
                                   SvgPicture.asset(IconConst.blackcartIcon,),

@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -234,8 +235,8 @@ class _MyCartState extends ConsumerState<MyCart> {
                                         actions: [
                                           CupertinoActionSheetAction(
                                               onPressed:  () {
+                                                  ref.watch(addingCartControllerProvider).deleteCartContro(id: userDocId,index: index, cartData: cartData);
 
-                                                // ref.watch(addingCartControllerProvider).deleteItemController(data[index].id);
                                                 Navigator.pop(context);
                                               },
                                               child: Text("Yes")),

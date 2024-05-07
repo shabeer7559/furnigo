@@ -95,7 +95,7 @@ class _homeState extends ConsumerState<home> {
                                 decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(w*0.04),
                                     image: DecorationImage(image: NetworkImage(data[index].image.toString()),fit: BoxFit.fill,),
-                                    color:selectedIndex==index?ColorConst.primaryColor: ColorConst.secondaryColor
+                                    color:selectedIndex==index?ColorConst.primaryColor: ColorConst.secondaryColor,
                                 ),
                               ),
                             ),
@@ -167,7 +167,7 @@ class _homeState extends ConsumerState<home> {
                                         child: InkWell(
                                           onTap:  () {
                                             if (bookMark.contains(index)){
-                                              bookMark.remove(index);
+                                              // bookMark.remove(index);
                                             }else{
                                               bookMark.add(index);
                                               FirebaseFirestore.instance.collection("users").doc(userDocId).update({

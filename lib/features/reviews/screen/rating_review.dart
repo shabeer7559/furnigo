@@ -20,9 +20,10 @@ import '../../splash/screen/splash_screen.dart';
 class rating extends ConsumerStatefulWidget {
   final String image;
   final String name;
+  final int price;
  final String productId;
   final String categoryId;
-  const rating( {super.key, required this.image, required this.name,required this.productId,required this.categoryId});
+  const rating(  {super.key, required this.image, required this.name,required this.productId,required this.categoryId,required this.price});
 
   @override
   ConsumerState<rating> createState() => _ratingState();
@@ -32,6 +33,9 @@ class _ratingState extends ConsumerState<rating> {
   TextEditingController reviewController=TextEditingController();
   int starRate=0;
   List reviews=[];
+  userReviewAdding(){
+    ref.watch(addingReviweControllsProvider).userReviewContro(id: userDocId, name: widget.name, image: widget.image, review: reviewController.text, date:DateTime.now().toString().substring(0,10) , rating: 1, price: widget.price);
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -275,19 +279,7 @@ class _ratingState extends ConsumerState<rating> {
 
                                         InkWell(
                                           onTap: () {
-                                            FirebaseFirestore.instance.collection("users").doc(userDocId)
-                                                .update({
-                                              "reviews":FieldValue.arrayUnion([
-                                                RatingModel(
-                                                    name: data.name,
-                                                    image: data.image.toString(),
-                                                    review: reviewController.text,
-                                                    date: DateTime.now().toString().substring(0,10),
-                                                    rating: starRate
-                                                ).toMap()
-                                              ])
-                                            });
-                                            // reviewAdding();
+                                            userReviewAdding();
                                             Navigator.pop(context);
                                           },
                                           child: Container(
