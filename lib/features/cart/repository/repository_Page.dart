@@ -14,34 +14,34 @@ final cartAddingRepositoryProvider=Provider((ref) => Cartadding(firestore: ref.w
   CollectionReference get _cartItems=>_firestore.collection("cartitems");
 
   CollectionReference get _userDetails=>_firestore.collection("users");
-  adding({
-    required usrDocId,required image,required name,required price,required quantity,
-    // required image,required name, required price, required quantity,required id
-    }){
-    _userDetails.doc(usrDocId).update(({
-  "cartItem":FieldValue.arrayUnion([{
-    CartModels(image: image, name: name, price: price, quantity: quantity)
-}])
-}));
-
-  //   CartModels cartdata=CartModels(image: image,name: name,price: price, quantity: quantity);
-  //   _cartItems.add(cartdata.toMap());
-
-
-  }
-
+//   adding({
+//     required usrDocId,required image,required name,required price,required quantity,
+//     // required image,required name, required price, required quantity,required id
+//     }){
+//     _userDetails.doc(usrDocId).update(({
+//   "cartItem":FieldValue.arrayUnion([{
+//     CartModels(image: image, name: name, price: price, quantity: quantity)
+// }])}));
+//   }
 
   Stream<UserModel> streamcart({required String docId})  {
     return _userDetails.doc(docId).snapshots().map((event) => UserModel.fromMap(event.data() as Map<String,dynamic>));
   }
+
   Stream streamFav({required String docId}){
     return _userDetails.doc(docId).snapshots().map((event) => UserModel.fromMap(event.data()as Map<String,dynamic>));
   }
 
+  deleteCart({required String id, index,required List cartData}){
+    return _userDetails.doc(id).update({
+      "cartItems":FieldValue.arrayRemove([cartData[index]])
+    });
+  }
 
-
-  deleteItem({required String id}){
-    return _userDetails.doc(id).delete();
+  deleteFav({required String id,required List favDetails,index}){
+    return _userDetails.doc(id).update({
+      "favourite":FieldValue.arrayRemove([favDetails[index]])
+    });
   }
 
     }

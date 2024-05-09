@@ -52,7 +52,7 @@ class _ProductDetailsState extends ConsumerState<ProductDetails> {
          children: [
            InkWell(
              onTap: () {
-               tap=!tap;
+               tap=tap;
                if(tap=true){
                  FirebaseFirestore.instance.collection("users").doc(userDocId).update({
                    "favourite":FieldValue.arrayUnion([
@@ -276,7 +276,8 @@ class _ProductDetailsState extends ConsumerState<ProductDetails> {
                                 image: widget.image.toString(),
                                 name: widget.name,
                                 productId: widget.proId,
-                                categoryId: widget.catId),));
+                                categoryId: widget.catId,
+                                price:widget.price),));
                           },
                           child: Text("(50 reviews)",style:
                             TextStyle(
