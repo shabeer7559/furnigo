@@ -40,7 +40,7 @@ class UserModel {
       favourite: map["favourite"]??[],
       cartItems: map["cartItems"]??[],
       reviews: map["reviews"]??[],
-      id: map["id"]??"",
+      id: map["id"]??'',
     );
   }
   UserModel copyWith({
@@ -51,7 +51,7 @@ class UserModel {
     List? favourite,
     List? cartItems,
     List? reviews,
-    String?id
+    String? id
   }) {
     return UserModel(
         name: name ?? this.name,
@@ -61,7 +61,7 @@ class UserModel {
         favourite: favourite?? this.favourite,
         cartItems: cartItems?? this.cartItems,
         reviews: reviews??this.reviews,
-      id: id??this.id
+        id: id??this.id,
     );
   }
 }

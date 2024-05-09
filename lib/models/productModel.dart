@@ -5,6 +5,7 @@
   int price;
   int quantity;
   String id;
+  List productReview;
 
   ProductModels({
      required this.image,
@@ -13,6 +14,7 @@
     required  this.price,
     required this.quantity,
     required this.id,
+    required this.productReview,
 
   });
   Map<String,dynamic>toMap(){
@@ -23,6 +25,7 @@
       "price":this.price,
       "quantity":this.quantity,
       "id":this.id,
+      "productReview":this.productReview,
 
     };
   }
@@ -34,6 +37,7 @@
         price: map["price"]??0,
         quantity: map["quantity"]??0,
         id :map["id"]??"",
+        productReview :map["productReview"]??"",
 
     );
   }
@@ -44,6 +48,7 @@
     int?price,
     int?quantity,
     String? id,
+    List? productReview,
 
   }){
     return ProductModels(
@@ -53,6 +58,7 @@
         price: price?? this.price,
         quantity: quantity?? this.quantity,
         id: id??this.id,
+        productReview: productReview??this.productReview
 
     );
   }
