@@ -70,6 +70,7 @@ class _homeState extends ConsumerState<home> {
           children: [
             ref.watch(streamCategoryProvider).when(
                 data: (data) {
+
                   return Container(
                     width: w*1,
                     height:h*0.15,

@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -35,6 +37,9 @@ class _ratingState extends ConsumerState<rating> {
   List reviews=[];
   userReviewAdding(){
     ref.watch(addingReviweControllsProvider).userReviewContro(id: userDocId, name: widget.name, image: widget.image, review: reviewController.text, date:DateTime.now().toString().substring(0,10) , rating: 1, price: widget.price);
+  }
+  addTotelReviews(){
+    ref.watch(addingReviweControllsProvider).totelReviewContr(catId: widget.categoryId, proId: widget.productId, name: userName, image: userProfile, review: reviewController.text, date: DateTime.now().toString().substring(0,10), star: starRate);
   }
   @override
   Widget build(BuildContext context) {
@@ -100,9 +105,12 @@ class _ratingState extends ConsumerState<rating> {
             indent: w*0.03,
             endIndent:w* 0.03,
           ),
-          ref.watch(streamedReviewProvider(userDocId)).when(
+          ref.watch(totelRevProvider(jsonEncode({
+            "catId":widget.categoryId,
+            "proId":widget.productId,
+          }))).when(
               data: (data) {
-                List reviewData=data.reviews;
+                List reviewData=data.productReview;
                 return  Expanded(
                   child: ListView.separated(
                     scrollDirection: Axis.vertical,
@@ -137,7 +145,7 @@ class _ratingState extends ConsumerState<rating> {
                                         Padding(
                                           padding: EdgeInsets.only(left: w*0.03),
                                           child: StarRating(
-                                           value: reviewData[index]["rating"],
+                                            value: reviewData[index]["star"],
                                           ),
                                         ),
                                         Padding(
@@ -280,6 +288,7 @@ class _ratingState extends ConsumerState<rating> {
                                         InkWell(
                                           onTap: () {
                                             userReviewAdding();
+                                            addTotelReviews();
                                             Navigator.pop(context);
                                           },
                                           child: Container(

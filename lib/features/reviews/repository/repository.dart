@@ -5,6 +5,7 @@ import 'package:furnigo/core/providers/firebase_providers.dart';
 import 'package:furnigo/features/reviews/screen/rating_review.dart';
 import 'package:furnigo/models/productModel.dart';
 import 'package:furnigo/models/review_model.dart';
+import 'package:furnigo/models/totelReview.dart';
 import 'package:furnigo/models/user_model.dart';
 
 
@@ -19,6 +20,7 @@ class ReviewRepository{
 }): _firestore=firestore;
 CollectionReference get _reviews=> _firestore.collection("users");
 
+  CollectionReference get _category=>_firestore.collection("category");
 // updatingReview({
 //     required name,required image,required review,required date,required rating,required catDocid,required proDocId
 // }){
@@ -32,6 +34,7 @@ CollectionReference get _reviews=> _firestore.collection("users");
 //   });
 //
 // }
+
  Stream streamreview({required String docId}){
   return _reviews.doc(docId).snapshots().map((event) => UserModel.fromMap(event.data()as Map<String,dynamic>));
  }
@@ -49,5 +52,25 @@ CollectionReference get _reviews=> _firestore.collection("users");
             price: price).toMap()
       ])
     });
+  }
+  addTotelReview({
+    required catId,required proId,required name,required image, required review, required date,required star,
+}){
+   return _category.doc(catId).collection("Products").doc(proId).update({
+     "rating":FieldValue.arrayUnion([
+       TotelReviews(
+           name: name,
+           image: image,
+           review: review,
+           date: date,
+           star: star).toMap()
+     ])
+   });
+  }
+
+ Stream streamTotelRev({
+    required String catId,required String proId,
+}){
+   return _category.doc(catId).collection("Products").doc(proId).snapshots().map((event) => TotelReviews.fromMap(event.data()! as Map<String,dynamic>));
   }
 }

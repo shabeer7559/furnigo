@@ -37,7 +37,7 @@
         price: map["price"]??0,
         quantity: map["quantity"]??0,
         id :map["id"]??"",
-        productReview :map["productReview"]??"",
+        productReview :map["productReview"]??[],
 
     );
   }
