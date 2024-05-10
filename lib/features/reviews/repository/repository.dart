@@ -57,7 +57,7 @@ CollectionReference get _reviews=> _firestore.collection("users");
     required catId,required proId,required name,required image, required review, required date,required star,
 }){
    return _category.doc(catId).collection("Products").doc(proId).update({
-     "rating":FieldValue.arrayUnion([
+     "productReview":FieldValue.arrayUnion([
        TotelReviews(
            name: name,
            image: image,
@@ -71,6 +71,6 @@ CollectionReference get _reviews=> _firestore.collection("users");
  Stream streamTotelRev({
     required String catId,required String proId,
 }){
-   return _category.doc(catId).collection("Products").doc(proId).snapshots().map((event) => TotelReviews.fromMap(event.data()! as Map<String,dynamic>));
+   return _category.doc(catId).collection("Products").doc(proId).snapshots().map((event) => ProductModels.fromMap(event.data()! as Map<String,dynamic>));
   }
 }
