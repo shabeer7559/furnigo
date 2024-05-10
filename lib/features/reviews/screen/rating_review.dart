@@ -39,8 +39,7 @@ class _ratingState extends ConsumerState<rating> {
     ref.watch(addingReviweControllsProvider).userReviewContro(id: userDocId, name: widget.name, image: widget.image, review: reviewController.text, date:DateTime.now().toString().substring(0,10) , rating: 1, price: widget.price);
   }
   addTotelReviews(){
-
-    ref.watch(addingReviweControllsProvider).totelReviewContr(catId: widget.categoryId, proId: widget.productId, name: userName, image: userProfile, review: reviewController.text, date: DateTime.now().toString().substring(0,10), star: starRate);
+    ref.watch( addingReviweControllsProvider).totelReviewContr(catId: widget.categoryId, proId: widget.productId, name: userName, image: userProfile, review: reviewController.text, date: DateTime.now().toString().substring(0,10), star: starRate);
   }
   @override
   Widget build(BuildContext context) {
@@ -107,8 +106,8 @@ class _ratingState extends ConsumerState<rating> {
             endIndent:w* 0.03,
           ),
           ref.watch(totelRevProvider(jsonEncode({
-            "catId":widget.categoryId,
 
+            "catId":widget.categoryId,
             "proId":widget.productId,
           }))).when(
               data: (data) {
