@@ -5,6 +5,9 @@ import 'package:furnigo/core/providers/firebase_providers.dart';
 import 'package:furnigo/models/cartModel.dart';
 import 'package:furnigo/models/user_model.dart';
 
+import '../../../models/productModel.dart';
+
+
 final cartAddingRepositoryProvider=Provider((ref) => Cartadding(firestore: ref.watch(firestoreProvider)));
     
     class Cartadding{
@@ -14,6 +17,8 @@ final cartAddingRepositoryProvider=Provider((ref) => Cartadding(firestore: ref.w
   CollectionReference get _cartItems=>_firestore.collection("cartitems");
 
   CollectionReference get _userDetails=>_firestore.collection("users");
+  
+  CollectionReference get _category=>_firestore.collection("category");
 //   adding({
 //     required usrDocId,required image,required name,required price,required quantity,
 //     // required image,required name, required price, required quantity,required id
@@ -43,5 +48,7 @@ final cartAddingRepositoryProvider=Provider((ref) => Cartadding(firestore: ref.w
       "favourite":FieldValue.arrayRemove([favDetails[index]])
     });
   }
+
+
 
     }

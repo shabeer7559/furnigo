@@ -35,26 +35,14 @@ class _LoginPageState extends State<LoginPage> {
   final passwordValidation =
       RegExp(r"^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}");
   final formkey = GlobalKey<FormState>();
-  List userList=[];
-  getUserId() async {
-   var currentUserDetails = await FirebaseFirestore.instance.collection("users").where("email",isEqualTo: emailController.text).get().then((value) =>
-    value.docs.map((e) =>UserModel.fromMap(e.data()).toMap() ).toList()
-    );
-   userList=currentUserDetails;
-   userDocId=userList[0]["id"];
-   userName=userList[0]["name"];
-   userEmail=userList[0]["email"];
-   userProfile=userList[0]["image"];
-setLoggedIn();
-  }
 
   setLoggedIn() async {
     SharedPreferences prefs=await SharedPreferences.getInstance();
     prefs.setBool("login", true);
-    prefs.setString("email", userEmail);
-    prefs.setString("name", userName);
-    prefs.setString("image", userProfile);
-    prefs.setString("id", userDocId);
+    prefs.setString("email", currentUserModel!.email);
+    prefs.setString("name", currentUserModel!.name);
+    prefs.setString("image", currentUserModel!.image);
+    prefs.setString("id", currentUserModel!.id);
   }
  Future<void> SignInwithEmailandPassword() async {
     try {
@@ -63,8 +51,7 @@ setLoggedIn();
         email: emailController.text.trim(),
         password: passwordController.text.trim(),
       );
-      getUserId();
-
+     setLoggedIn();
       Navigator.pushAndRemoveUntil(context, CupertinoPageRoute(builder: (context) => bottomNavi(),),
               (route) => false);
     } on FirebaseAuthException catch(e){
@@ -73,7 +60,7 @@ setLoggedIn();
   }
 @override
   void initState() {
-    getUserId();
+    setLoggedIn();
     // TODO: implement initState
     super.initState();
   }

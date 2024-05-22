@@ -15,6 +15,7 @@ required FirebaseFirestore firestore
 }):_firestore=firestore;
 CollectionReference get _category=>_firestore.collection("category");
 CollectionReference get _favorite=>_firestore.collection("favorite Items");
+CollectionReference get _userDetails=> _firestore.collection("users");
 streamCategory(){
 return _category.snapshots().map((event) => event.docs.map((e) =>
 CategoryModel.fromMap(e.data()as Map<String,dynamic>)).toList());
@@ -26,14 +27,19 @@ streamProducts({required String id}){
 }
 
 addToFavourite({
-  required image,required name,required price,required id
+  required String docId,required String image,required int price,required String name
 }){
-  FavoriteModels favouriteData=FavoriteModels(image: image,name: name,price: price,);
-  _favorite.add(favouriteData.toMap());
+return _userDetails.doc(docId).update({
+  "favourite":FieldValue.arrayUnion([
+    FavoriteModels(image: image, name: name, price: price).toMap()
+    ])
+});
 }
+
 StreamFav(){
   return _favorite.snapshots().map((event) => event.docs.map((e) => FavoriteModels.fromMap(e.data()as Map<String,dynamic>)).toList());
 }
+
 DeleteFav({required String id}){
   return _favorite.doc(id).delete();
 

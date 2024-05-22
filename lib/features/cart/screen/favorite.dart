@@ -10,6 +10,7 @@ import 'package:furnigo/features/constants/icon_const.dart';
 import 'package:furnigo/features/constants/image_const.dart';
 import 'package:furnigo/features/homescreen/controller/controller.dart';
 import 'package:furnigo/features/homescreen/repository/repository.dart';
+import 'package:furnigo/features/homescreen/screen/home_page.dart';
 
 import 'package:google_fonts/google_fonts.dart';
 

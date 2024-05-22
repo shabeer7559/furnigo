@@ -12,6 +12,8 @@ import 'package:furnigo/features/cart/screen/favorite.dart';
 import 'package:furnigo/features/constants/color_const.dart';
 import 'package:furnigo/features/constants/icon_const.dart';
 import 'package:furnigo/features/constants/image_const.dart';
+import 'package:furnigo/features/homescreen/controller/controller.dart';
+import 'package:furnigo/features/homescreen/screen/home_page.dart';
 import 'package:furnigo/features/reviews/screen/rating_review.dart';
 import 'package:furnigo/models/cartModel.dart';
 import 'package:furnigo/models/favourite_model.dart';
@@ -54,11 +56,7 @@ class _ProductDetailsState extends ConsumerState<ProductDetails> {
              onTap: () {
                tap=tap;
                if(tap=true){
-                 FirebaseFirestore.instance.collection("users").doc(userDocId).update({
-                   "favourite":FieldValue.arrayUnion([
-                     FavoriteModels(image: widget.image, name: widget.name, price: widget.price).toMap()
-                   ])
-                 });
+                 ref.watch(homeScreenPro).favoriteAdd(currentUserModel!.id, widget.name, widget.image, widget.price);
                }
                setState(() {
 

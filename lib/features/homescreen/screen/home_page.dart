@@ -12,6 +12,7 @@ import 'package:furnigo/features/constants/color_const.dart';
 import 'package:furnigo/features/constants/icon_const.dart';
 import 'package:furnigo/features/constants/image_const.dart';
 import 'package:furnigo/features/homescreen/controller/controller.dart';
+import 'package:furnigo/models/user_model.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../../main.dart';
@@ -19,6 +20,7 @@ import '../../../models/favourite_model.dart';
 import '../../cart/screen/product_details.dart';
 import '../../splash/screen/splash_screen.dart';
 
+UserModel? currentUserModel;
 class home extends ConsumerStatefulWidget {
   const home({super.key});
 
@@ -30,6 +32,7 @@ class _homeState extends ConsumerState<home> {
   int selectedIndex=0;
   String docId="4zTSJ96StUheNnvi1UPH";
   List bookMark=[];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -171,11 +174,9 @@ class _homeState extends ConsumerState<home> {
                                               // bookMark.remove(index);
                                             }else{
                                               bookMark.add(index);
-                                              FirebaseFirestore.instance.collection("users").doc(userDocId).update({
-                                                "favourite":FieldValue.arrayUnion([
-                                                  FavoriteModels(image: data[index].image, name: data[index].name, price: data[index].price).toMap()
-                                                ])
-                                              });
+                                              
+                                              print("---------------------------------------------------------");
+                                              ref.watch(homeScreenPro).favoriteAdd(userDocId, data[index].name, data[index].image, data[index].price);
                                             }
                                             setState(() {
 
