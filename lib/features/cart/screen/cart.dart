@@ -1,3 +1,4 @@
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -25,7 +26,28 @@ class MyCart extends ConsumerStatefulWidget {
 }
 
 class _MyCartState extends ConsumerState<MyCart> {
-  int count = 0;
+  List cartData=[];
+  List cartvata=[];
+  var sum=0;
+    sumItems(){
+FirebaseFirestore.instance.collection("users").doc(userDocId).get(
+).then((value) {
+  cartvata=value["cartItems"];
+});
+    sum=0;
+    for(int i=0;i<cartvata.length;i++){
+       var c=cartvata[i];
+       sum=c["price"]*c["quantity"]+sum;
+    }
+
+    }
+    @override
+  void initState() {
+      sumItems();
+    // TODO: implement initState
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -92,7 +114,7 @@ class _MyCartState extends ConsumerState<MyCart> {
                         color: ColorConst.grey),
                   ),
                   Text(
-                    "\$ 95.00",
+                    "${sum.toString()}",
                     style: TextStyle(
                         fontSize: w * 0.05,
                         fontWeight: FontWeight.w700,
@@ -140,7 +162,7 @@ class _MyCartState extends ConsumerState<MyCart> {
         children: [
           ref.watch(cartStreamProvider(userDocId)).when(
             data: (data) {
-              List cartData = data.cartItems;
+               cartData  = data.cartItems;
               return Expanded(
                 child: ListView.separated(
                     shrinkWrap: true,
@@ -162,7 +184,7 @@ class _MyCartState extends ConsumerState<MyCart> {
                                           cartData[index]["image"].toString()),
                                       fit: BoxFit.fill),
                                   borderRadius:
-                                      BorderRadius.circular(w * 0.03)),
+                                  BorderRadius.circular(w * 0.03)),
                             ),
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
@@ -187,10 +209,11 @@ class _MyCartState extends ConsumerState<MyCart> {
                                   width: w * 0.35,
                                   child: Row(
                                     mainAxisAlignment:
-                                        MainAxisAlignment.spaceEvenly,
+                                    MainAxisAlignment.spaceEvenly,
                                     children: [
                                       InkWell(
                                         onTap: () {
+
                                           FirebaseFirestore.instance
                                               .collection("users")
                                               .doc(userDocId)
@@ -198,8 +221,7 @@ class _MyCartState extends ConsumerState<MyCart> {
                                               .then((value) {
                                             List cart = value['cartItems'];
 
-                                            cart[index]['quantity'] =
-                                                cart[index]['quantity'] + 1;
+                                            cart[index]['quantity'] = cart[index]['quantity'] + 1;
 
                                             FirebaseFirestore.instance
                                                 .collection("users")
@@ -216,7 +238,13 @@ class _MyCartState extends ConsumerState<MyCart> {
                                           //   ])
                                           // });
 
-                                          setState(() {});
+
+
+                                          setState(() {
+
+                                          });
+                                          sumItems();
+
                                         },
                                         child: Container(
                                           height: h * 0.045,
@@ -224,13 +252,13 @@ class _MyCartState extends ConsumerState<MyCart> {
                                           decoration: BoxDecoration(
                                               color: ColorConst.containerGrey,
                                               borderRadius:
-                                                  BorderRadius.circular(
-                                                      w * 0.03)),
+                                              BorderRadius.circular(
+                                                  w * 0.03)),
                                           child: Center(
                                               child: Icon(
-                                            Icons.add,
-                                            color: ColorConst.primaryColor,
-                                          )),
+                                                Icons.add,
+                                                color: ColorConst.primaryColor,
+                                              )),
                                         ),
                                       ),
                                       Text(
@@ -261,7 +289,12 @@ class _MyCartState extends ConsumerState<MyCart> {
                                                 .doc(userDocId)
                                                 .update({'cartItems': cart});
                                           });
-                                          setState(() {});
+
+                                       setState(() {
+
+                                       });
+                                          sumItems();
+
                                         },
                                         child: Container(
                                           height: h * 0.045,
@@ -269,13 +302,13 @@ class _MyCartState extends ConsumerState<MyCart> {
                                           decoration: BoxDecoration(
                                               color: ColorConst.containerGrey,
                                               borderRadius:
-                                                  BorderRadius.circular(
-                                                      w * 0.03)),
+                                              BorderRadius.circular(
+                                                  w * 0.03)),
                                           child: Center(
                                               child: Icon(
-                                            Icons.remove,
-                                            color: ColorConst.primaryColor,
-                                          )),
+                                                Icons.remove,
+                                                color: ColorConst.primaryColor,
+                                              )),
                                         ),
                                       ),
                                     ],
@@ -298,11 +331,11 @@ class _MyCartState extends ConsumerState<MyCart> {
                                                 onPressed: () {
                                                   ref
                                                       .watch(
-                                                          addingCartControllerProvider)
+                                                      addingCartControllerProvider)
                                                       .deleteCartContro(
-                                                          id: userDocId,
-                                                          index: index,
-                                                          cartData: cartData);
+                                                      id: userDocId,
+                                                      index: index,
+                                                      cartData: cartData);
 
                                                   Navigator.pop(context);
                                                 },
@@ -323,7 +356,7 @@ class _MyCartState extends ConsumerState<MyCart> {
                                     child: Padding(
                                       padding: EdgeInsets.all(w * 0.025),
                                       child:
-                                          SvgPicture.asset(IconConst.closeIcon),
+                                      SvgPicture.asset(IconConst.closeIcon),
                                     ),
                                   ),
                                 ),
