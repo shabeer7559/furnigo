@@ -54,6 +54,7 @@ class _ProductDetailsState extends ConsumerState<ProductDetails> {
          children: [
            InkWell(
              onTap: () {
+
                tap=tap;
                if(tap=true){
                  ref.watch(homeScreenPro).favoriteAdd(currentUserModel!.id, widget.name, widget.image, widget.price);

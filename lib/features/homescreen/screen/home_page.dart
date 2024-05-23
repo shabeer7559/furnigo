@@ -174,12 +174,10 @@ class _homeState extends ConsumerState<home> {
                                               // bookMark.remove(index);
                                             }else{
                                               bookMark.add(index);
-                                              
                                               print("---------------------------------------------------------");
                                               ref.watch(homeScreenPro).favoriteAdd(userDocId, data[index].name, data[index].image, data[index].price);
                                             }
                                             setState(() {
-
                                             });
                                           },
                                           child: SvgPicture.asset(bookMark.contains(index)?IconConst.blackcartIcon:IconConst.bookingIcon),
