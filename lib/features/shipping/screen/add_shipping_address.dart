@@ -2,22 +2,29 @@ import 'package:country_state_city_picker/country_state_city_picker.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:furnigo/features/shipping/controller/controller.dart';
 import 'package:furnigo/features/shipping/screen/shipping_address.dart';
+import 'package:furnigo/features/splash/screen/splash_screen.dart';
+import 'package:furnigo/models/shipping_model.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../../main.dart';
 import '../../constants/color_const.dart';
 import '../../constants/icon_const.dart';
 
-class Addshipping extends StatefulWidget {
+class Addshipping extends ConsumerStatefulWidget {
   const Addshipping({super.key});
 
   @override
-  State<Addshipping> createState() => _AddshippingState();
+  ConsumerState<Addshipping> createState() => _AddshippingState();
 }
 
-class _AddshippingState extends State<Addshipping> {
+class _AddshippingState extends ConsumerState<Addshipping> {
+  TextEditingController nameController=TextEditingController();
+  TextEditingController addressController=TextEditingController();
+  TextEditingController zipController=TextEditingController();
    String? countryValue;
    String? stateValue;
    String? cityValue;
@@ -26,6 +33,16 @@ class _AddshippingState extends State<Addshipping> {
      "Home",
      "Office"
    ];
+   addressAdding(){
+     ref.watch(shippingControllerPro).addressAddingContro(docId: userDocId, shippingAddress: ShippingAddress(
+         name: nameController.text,
+         address: addressController.text,
+         zipcode: zipController.text,
+         country: countryValue!,
+         state: stateValue!,
+         city: cityValue!,
+         type: dropdownValue!));
+   }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -68,6 +85,7 @@ class _AddshippingState extends State<Addshipping> {
                         child: Padding(
                           padding:  EdgeInsets.only(left: w*0.03),
                           child: TextFormField(
+                            controller: nameController,
                             style: TextStyle(
                               fontSize: w*0.045,
                               fontWeight: FontWeight.w400
@@ -97,6 +115,7 @@ class _AddshippingState extends State<Addshipping> {
                         child: Padding(
                           padding:  EdgeInsets.only(left: w*0.03),
                           child: TextFormField(
+                            controller: addressController,
                             style: TextStyle(
                                 fontSize: w*0.045,
                                 fontWeight: FontWeight.w400
@@ -114,6 +133,7 @@ class _AddshippingState extends State<Addshipping> {
                         ),
                       ),
                       TextFormField(
+                        controller: zipController,
                         decoration: InputDecoration(
                             hintText: "Zipcode(Postal Code)",
                             border: OutlineInputBorder(
@@ -184,6 +204,7 @@ class _AddshippingState extends State<Addshipping> {
               InkWell(
                 onTap: () {
                   Navigator.push(context, CupertinoPageRoute(builder: (context) => shippingAddress(),));
+                  addressAdding();
                 },
                 child: Container(
                   width: w*0.9,
