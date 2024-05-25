@@ -7,5 +7,5 @@ class addingController{
   final AddingRepocitry _repocitry;
   addingController({
     required AddingRepocitry repocitry}):_repocitry=repocitry;
-  addingRepo(name,email,password,image,favorite,cartItems,reviews){_repocitry.adding(name: name, email: email, password: password, image: image, favorite: favorite, cartItems: cartItems, reviews: reviews);}
+  addingRepo(name,email,password,image,favorite,cartItems,reviews,address){_repocitry.adding(name: name, email: email, password: password, image: image, favorite: favorite, cartItems: cartItems, reviews: reviews, address: address);}
 }

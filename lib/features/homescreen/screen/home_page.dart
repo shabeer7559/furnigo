@@ -32,7 +32,7 @@ class _homeState extends ConsumerState<home> {
   int selectedIndex=0;
   String docId="4zTSJ96StUheNnvi1UPH";
   List bookMark=[];
-
+List <QueryDocumentSnapshot<Map<String, dynamic>>> allProducts=[];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -81,15 +81,23 @@ class _homeState extends ConsumerState<home> {
                       children: [
                         Column(
                           children: [
-                            Container(
-                              width: w*0.18,
-                              height: w*0.18,
-                              decoration: BoxDecoration(
-                                borderRadius:  BorderRadius.circular(w*0.04),
-                                image: DecorationImage(image: AssetImage(IconConst.bookingIcon),fit: BoxFit.fill)
+                            InkWell(
+                              onTap:() {
+                                 var resulst=FirebaseFirestore.instance.collectionGroup('Products').get().then((value) {
+                                   print("====================================");
+                                   print(value.docs.toList().toString());
+                                 });
+                              },
+                              child: Container(
+                                width: w*0.18,
+                                height: w*0.18,
+                                decoration: BoxDecoration(
+                                  borderRadius:  BorderRadius.circular(w*0.04),
+                                  // image: DecorationImage(image: AssetImage(),fit: BoxFit.fill)
+                                ),
                               ),
                             ),
-                            Text("All Products",style: TextStyle(color: Colors.grey),)
+                         Text("All Products",style: TextStyle(color: Colors.grey),)
                           ],
                         ),
                         Container(

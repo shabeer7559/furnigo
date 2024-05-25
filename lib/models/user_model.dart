@@ -7,6 +7,7 @@ class UserModel {
   List cartItems;
   List reviews;
   String id;
+  List address;
 
   UserModel({
     required  this.name,
@@ -16,7 +17,8 @@ class UserModel {
     required this.favourite,
     required this.cartItems,
     required this.reviews,
-    required this.id
+    required this.id,
+    required this.address
   });
 
   Map<String,dynamic> toMap(){
@@ -28,7 +30,8 @@ class UserModel {
       "favourite": this.favourite,
       "cartItems":this.cartItems,
       "reviews":this.reviews,
-      "id":this.id
+      "id":this.id,
+      "address": this.address
     };
   }
   factory UserModel.fromMap(Map<String, dynamic>map){
@@ -41,6 +44,7 @@ class UserModel {
       cartItems: map["cartItems"]??[],
       reviews: map["reviews"]??[],
       id: map["id"]??'',
+      address: map["address"]??[]
     );
   }
   UserModel copyWith({
@@ -51,7 +55,8 @@ class UserModel {
     List? favourite,
     List? cartItems,
     List? reviews,
-    String? id
+    String? id,
+    List? address
   }) {
     return UserModel(
         name: name ?? this.name,
@@ -62,6 +67,7 @@ class UserModel {
         cartItems: cartItems?? this.cartItems,
         reviews: reviews??this.reviews,
         id: id??this.id,
+      address:  address??this.address
     );
   }
 }
