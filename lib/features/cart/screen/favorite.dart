@@ -65,7 +65,11 @@ class _favoriteState extends ConsumerState<favorite> {
           ],
         ),
         actions: [
-          SvgPicture.asset(IconConst.cartIcon,color: ColorConst.primaryColor,),
+          InkWell(
+              onTap: () {
+                Navigator.push(context, CupertinoPageRoute(builder: (context) => MyCart(),));
+              },
+              child: SvgPicture.asset(IconConst.cartIcon,color: ColorConst.primaryColor,)),
           SizedBox(
             width: w*0.05,
           )

@@ -27,26 +27,25 @@ class MyCart extends ConsumerStatefulWidget {
 
 class _MyCartState extends ConsumerState<MyCart> {
   List cartData=[];
-  List cartvata=[];
-  var sum=0;
-    sumItems(){
-FirebaseFirestore.instance.collection("users").doc(userDocId).get(
-).then((value) {
-  cartvata=value["cartItems"];
+  List cartItems=[];
+  dynamic sum=0;
+    sumItems() {
+      FirebaseFirestore.instance.collection("users").doc(userDocId).get().then((value) {
+        cartItems=value["cartItems"];
+      });
+
+sum=0;
+for(int i=0;i<cartItems.length;i++){
+  var c=cartItems[i];
+  sum=c["price"]*c["quantity"];
+}
+setState(() {
+
 });
-    sum=0;
-    for(int i=0;i<cartvata.length;i++){
-       var c=cartvata[i];
-       sum=c["price"]*c["quantity"]+sum;
-    }
+print(cartItems.toString());
 
     }
-    @override
-  void initState() {
-      sumItems();
-    // TODO: implement initState
-    super.initState();
-  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -162,7 +161,7 @@ FirebaseFirestore.instance.collection("users").doc(userDocId).get(
         children: [
           ref.watch(cartStreamProvider(userDocId)).when(
             data: (data) {
-               cartData  = data.cartItems;
+               cartData = data.cartItems;
               return Expanded(
                 child: ListView.separated(
                     shrinkWrap: true,
@@ -213,7 +212,7 @@ FirebaseFirestore.instance.collection("users").doc(userDocId).get(
                                     children: [
                                       InkWell(
                                         onTap: () {
-
+sumItems();
                                           FirebaseFirestore.instance
                                               .collection("users")
                                               .doc(userDocId)
@@ -229,21 +228,14 @@ FirebaseFirestore.instance.collection("users").doc(userDocId).get(
                                                 .update({'cartItems': cart});
                                           });
 
-                                          //     .update({
-                                          //   "cartItems":FieldValue.arrayUnion([{
-                                          //     [{
-                                          //       "quantity":cartData[index]["quantity"]++
-                                          //     }]
-                                          //   }
-                                          //   ])
-                                          // });
+
 
 
 
                                           setState(() {
 
+
                                           });
-                                          sumItems();
 
                                         },
                                         child: Container(
@@ -270,6 +262,7 @@ FirebaseFirestore.instance.collection("users").doc(userDocId).get(
                                       ),
                                       InkWell(
                                         onTap: () {
+                                          sumItems();
                                           // cartItems[index]["qty"]<=0?0: cartItems[index]["qty"]--;
                                           FirebaseFirestore.instance
                                               .collection("users")
@@ -293,7 +286,7 @@ FirebaseFirestore.instance.collection("users").doc(userDocId).get(
                                        setState(() {
 
                                        });
-                                          sumItems();
+
 
                                         },
                                         child: Container(

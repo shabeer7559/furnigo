@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:furnigo/features/constants/color_const.dart';
 import 'package:furnigo/features/constants/image_const.dart';
+import 'package:furnigo/features/homescreen/screen/home_page.dart';
+import 'package:furnigo/features/orders/my_orders.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../../main.dart';
@@ -69,44 +71,54 @@ class _SuccessState extends State<Success> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Container(
-                    height: h*0.08,
-                    width: w*0.8,
-                   decoration: BoxDecoration(
-                     color: ColorConst.primaryColor,
-                       boxShadow: [
-                         BoxShadow(
-                             offset: Offset(0, 4),
-                             blurRadius: 3,
-                             spreadRadius: 1,
-                             color: ColorConst.primaryColor.withOpacity(0.25)
-                         )
-                       ],
-                     borderRadius: BorderRadius.circular(w*0.03)
-                   ),
-                    child: Center(
-                      child: Text("Track your orders",
-                      style: TextStyle(
-                        fontSize: w*0.045,
-                        fontWeight: FontWeight.w600,
-                        color: ColorConst.secondaryColor
-                      ),),
+                  InkWell(
+                    onTap: () {
+                      Navigator.push(context, CupertinoPageRoute(builder: (context) => MyOrders(),));
+                    },
+                    child: Container(
+                      height: h*0.08,
+                      width: w*0.8,
+                     decoration: BoxDecoration(
+                       color: ColorConst.primaryColor,
+                         boxShadow: [
+                           BoxShadow(
+                               offset: Offset(0, 4),
+                               blurRadius: 3,
+                               spreadRadius: 1,
+                               color: ColorConst.primaryColor.withOpacity(0.25)
+                           )
+                         ],
+                       borderRadius: BorderRadius.circular(w*0.03)
+                     ),
+                      child: Center(
+                        child: Text("Track your orders",
+                        style: TextStyle(
+                          fontSize: w*0.045,
+                          fontWeight: FontWeight.w600,
+                          color: ColorConst.secondaryColor
+                        ),),
+                      ),
                     ),
                   ),
-                  Container(
-                    height: h*0.08,
-                    width: w*0.8,
-                   decoration: BoxDecoration(
-                     border: Border.all(color: ColorConst.primaryColor),
-                     borderRadius: BorderRadius.circular(w*0.03)
-                   ),
-                    child: Center(
-                      child: Text("BACK TO HOME",
-                      style: TextStyle(
-                        fontSize: w*0.045,
-                        fontWeight: FontWeight.w600,
-                        color: ColorConst.primaryColor
-                      ),),
+                  InkWell(
+                    onTap: () {
+                      Navigator.push(context, CupertinoPageRoute(builder: (context) => home(),));
+                    },
+                    child: Container(
+                      height: h*0.08,
+                      width: w*0.8,
+                     decoration: BoxDecoration(
+                       border: Border.all(color: ColorConst.primaryColor),
+                       borderRadius: BorderRadius.circular(w*0.03)
+                     ),
+                      child: Center(
+                        child: Text("BACK TO HOME",
+                        style: TextStyle(
+                          fontSize: w*0.045,
+                          fontWeight: FontWeight.w600,
+                          color: ColorConst.primaryColor
+                        ),),
+                      ),
                     ),
                   ),
                 ],
