@@ -19,6 +19,10 @@ class addNewcard extends StatefulWidget {
 }
 
 class _addNewcardState extends State<addNewcard> {
+  TextEditingController nameController = TextEditingController();
+  TextEditingController dateController = TextEditingController();
+  TextEditingController cardNumController = TextEditingController();
+  TextEditingController cvvController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -85,7 +89,7 @@ class _addNewcardState extends State<addNewcard> {
                           padding:
                               EdgeInsets.only(left: w * 0.07, top: w * 0.23),
                           child: Text(
-                            "* * * *  * * * *  * * * *  XXXX",
+                            cardNumController.text,
                             style: TextStyle(
                                 color: ColorConst.secondaryColor,
                                 fontSize: w * 0.05),
@@ -106,7 +110,7 @@ class _addNewcardState extends State<addNewcard> {
                           padding:
                               EdgeInsets.only(left: w * 0.07, top: w * 0.4),
                           child: Text(
-                            "XXXXXX",
+                            nameController.text,
                             style: TextStyle(
                                 color: ColorConst.secondaryColor,
                                 fontSize: w * 0.045,
@@ -128,7 +132,7 @@ class _addNewcardState extends State<addNewcard> {
                           padding:
                               EdgeInsets.only(left: w * 0.55, top: w * 0.4),
                           child: Text(
-                            "XX/XX",
+                            dateController.text,
                             style: TextStyle(
                                 color: ColorConst.secondaryColor,
                                 fontSize: w * 0.045,
@@ -164,7 +168,7 @@ class _addNewcardState extends State<addNewcard> {
                                 color: ColorConst.secondaryColor,
                               ),
                               Text(
-                                "314",
+                                cvvController.text,
                                 style:
                                     TextStyle(color: ColorConst.secondaryColor),
                               )
@@ -182,28 +186,34 @@ class _addNewcardState extends State<addNewcard> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    Container(
-                      width: w * 0.9,
-                      height: h * 0.08,
-                      decoration: BoxDecoration(
-                          color: ColorConst.grey.withOpacity(0.25),
-                          borderRadius: BorderRadius.circular(w * 0.02)),
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: TextFormField(
-                          decoration: InputDecoration(
-                              labelText: "CardHolder Name",
-                              border: InputBorder.none,
-                              constraints: BoxConstraints()),
-                        ),
+                       TextFormField(
+                         onChanged: (value) {
+                           setState(() {
+
+                           });
+                         },
+                        controller: nameController,
+                        decoration: InputDecoration(
+                            hintText: "Card Holder Name",
+                            border: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                    color: ColorConst.grey.withOpacity(0.15)
+                                )),
+                            constraints: BoxConstraints()),
                       ),
-                    ),
                     TextFormField(
+                      onChanged: (value) {
+                        setState(() {
+
+                        });
+                      },
+                      controller: cardNumController,
                       decoration: InputDecoration(
                           hintText: "Card Number",
                           border: OutlineInputBorder(
                               borderSide: BorderSide(
-                                  color: ColorConst.grey.withOpacity(0.15))),
+                                  color: ColorConst.grey.withOpacity(0.15)
+                              )),
                           constraints: BoxConstraints()),
                     ),
                     Container(
@@ -216,14 +226,20 @@ class _addNewcardState extends State<addNewcard> {
                             width: w * 0.42,
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(w * 0.02),
-                                color: ColorConst.grey.withOpacity(0.25)),
-                            child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: TextFormField(
-                                decoration: InputDecoration(
+                            border:Border.all(
+                                color: ColorConst.primaryColor.withOpacity(0.6)) ),
+                            child:TextFormField(
+                              onChanged: (value) {
+                                setState(() {
+
+                                });
+                              },
+                                controller: cvvController,
+                                decoration:
+                                InputDecoration(
                                     hintText: "CVV", border: InputBorder.none),
                               ),
-                            ),
+
                           ),
                           Container(
                             height: h * 0.08,
@@ -231,10 +247,17 @@ class _addNewcardState extends State<addNewcard> {
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(w * 0.02),
                                 border: Border.all(
-                                    color: ColorConst.grey.withOpacity(0.15))),
+                                    color: ColorConst.primaryColor.withOpacity(0.6))),
                             child: Padding(
-                              padding: const EdgeInsets.all(8.0),
+                              padding:  EdgeInsets.all(8.0),
                               child: TextFormField(
+                                keyboardType: TextInputType.datetime,
+                                onChanged: (value) {
+                                  setState(() {
+
+                                  });
+                                },
+                                controller: dateController,
                                 decoration: InputDecoration(
                                     hintText: "Experation Date",
                                     border: InputBorder.none),
