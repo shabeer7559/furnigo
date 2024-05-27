@@ -7,6 +7,7 @@ import 'package:furnigo/features/authentication/screen/foget_password.dart';
 import 'package:furnigo/features/authentication/screen/login_page.dart';
 import 'package:furnigo/features/authentication/screen/signup_page.dart';
 import 'package:furnigo/features/cart/screen/cart.dart';
+import 'package:furnigo/features/cart/screen/favorite.dart';
 import 'package:furnigo/features/homescreen/screen/bottomNavi.dart';
 
 

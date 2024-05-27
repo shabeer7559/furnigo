@@ -3,6 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:furnigo/core/providers/firebase_providers.dart';
 import 'package:furnigo/models/shipping_model.dart';
+import 'package:furnigo/models/user_model.dart';
 final shippingrepoProvider=Provider((ref) => ShippingRepo(firestore: ref.watch(firestoreProvider)));
 class ShippingRepo{
   final FirebaseFirestore _firestore;
@@ -19,4 +20,8 @@ class ShippingRepo{
       ])
     });
   }
+  Stream streamAddress({required String docId}){
+    return _shipping.doc(docId).snapshots().map((event) => UserModel.fromMap(event.data()as Map<String,dynamic>));
+  }
+
 }

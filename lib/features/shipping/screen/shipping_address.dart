@@ -1,24 +1,27 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:furnigo/features/constants/image_const.dart';
 import 'package:furnigo/features/payments/screen/customWidget.dart';
+import 'package:furnigo/features/shipping/controller/controller.dart';
 import 'package:furnigo/features/shipping/screen/add_shipping_address.dart';
+import 'package:furnigo/features/splash/screen/splash_screen.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../../main.dart';
 import '../../constants/color_const.dart';
 import '../../constants/icon_const.dart';
 
-class shippingAddress extends StatefulWidget {
+class shippingAddress extends ConsumerStatefulWidget {
   const shippingAddress({super.key});
 
   @override
-  State<shippingAddress> createState() => _shippingAddressState();
+  ConsumerState<shippingAddress> createState() => _shippingAddressState();
 }
 
-class _shippingAddressState extends State<shippingAddress> {
+class _shippingAddressState extends ConsumerState<shippingAddress> {
   List saved=[];
   List Address = [
     {
@@ -66,25 +69,31 @@ class _shippingAddressState extends State<shippingAddress> {
          height: h*0.8,
           child: Column(
             children: [
-              Expanded(
-                child: ListView.separated(
-                  physics: BouncingScrollPhysics(),
-                  shrinkWrap: true,
-                  itemBuilder: (BuildContext context, int index) {
-                    return CustView(index: index, Address: Address, check1: check1);
+              ref.watch(streamedAdrsProvider(userDocId)).when(
+                  data: (data) {
+                    List adrsDetails=data.address;
+                    return Expanded(
+                      child: ListView.separated(
+                        physics: BouncingScrollPhysics(),
+                        shrinkWrap: true,
+                        itemBuilder: (BuildContext context, int index) {
+                          return CustView(index: index, Address: adrsDetails, check1: check1);
+                        },
+                        separatorBuilder: (BuildContext context, int index) {
+                          return
+                            SizedBox(height: w*0.05);
+                        },
+                        itemCount: adrsDetails.length,
+                      ),
+                    );
                   },
-                  separatorBuilder: (BuildContext context, int index) {
-                    return
-                    SizedBox(height: w*0.05);
+                  error: (error, stackTrace) {
+                  return Text(error.toString());
                   },
-                  itemCount: Address.length,
-                ),
+                  loading: () {
+                    return CircularProgressIndicator();
+                  },
               )
-
-
-
-
-
             ],
           ),
         ),
