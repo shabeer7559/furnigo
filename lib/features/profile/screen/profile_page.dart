@@ -86,9 +86,24 @@ class _profile_pageState extends State<profile_page> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                CircleAvatar(
-                    radius: w * 0.12,
-                    backgroundImage: NetworkImage(userProfile),),
+                InkWell(
+                  onTap: () {
+                    showDialog(
+                        context: context,
+                        builder: (context) {
+                          return AlertDialog(
+                            backgroundColor: Colors.transparent,
+                            content: CircleAvatar(
+                              radius: w*0.5,
+                              backgroundImage: NetworkImage(userProfile),
+                            ),
+                          );
+                        },);
+                  },
+                  child: CircleAvatar(
+                      radius: w * 0.12,
+                      backgroundImage: NetworkImage(userProfile),),
+                ),
                 SizedBox(width: w*0.03,),
                 Column(
                   mainAxisAlignment: MainAxisAlignment.center,

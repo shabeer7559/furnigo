@@ -2,8 +2,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_flip_card/flipcard/gesture_flip_card.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:furnigo/features/payments/controller/controller.dart';
 import 'package:furnigo/features/payments/screen/payment_methods.dart';
+import 'package:furnigo/features/splash/screen/splash_screen.dart';
+import 'package:furnigo/models/cardModel.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../../main.dart';
@@ -11,18 +15,24 @@ import '../../constants/color_const.dart';
 import '../../constants/icon_const.dart';
 import '../../constants/image_const.dart';
 
-class addNewcard extends StatefulWidget {
+class addNewcard extends ConsumerStatefulWidget {
   const addNewcard({super.key});
 
   @override
-  State<addNewcard> createState() => _addNewcardState();
+  ConsumerState<addNewcard> createState() => _addNewcardState();
 }
 
-class _addNewcardState extends State<addNewcard> {
+class _addNewcardState extends ConsumerState<addNewcard> {
   TextEditingController nameController = TextEditingController();
   TextEditingController dateController = TextEditingController();
   TextEditingController cardNumController = TextEditingController();
   TextEditingController cvvController = TextEditingController();
+  paymentAdding(){
+ref.watch(paymentControllerPro).addingPaymentController(docId: userDocId, cardModels: CardModels(
+    cdName: nameController.text,
+    cdNumber: cardNumController.text,
+    cdCvv: cvvController.text, cdDate: dateController.text));
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -194,6 +204,7 @@ class _addNewcardState extends State<addNewcard> {
                          },
                         controller: nameController,
                         decoration: InputDecoration(
+
                             hintText: "Card Holder Name",
                             border: OutlineInputBorder(
                                 borderSide: BorderSide(
@@ -202,6 +213,7 @@ class _addNewcardState extends State<addNewcard> {
                             constraints: BoxConstraints()),
                       ),
                     TextFormField(
+                      maxLength: 16,
                       onChanged: (value) {
                         setState(() {
 
@@ -229,6 +241,7 @@ class _addNewcardState extends State<addNewcard> {
                             border:Border.all(
                                 color: ColorConst.primaryColor.withOpacity(0.6)) ),
                             child:TextFormField(
+                              maxLength: 3,
                               onChanged: (value) {
                                 setState(() {
 
@@ -251,6 +264,7 @@ class _addNewcardState extends State<addNewcard> {
                             child: Padding(
                               padding:  EdgeInsets.all(8.0),
                               child: TextFormField(
+                                maxLength: 5,
                                 keyboardType: TextInputType.datetime,
                                 onChanged: (value) {
                                   setState(() {
@@ -272,7 +286,9 @@ class _addNewcardState extends State<addNewcard> {
               ),
               InkWell(
                 onTap: () {
+
                   Navigator.push(context, CupertinoPageRoute(builder: (context) => paymentMethod(),));
+                  paymentAdding();
                 },
                 child: Container(
                   width: w * 0.9,
