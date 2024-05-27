@@ -79,19 +79,19 @@ class _homeState extends ConsumerState<home> {
                     scrollDirection: Axis.horizontal,
                     child: Row(
                       children: [
-                        Column(
-                          children: [
-                            Container(
-                              width: w*0.18,
-                              height: w*0.18,
-                              decoration: BoxDecoration(
-                                borderRadius:  BorderRadius.circular(w*0.04),
-                                // image: DecorationImage(image: AssetImage(IconConst.bookingIcon),fit: BoxFit.fill)
-                              ),
-                            ),
-                            Text("All Products",style: TextStyle(color: Colors.grey),)
-                          ],
-                        ),
+                        // Column(
+                        //   children: [
+                        //     Container(
+                        //       width: w*0.18,
+                        //       height: w*0.18,
+                        //       decoration: BoxDecoration(
+                        //         borderRadius:  BorderRadius.circular(w*0.04),
+                        //         // image: DecorationImage(image: AssetImage(IconConst.bookingIcon),fit: BoxFit.fill)
+                        //       ),
+                        //     ),
+                        //     Text("All Products",style: TextStyle(color: Colors.grey),)
+                        //   ],
+                        // ),
                         Container(
                           width: w*1,
                           height:h*0.15,
