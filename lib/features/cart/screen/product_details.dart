@@ -193,7 +193,7 @@ class _ProductDetailsState extends ConsumerState<ProductDetails> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text("\$${widget.price.toString()}",
+                      Text("₹ ${widget.price.toString()}",
                       style: TextStyle(
                         fontWeight: FontWeight.w700,
                         fontSize: w*0.06

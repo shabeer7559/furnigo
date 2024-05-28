@@ -1,3 +1,4 @@
+
 class RatingModel{
   String name;
   String image;
