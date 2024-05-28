@@ -163,6 +163,7 @@ print(cartItems.toString());
             data: (data) {
                cartData = data.cartItems;
               return Expanded(
+                flex: 1,
                 child: ListView.separated(
                     shrinkWrap: true,
                     physics: BouncingScrollPhysics(),
@@ -190,6 +191,7 @@ print(cartItems.toString());
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
                                 Text(
+
                                   cartData[index]["name"],
                                   style: TextStyle(
                                       fontWeight: FontWeight.w600,

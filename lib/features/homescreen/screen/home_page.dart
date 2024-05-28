@@ -182,7 +182,7 @@ class _homeState extends ConsumerState<home> {
                                         width: w*0.45,
                                         decoration:BoxDecoration(
                                             borderRadius: BorderRadius.circular(w*0.03),
-                                            image: DecorationImage(image: NetworkImage(data[index].image.toString()),fit: BoxFit.fill)
+                                            image: DecorationImage(image: NetworkImage(data[index].image.toString()),fit: BoxFit.cover)
 
                                         ) ,
                                       ),
@@ -209,11 +209,12 @@ class _homeState extends ConsumerState<home> {
                                     ]
                                 ),
                                 Text(data[index].name,style: TextStyle(
+                                  overflow: TextOverflow.ellipsis,
                                     fontWeight: FontWeight.w500,
                                     color: ColorConst.grey
                                 ),),
                                 Text(
-                            "\$ ${data[index].price.toString()}",
+                            "₹ ${data[index].price.toString()}",
                                   style: TextStyle(
                                     fontWeight: FontWeight.w700,
 

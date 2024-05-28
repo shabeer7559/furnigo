@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:furnigo/core/providers/firebase_providers.dart';
 import 'package:furnigo/models/cartModel.dart';
@@ -51,4 +52,17 @@ final cartAddingRepositoryProvider=Provider((ref) => Cartadding(firestore: ref.w
 
 
 
+    }
+
+    class CounterModel extends ChangeNotifier{
+      int _count=0;
+      int get count=>_count;
+      void increment(){
+        _count++;
+        notifyListeners();
+      }
+      void decrement(){
+        _count--;
+        notifyListeners();
+      }
     }
