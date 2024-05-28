@@ -221,6 +221,7 @@ ref.watch(paymentControllerPro).addingPaymentController(docId: userDocId, cardMo
                       },
                       controller: cardNumController,
                       decoration: InputDecoration(
+                        counterText: "",
                           hintText: "Card Number",
                           border: OutlineInputBorder(
                               borderSide: BorderSide(
@@ -250,6 +251,7 @@ ref.watch(paymentControllerPro).addingPaymentController(docId: userDocId, cardMo
                                 controller: cvvController,
                                 decoration:
                                 InputDecoration(
+                                  counterText: "",
                                     hintText: "CVV", border: InputBorder.none),
                               ),
 
@@ -265,7 +267,7 @@ ref.watch(paymentControllerPro).addingPaymentController(docId: userDocId, cardMo
                               padding:  EdgeInsets.all(8.0),
                               child: TextFormField(
                                 maxLength: 5,
-                                keyboardType: TextInputType.datetime,
+                                keyboardType: TextInputType.phone,
                                 onChanged: (value) {
                                   setState(() {
 
@@ -273,6 +275,7 @@ ref.watch(paymentControllerPro).addingPaymentController(docId: userDocId, cardMo
                                 },
                                 controller: dateController,
                                 decoration: InputDecoration(
+                                  counterText:"",
                                     hintText: "Experation Date",
                                     border: InputBorder.none),
                               ),
