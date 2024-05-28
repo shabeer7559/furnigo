@@ -95,7 +95,24 @@ class _CustViewState extends State<CustView> {
                         ),
                         Container(
                           width: w*0.8,
-                          child: Text(widget.Address[widget.index]["address"],style: TextStyle(color: ColorConst.grey),),
+                          child: Column(
+                            children: [
+                              Row(
+                                children: [
+                                  Text(widget.Address[widget.index]["address"],style: TextStyle(color: ColorConst.grey),),
+                                  Text(widget.Address[widget.index]["zipcode"],style: TextStyle(color: ColorConst.grey),),
+                                ],
+                              ),
+                              Row(
+                                children: [
+                                  Text(widget.Address[widget.index]["city"],style: TextStyle(color: ColorConst.grey),),
+                                  Text(widget.Address[widget.index]["state"],style: TextStyle(color: ColorConst.grey),),
+                                  Text(widget.Address[widget.index]["country"],style: TextStyle(color: ColorConst.grey),),
+                                ],
+                              ),
+
+                            ],
+                          ),
                         )
                       ],
                     ),

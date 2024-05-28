@@ -27,11 +27,11 @@ streamProducts({required String id}){
 }
 
 addToFavourite({
-  required String docId,required String image,required int price,required String name
+  required String docId,required String image,required int price,required String name,required String catId,required String proId,
 }){
 return _userDetails.doc(docId).update({
   "favourite":FieldValue.arrayUnion([
-    FavoriteModels(image: image, name: name, price: price).toMap()
+    FavoriteModels(image: image, name: name, price: price, catId: catId, proId: proId).toMap()
     ])
 });
 }

@@ -20,8 +20,8 @@ Stream categoryDetails(){
 Stream productDetails({required String id}){
   return _repository.streamProducts(id: id);
 }
-favoriteAdd(String docId,String name,String image,int price){
-_repository.addToFavourite(docId: docId, image: image, price: price, name: name);
+favoriteAdd(String docId,String name,String image,int price,String catId,String proId){
+_repository.addToFavourite(docId: docId, image: image, price: price, name: name, catId: catId, proId: proId);
 }
 Stream favDetails(){
   return _repository.StreamFav();

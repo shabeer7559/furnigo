@@ -57,7 +57,7 @@ class _ProductDetailsState extends ConsumerState<ProductDetails> {
 
                tap=tap;
                if(tap=true){
-                 ref.watch(homeScreenPro).favoriteAdd(userDocId, widget.name, widget.image, widget.price);
+                 ref.watch(homeScreenPro).favoriteAdd(userDocId, widget.name, widget.image, widget.price,widget.catId,widget.proId);
                }
                setState(() {
                });

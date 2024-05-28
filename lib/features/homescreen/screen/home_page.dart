@@ -30,7 +30,7 @@ class home extends ConsumerStatefulWidget {
 
 class _homeState extends ConsumerState<home> {
   int selectedIndex=0;
-  String docId="4zTSJ96StUheNnvi1UPH";
+  String docId="jm5J9Z7Z8SkN1pGpJOsu";
   List bookMark=[];
 
   @override
@@ -197,7 +197,7 @@ class _homeState extends ConsumerState<home> {
                                               bookMark.add(index);
                                               
                                               print("---------------------------------------------------------");
-                                              ref.watch(homeScreenPro).favoriteAdd(userDocId, data[index].name, data[index].image, data[index].price);
+                                              ref.watch(homeScreenPro).favoriteAdd(userDocId, data[index].name, data[index].image, data[index].price,docId,data[index].id);
                                             }
                                             setState(() {
 
