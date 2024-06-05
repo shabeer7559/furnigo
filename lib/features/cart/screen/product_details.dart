@@ -57,7 +57,8 @@ class _ProductDetailsState extends ConsumerState<ProductDetails> {
 
                tap=tap;
                if(tap=true){
-                 ref.watch(homeScreenPro).favoriteAdd(userDocId, widget.name, widget.image, widget.price,widget.catId,widget.proId);
+                 ref.watch(homeScreenPro).favoriteAdd(userDocId, FavoriteModels(
+                     image: widget.image, name: widget.name, price: widget.price, catId: widget.catId, proId: widget.proId, review: widget.review));
                }
                setState(() {
                });
@@ -198,56 +199,56 @@ class _ProductDetailsState extends ConsumerState<ProductDetails> {
                         fontWeight: FontWeight.w700,
                         fontSize: w*0.06
                       ),),
-                      Container(
-                        height: h*0.045,
-                          width: w*0.35,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          InkWell(
-                            onTap: () {
-                              widget.qnty+1;
-                              // count++;
-                              // setState(() {
-                              //
-                              // });
-                            },
-                            child: Container(
-                              height: h*0.04,
-                              width: w*0.1,
-                              child: Center(child: Icon(Icons.add)),
-                              decoration: BoxDecoration(
-                                color: ColorConst.containerGrey,
-                                borderRadius: BorderRadius.circular(w*0.03)
-                              ),
-                            ),
-                          ),
-                          Text(widget.qnty.toString(),
-                          style: TextStyle(
-                            fontSize: w*0.045,
-                            fontWeight: FontWeight.w600,
-                            color: ColorConst.primaryColor
-                          ),),
-                          InkWell(
-                            onTap: () {
-                              widget.qnty<=0?0:widget.qnty-1;
-                              // count<=0?0:count--;
-                              // setState(() {
-                              // });
-                            },
-                            child: Container(
-                              height: h*0.04,
-                              width: w*0.1,
-                              child: Center(child: Icon(Icons.remove)),
-                              decoration: BoxDecoration(
-                                color: ColorConst.containerGrey,
-                                borderRadius: BorderRadius.circular(w*0.03)
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                      )
+                      // Container(
+                      //   height: h*0.045,
+                      //     width: w*0.35,
+                      // child: Row(
+                      //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      //   children: [
+                      //     InkWell(
+                      //       onTap: () {
+                      //         widget.qnty+1;
+                      //         // count++;
+                      //         // setState(() {
+                      //         //
+                      //         // });
+                      //       },
+                      //       child: Container(
+                      //         height: h*0.04,
+                      //         width: w*0.1,
+                      //         child: Center(child: Icon(Icons.add)),
+                      //         decoration: BoxDecoration(
+                      //           color: ColorConst.containerGrey,
+                      //           borderRadius: BorderRadius.circular(w*0.03)
+                      //         ),
+                      //       ),
+                      //     ),
+                      //     Text(widget.qnty.toString(),
+                      //     style: TextStyle(
+                      //       fontSize: w*0.045,
+                      //       fontWeight: FontWeight.w600,
+                      //       color: ColorConst.primaryColor
+                      //     ),),
+                      //     InkWell(
+                      //       onTap: () {
+                      //         widget.qnty<=0?0:widget.qnty-1;
+                      //         // count<=0?0:count--;
+                      //         // setState(() {
+                      //         // });
+                      //       },
+                      //       child: Container(
+                      //         height: h*0.04,
+                      //         width: w*0.1,
+                      //         child: Center(child: Icon(Icons.remove)),
+                      //         decoration: BoxDecoration(
+                      //           color: ColorConst.containerGrey,
+                      //           borderRadius: BorderRadius.circular(w*0.03)
+                      //         ),
+                      //       ),
+                      //     ),
+                      //   ],
+                      // ),
+                      //
                     ],
                   ),
                   Container(
