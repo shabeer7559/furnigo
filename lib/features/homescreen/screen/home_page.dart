@@ -63,7 +63,7 @@ class _homeState extends ConsumerState<home> {
         actions: [
           InkWell(
             onTap: () {
-              getCatid();
+
               Navigator.push(context, CupertinoPageRoute(builder: (context) => MyCart(),));
             },
               child: SvgPicture.asset(IconConst.cartIcon)),
@@ -183,10 +183,9 @@ class _homeState extends ConsumerState<home> {
                                               // bookMark.remove(index);
                                             }else{
                                               bookMark.add(index);
-                                              
-
                                               ref.watch(homeScreenPro).favoriteAdd(userDocId, FavoriteModels(
-                                                  image: data[index].image.toString(), name: data[index].name, price: data[index].price, catId: docId, proId: data[index].id, review: data[index].review));
+                                                  image: data[index].image.toString(),
+                                                  name: data[index].name, price: data[index].price, catId: docId, proId: data[index].id, review: data[index].review));
                                             }
                                             setState(() {
 
