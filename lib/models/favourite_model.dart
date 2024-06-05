@@ -6,6 +6,7 @@ class FavoriteModels{
   String proId;
   String review;
 
+
   FavoriteModels({
    required this.image,
     required this.name,
@@ -13,6 +14,7 @@ class FavoriteModels{
     required this.catId,
     required this.proId,
     required this.review
+
 
   });
   Map<String,dynamic>toMap(){
@@ -23,6 +25,7 @@ class FavoriteModels{
       'catId':this.catId,
       "proId":this.proId,
       "review":this.review
+
 
     };
   }
@@ -35,6 +38,7 @@ class FavoriteModels{
       proId: map["proId"]??"",
         review: map["review"]??""
 
+
     );
   }
   FavoriteModels copyWith({
@@ -45,6 +49,8 @@ class FavoriteModels{
     String? proId,
     String? review
 
+
+
   }){
     return FavoriteModels(
         image: image??this.image,
@@ -53,6 +59,8 @@ class FavoriteModels{
       catId: catId??this.catId,
       proId: proId?? this.proId,
       review: review?? this.review
+
+
 
     );
   }

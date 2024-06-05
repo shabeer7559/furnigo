@@ -1,3 +1,4 @@
+import 'package:flml_internet_checker/flml_internet_checker.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -5,6 +6,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:furnigo/features/constants/color_const.dart';
 import 'package:furnigo/features/constants/image_const.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:lottie/lottie.dart';
 
 import '../../../main.dart';
 import '../../constants/icon_const.dart';
@@ -52,71 +54,77 @@ class _notificationState extends State<notification> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        title: Text("Notification",style:GoogleFonts.merriweather(fontWeight: FontWeight.w700,fontSize: w*0.045) ,),
+    return InternetChecker(
+      placeHolder: Lottie.asset(
+          ImageConst.internetcheck,width: w*0.7
       ),
-      body: Column(
-        children: [
-          Expanded(
-            child: ListView.separated(
-              shrinkWrap: true,
-             scrollDirection: Axis.vertical,
-              
-              itemBuilder: (BuildContext context, int index) {
-                return Container(
-                  width: w*1,
-                  height: h*0.14,
-                  child: Row(
-                    children: [
-                      Padding(
-                        padding:  EdgeInsets.all(w*0.03),
-                        child: Container(
-                          height: h*0.17,
-                          width: w*0.25,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(w*0.03),
-                              image: DecorationImage(image: AssetImage(notification[index]["image"]),fit: BoxFit.fill)
+      internetConnectionText: "Please Check Your Internet Connection",
+      child: Scaffold(
+        appBar: AppBar(
+          centerTitle: true,
+          title: Text("Notification",style:GoogleFonts.merriweather(fontWeight: FontWeight.w700,fontSize: w*0.045) ,),
+        ),
+        body: Column(
+          children: [
+            Expanded(
+              child: ListView.separated(
+                shrinkWrap: true,
+               scrollDirection: Axis.vertical,
+
+                itemBuilder: (BuildContext context, int index) {
+                  return Container(
+                    width: w*1,
+                    height: h*0.14,
+                    child: Row(
+                      children: [
+                        Padding(
+                          padding:  EdgeInsets.all(w*0.03),
+                          child: Container(
+                            height: h*0.17,
+                            width: w*0.25,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(w*0.03),
+                                image: DecorationImage(image: AssetImage(notification[index]["image"]),fit: BoxFit.fill)
+                            ),
                           ),
                         ),
-                      ),
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Container(
-                            width: w*0.68,
-                            height: h*0.05,
-                            child: Text(notification[index]['title'],
-                              textAlign: TextAlign.left,
-                              style: TextStyle(
-                                fontWeight: FontWeight.w700,
-                                fontSize: w*0.035,
-            
-            
-                              ),),
-                          ),
-                          Container(
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Container(
                               width: w*0.68,
-                              height: h*0.09,
-                              child: Text(notification[index]["note"],style: TextStyle(fontSize: w*0.032),))
-                        ],
-                      )
-                    ],
-                  ),
-                );
-              },
-              separatorBuilder: (BuildContext context, int index) {
-                return Divider(
-                  color: Colors.grey.shade100,
-                );
-              },
-              itemCount: notification.length,
-            
+                              height: h*0.05,
+                              child: Text(notification[index]['title'],
+                                textAlign: TextAlign.left,
+                                style: TextStyle(
+                                  fontWeight: FontWeight.w700,
+                                  fontSize: w*0.035,
+
+
+                                ),),
+                            ),
+                            Container(
+                                width: w*0.68,
+                                height: h*0.09,
+                                child: Text(notification[index]["note"],style: TextStyle(fontSize: w*0.032),))
+                          ],
+                        )
+                      ],
+                    ),
+                  );
+                },
+                separatorBuilder: (BuildContext context, int index) {
+                  return Divider(
+                    color: Colors.grey.shade100,
+                  );
+                },
+                itemCount: notification.length,
+
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

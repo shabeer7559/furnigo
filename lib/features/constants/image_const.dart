@@ -20,4 +20,5 @@ class ImageConst{
   static const lockpassword="assets/image/lockpassword.png";
   static const security="assets/image/security.png";
   static const avatar="assets/image/avatarperson.png";
+  static const internetcheck="assets/image/notinternet.json";
 }

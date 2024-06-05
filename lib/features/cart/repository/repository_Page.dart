@@ -44,6 +44,8 @@ final cartAddingRepositoryProvider=Provider((ref) => Cartadding(firestore: ref.w
     });
   }
 
+
+
   deleteFav({required String id,required List favDetails,index}){
     return _userDetails.doc(id).update({
       "favourite":FieldValue.arrayRemove([favDetails[index]])

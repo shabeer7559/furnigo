@@ -1,3 +1,4 @@
+import 'package:flml_internet_checker/flml_internet_checker.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -9,6 +10,7 @@ import 'package:furnigo/features/shipping/controller/controller.dart';
 import 'package:furnigo/features/shipping/screen/add_shipping_address.dart';
 import 'package:furnigo/features/splash/screen/splash_screen.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:lottie/lottie.dart';
 
 import '../../../main.dart';
 import '../../constants/color_const.dart';
@@ -44,57 +46,63 @@ class _shippingAddressState extends ConsumerState<shippingAddress> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      floatingActionButton: FloatingActionButton(onPressed: () {
-      Navigator.push(context, CupertinoPageRoute(builder: (context) => Addshipping(),));
-      },
-      child: Icon(CupertinoIcons.plus),backgroundColor: ColorConst.secondaryColor,),
-      backgroundColor: ColorConst.secondaryColor,
-      appBar: AppBar(
-        backgroundColor: ColorConst.secondaryColor,
-        leading: Padding(
-          padding: EdgeInsets.all(w*0.05),
-          child: InkWell(
-                onTap: () {
-                  Navigator.pop(context);
-                },
-              child: SvgPicture.asset(IconConst.backIcon)),
-        ),
-        elevation: 0,
-        centerTitle: true,
-        title: Text("Shipping address",style: GoogleFonts.merriweather(),),
+    return InternetChecker(
+      placeHolder: Lottie.asset(
+          ImageConst.internetcheck,width: w*0.7
       ),
-      body: SingleChildScrollView(
-        child: Container(
-         height: h*0.8,
-          child: Column(
-            children: [
-              ref.watch(streamedAdrsProvider(userDocId)).when(
-                  data: (data) {
-                    List adrsDetails=data.address;
-                    return Expanded(
-                      child: ListView.separated(
-                        physics: BouncingScrollPhysics(),
-                        shrinkWrap: true,
-                        itemBuilder: (BuildContext context, int index) {
-                          return CustView(index: index, Address: adrsDetails, check1: check1);
-                        },
-                        separatorBuilder: (BuildContext context, int index) {
-                          return
-                            SizedBox(height: w*0.05);
-                        },
-                        itemCount: adrsDetails.length,
-                      ),
-                    );
+      internetConnectionText: "Please Check Your Internet Connection",
+      child: Scaffold(
+        floatingActionButton: FloatingActionButton(onPressed: () {
+        Navigator.push(context, CupertinoPageRoute(builder: (context) => Addshipping(),));
+        },
+        child: Icon(CupertinoIcons.plus),backgroundColor: ColorConst.secondaryColor,),
+        backgroundColor: ColorConst.secondaryColor,
+        appBar: AppBar(
+          backgroundColor: ColorConst.secondaryColor,
+          leading: Padding(
+            padding: EdgeInsets.all(w*0.05),
+            child: InkWell(
+                  onTap: () {
+                    Navigator.pop(context);
                   },
-                  error: (error, stackTrace) {
-                  return Text(error.toString());
-                  },
-                  loading: () {
-                    return CircularProgressIndicator();
-                  },
-              )
-            ],
+                child: SvgPicture.asset(IconConst.backIcon)),
+          ),
+          elevation: 0,
+          centerTitle: true,
+          title: Text("Shipping address",style: GoogleFonts.merriweather(),),
+        ),
+        body: SingleChildScrollView(
+          child: Container(
+           height: h*0.8,
+            child: Column(
+              children: [
+                ref.watch(streamedAdrsProvider(userDocId)).when(
+                    data: (data) {
+                      List adrsDetails=data.address;
+                      return Expanded(
+                        child: ListView.separated(
+                          physics: BouncingScrollPhysics(),
+                          shrinkWrap: true,
+                          itemBuilder: (BuildContext context, int index) {
+                            return CustView(index: index, Address: adrsDetails, check1: check1);
+                          },
+                          separatorBuilder: (BuildContext context, int index) {
+                            return
+                              SizedBox(height: w*0.05);
+                          },
+                          itemCount: adrsDetails.length,
+                        ),
+                      );
+                    },
+                    error: (error, stackTrace) {
+                    return Text(error.toString());
+                    },
+                    loading: () {
+                      return CircularProgressIndicator();
+                    },
+                )
+              ],
+            ),
           ),
         ),
       ),

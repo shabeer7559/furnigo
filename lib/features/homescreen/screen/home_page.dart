@@ -32,10 +32,6 @@ class _homeState extends ConsumerState<home> {
   int selectedIndex=0;
   String docId="jm5J9Z7Z8SkN1pGpJOsu";
   List bookMark=[];
-  // getCatid(){
-  //   print("====================================");
-  //  print(FirebaseFirestore.instance.collection("category"));
-  // }
 
   @override
   Widget build(BuildContext context) {
@@ -63,7 +59,6 @@ class _homeState extends ConsumerState<home> {
         actions: [
           InkWell(
             onTap: () {
-
               Navigator.push(context, CupertinoPageRoute(builder: (context) => MyCart(),));
             },
               child: SvgPicture.asset(IconConst.cartIcon)),
@@ -82,48 +77,65 @@ class _homeState extends ConsumerState<home> {
                   return SingleChildScrollView(
                     physics: BouncingScrollPhysics(),
                     scrollDirection: Axis.horizontal,
-                    child: Container(
-                      width: w*1,
-                      height:h*0.15,
-                      child: ListView.separated(
-                        scrollDirection: Axis.horizontal,
-                        physics: NeverScrollableScrollPhysics(),
-                        shrinkWrap: true,
-                        itemBuilder: (BuildContext context, int index) {
-                          return Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              InkWell(
-                                onTap: () {
-                                  selectedIndex=index;
-                                  docId=data[index].id;
-                                  setState(() {
+                    child: Row(
+                      children: [
+                        // Column(
+                        //   children: [
+                        //     Container(
+                        //       width: w*0.18,
+                        //       height: w*0.18,
+                        //       decoration: BoxDecoration(
+                        //         borderRadius:  BorderRadius.circular(w*0.04),
+                        //         // image: DecorationImage(image: AssetImage(IconConst.bookingIcon),fit: BoxFit.fill)
+                        //       ),
+                        //     ),
+                        //     Text("All Products",style: TextStyle(color: Colors.grey),)
+                        //   ],
+                        // ),
+                        Container(
+                          width: w*1,
+                          height:h*0.15,
+                          child: ListView.separated(
+                            scrollDirection: Axis.horizontal,
+                            physics: NeverScrollableScrollPhysics(),
+                            shrinkWrap: true,
+                            itemBuilder: (BuildContext context, int index) {
+                              return Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  InkWell(
+                                    onTap: () {
+                                      selectedIndex=index;
+                                      docId=data[index].id;
+                                      setState(() {
 
-                                  });
-                                },
-                                child: Container(
-                                  width: w*0.18,
-                                  height: w*0.18,
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(w*0.04),
-                                      image: DecorationImage(image: NetworkImage(data[index].image.toString()),fit: BoxFit.fill,),
-                                      color:selectedIndex==index?ColorConst.primaryColor: ColorConst.secondaryColor,
+                                      });
+                                    },
+                                    child: Container(
+                                      width: w*0.18,
+                                      height: w*0.18,
+                                      decoration: BoxDecoration(
+                                          borderRadius: BorderRadius.circular(w*0.04),
+                                          image: DecorationImage(image: NetworkImage(data[index].image.toString()),fit: BoxFit.fill,),
+                                          color:selectedIndex==index?ColorConst.primaryColor: ColorConst.secondaryColor,
+                                      ),
+                                    ),
                                   ),
-                                ),
-                              ),
-                              Text(data[index].category,style: TextStyle(
-                                  fontWeight: FontWeight.w500,
-                                  color: ColorConst.grey,
-                                  fontSize: w*0.04
-                              ),)
-                            ],
-                          );
-                        },
-                        separatorBuilder: (BuildContext context, int index) {
-                          return SizedBox(width: w*0.03,);
-                        },
-                        itemCount: data.length,
-                      ),
+                                  Text(data[index].category,style: TextStyle(
+                                      fontWeight: FontWeight.w500,
+                                      color: ColorConst.grey,
+                                      fontSize: w*0.04
+                                  ),)
+                                ],
+                              );
+                            },
+                            separatorBuilder: (BuildContext context, int index) {
+                              return SizedBox(width: w*0.03,);
+                            },
+                            itemCount: data.length,
+                          ),
+                        ),
+                      ],
                     ),
                   );
                 },
@@ -183,9 +195,9 @@ class _homeState extends ConsumerState<home> {
                                               // bookMark.remove(index);
                                             }else{
                                               bookMark.add(index);
-                                              ref.watch(homeScreenPro).favoriteAdd(userDocId, FavoriteModels(
-                                                  image: data[index].image.toString(),
-                                                  name: data[index].name, price: data[index].price, catId: docId, proId: data[index].id, review: data[index].review));
+                                              
+                                              print("---------------------------------------------------------");
+                                              ref.watch(homeScreenPro).favoriteAdd(userDocId, data[index].name, data[index].image, data[index].price,docId,data[index].id);
                                             }
                                             setState(() {
 
