@@ -32,11 +32,10 @@ class _SplashScreenState extends State<SplashScreen> {
    userName = prefs.getString("name")??"";
    userDocId = prefs.getString("id")??"";
    userProfile =  prefs.getString("image")??"https://cdn.vectorstock.com/i/1000v/51/05/male-profile-avatar-with-brown-hair-vector-12055105.jpg";
-   Future.delayed(Duration(seconds: 2)).then((value) =>  Navigator.push(
-       context,
+   Future.delayed(Duration(seconds: 2)).then((value) => Navigator.pushAndRemoveUntil(context,
        CupertinoPageRoute(
            builder: (context) =>
-           login==false?LoginPage() : bottomNavi())) );
+           login==false?LoginPage() : bottomNavi()), (route) => false) );
   }
   void initState() {
     getLoggedIn();

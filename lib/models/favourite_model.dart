@@ -4,13 +4,15 @@ class FavoriteModels{
   int price;
   String catId;
   String proId;
+  String review;
 
   FavoriteModels({
    required this.image,
     required this.name,
     required this.price,
     required this.catId,
-    required this.proId
+    required this.proId,
+    required this.review
 
   });
   Map<String,dynamic>toMap(){
@@ -19,7 +21,8 @@ class FavoriteModels{
       "name":this.name,
       "price":this.price,
       'catId':this.catId,
-      "proId":this.proId
+      "proId":this.proId,
+      "review":this.review
 
     };
   }
@@ -29,7 +32,8 @@ class FavoriteModels{
         name: map["name"]??"",
         price: map["price"]??0,
       catId: map['catId']??"",
-      proId: map["proId"]??""
+      proId: map["proId"]??"",
+        review: map["review"]??""
 
     );
   }
@@ -39,6 +43,7 @@ class FavoriteModels{
     int?price,
     String?catId,
     String? proId,
+    String? review
 
   }){
     return FavoriteModels(
@@ -47,6 +52,7 @@ class FavoriteModels{
         price: price?? this.price,
       catId: catId??this.catId,
       proId: proId?? this.proId,
+      review: review?? this.review
 
     );
   }

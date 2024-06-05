@@ -28,30 +28,7 @@ class favorite extends ConsumerStatefulWidget {
 }
 
 class _favoriteState extends ConsumerState<favorite> {
-  // List fav=[
-  //   {"image":ImageConst.coffeetable,
-  //     "name":"Coffie Table",
-  //     "amnt":"\$50.00"
-  //
-  // },
-  //   {"image":ImageConst.coffieChair,
-  //     "name":"Coffie Chair",
-  //     "amnt":"\$20.00"
-  //
-  // },
-  //   {"image":ImageConst.minimalStand,
-  //     "name":"Minimal Stand",
-  //     "amnt":"\$25.00"
-  // },
-  //   {"image":ImageConst.simpleDesk,
-  //     "name":"Minimal Desk",
-  //     "amnt":"\$50.00"
-  // },
-  //   {"image":ImageConst.lamp,
-  //     "name":"Minimal Lamp",
-  //     "amnt":"\$12.00"
-  // },
-  // ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -96,7 +73,7 @@ class _favoriteState extends ConsumerState<favorite> {
                                 favDetails[index]['image'],
                                 favDetails[index]['name'],
                                 favDetails[index]['price'],
-                               'review',
+                               favDetails[index]["review"],
                                 1,
                                 favDetails[index]['catId'],
                                 favDetails[index]['proId']),));

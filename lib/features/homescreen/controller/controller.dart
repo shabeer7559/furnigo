@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 
 import 'package:furnigo/features/homescreen/repository/repository.dart';
+import 'package:furnigo/models/favourite_model.dart';
 final changeProvider=ChangeNotifierProvider((ref) => AddingController(repository: ref.watch(addinRepositoryProvider)));
  final homeScreenPro=Provider((ref) => AddingController(repository: ref.watch(addinRepositoryProvider)));
 final streamProductsProvider=StreamProvider.autoDispose.family((ref, String id) => ref.watch(changeProvider.notifier).productDetails(id: id));
@@ -20,8 +21,8 @@ Stream categoryDetails(){
 Stream productDetails({required String id}){
   return _repository.streamProducts(id: id);
 }
-favoriteAdd(String docId,String name,String image,int price,String catId,String proId){
-_repository.addToFavourite(docId: docId, image: image, price: price, name: name, catId: catId, proId: proId);
+favoriteAdd(String docId,FavoriteModels favoriteModels){
+_repository.addToFavourite(docId: docId, favoriteModels: favoriteModels);
 }
 Stream favDetails(){
   return _repository.StreamFav();
