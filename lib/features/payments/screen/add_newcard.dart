@@ -258,14 +258,8 @@ ref.watch(paymentControllerPro).addingPaymentController(docId: userDocId, cardMo
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Container(
-                                height: h * 0.08,
-                                width: w * 0.42,
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(w * 0.02),
-                                border:Border.all(
-                                    color: ColorConst.primaryColor.withOpacity(0.6)) ),
-                                child:TextFormField(
+
+                                TextFormField(
                                   autovalidateMode: AutovalidateMode.onUserInteraction,
                                   validator: (value) {
                                     if (!cvvValidator.hasMatch(value!)) {
@@ -280,43 +274,49 @@ ref.watch(paymentControllerPro).addingPaymentController(docId: userDocId, cardMo
                                     controller: cvvController,
                                     decoration:
                                     InputDecoration(
+
+                                      constraints: BoxConstraints(
+                                      maxWidth: w*0.4
+                                      ),
+                                        border: OutlineInputBorder(
+                                            borderSide: BorderSide(
+                                                color: ColorConst.grey.withOpacity(0.15)
+                                            )),
                                       counterText: "",
-                                        hintText: "CVV", border: InputBorder.none),
+                                        hintText: "CVV", ),
                                   ),
 
-                              ),
-                              Container(
-                                height: h * 0.08,
-                                width: w * 0.42,
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(w * 0.02),
-                                    border: Border.all(
-                                        color: ColorConst.primaryColor.withOpacity(0.6))),
-                                child: Padding(
-                                  padding:  EdgeInsets.all(8.0),
-                                  child: TextFormField(
-                                    autovalidateMode: AutovalidateMode.onUserInteraction,
-                                    validator: (value) {
-                                      if (!dateValidator.hasMatch(value!)) {
-                                        return "Please Enter Expire Date";
-                                      }
-                                      else {
-                                        return null;
-                                      }
-                                    },
-                                    maxLength: 5,
-                                    keyboardType: TextInputType.phone,
-                                    onChanged: (value) {
-                                      setState(() {
 
-                                      });
-                                    },
-                                    controller: dateController,
-                                    decoration: InputDecoration(
-                                      counterText:"",
-                                        hintText: "Experation Date",
-                                        border: InputBorder.none),
-                                  ),
+                              Padding(
+                                padding:  EdgeInsets.all(8.0),
+                                child: TextFormField(
+                                  autovalidateMode: AutovalidateMode.onUserInteraction,
+                                  validator: (value) {
+                                    if (!dateValidator.hasMatch(value!)) {
+                                      return "Please Enter Expire Date";
+                                    }
+                                    else {
+                                      return null;
+                                    }
+                                  },
+                                  maxLength: 5,
+                                  keyboardType: TextInputType.phone,
+                                  onChanged: (value) {
+                                    setState(() {
+
+                                    });
+                                  },
+                                  controller: dateController,
+                                  decoration: InputDecoration(
+                                    constraints: BoxConstraints(
+                                      maxWidth: w*0.4
+                                    ),
+                                    counterText:"",
+                                      hintText: "Experation Date",
+                                    border: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                            color: ColorConst.grey.withOpacity(0.15)
+                                        )),),
                                 ),
                               ),
                             ],

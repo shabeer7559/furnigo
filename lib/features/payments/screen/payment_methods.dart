@@ -106,6 +106,20 @@ class _paymentMethodState extends ConsumerState<paymentMethod> {
                                                   image: AssetImage(ImageConst.visa),
                                                   width: w * 0.14,
                                                 ),
+                                                Padding(
+                                                  padding:  EdgeInsets.only(
+                                                    left: w*0.4
+                                                  ),
+                                                  child: InkWell(
+                                                    onTap: () {
+                                                      ref.watch(paymentControllerPro).deleteCard(
+                                                          id: userDocId,
+                                                          carddData: carddData,index: index);
+                                                    },
+                                                    child: Icon(Icons.delete_outline,
+                                                    color: Colors.white,),
+                                                  ),
+                                                )
                                               ],
                                             ),
                                           ),

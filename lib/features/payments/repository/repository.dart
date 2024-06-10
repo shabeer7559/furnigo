@@ -22,4 +22,9 @@ class PaymentRepo{
   Stream streamCard({required String docId}){
     return _payment.doc(docId).snapshots().map((event) => UserModel.fromMap(event.data()as Map<String,dynamic>));
   }
+  deleteCard({required String id, required List carddData,index}){
+    return _payment.doc(id).update({
+      "payment":FieldValue.arrayRemove([carddData[index]])
+    });
+}
 }

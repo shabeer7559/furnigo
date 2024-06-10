@@ -16,4 +16,7 @@ class PaymentController{
   Stream cardDetails({required String docId}){
     return _paymentRepo.streamCard(docId: docId);
   }
+  deleteCard({required String id, required List carddData,index}){
+    return _paymentRepo.deleteCard(id: id, carddData: carddData,index: index);
+  }
 }
