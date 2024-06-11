@@ -112,9 +112,27 @@ class _paymentMethodState extends ConsumerState<paymentMethod> {
                                                   ),
                                                   child: InkWell(
                                                     onTap: () {
-                                                      ref.watch(paymentControllerPro).deleteCard(
-                                                          id: userDocId,
-                                                          carddData: carddData,index: index);
+                                                      showDialog(
+                                                          context: context,
+                                                          builder: (context) {
+                                                            return CupertinoAlertDialog(
+                                                              content: Text("Are you sure Want to Remove this Card?"),
+                                                              actions: [
+                                                                CupertinoActionSheetAction(
+                                                                    onPressed: () {
+                                                                      ref.watch(paymentControllerPro).deleteCard(
+                                                                          id: userDocId,
+                                                                          carddData: carddData,index: index);
+                                                                      Navigator.pop(context);
+                                                                    }, child: Text("Yes")),
+                                                                CupertinoActionSheetAction(
+                                                                    onPressed: () {
+                                                                      Navigator.pop(context);
+                                                                    }, child:Text("No"))
+                                                              ],
+                                                            );
+                                                          },);
+
                                                     },
                                                     child: Icon(Icons.delete_outline,
                                                     color: Colors.white,),

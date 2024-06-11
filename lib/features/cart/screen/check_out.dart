@@ -14,7 +14,7 @@ import '../../constants/icon_const.dart';
 
 
 class checkOut extends StatefulWidget {
-  const checkOut({super.key});
+  const checkOut({super.key, required totel});
 
   @override
   State<checkOut> createState() => _checkOutState();
