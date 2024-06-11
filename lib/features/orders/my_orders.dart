@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:furnigo/features/constants/color_const.dart';
+import 'package:furnigo/features/homescreen/screen/bottomNavi.dart';
 import 'package:furnigo/features/profile/screen/profile_page.dart';
 import 'package:furnigo/main.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -33,7 +34,7 @@ class _MyOrdersState extends State<MyOrders> {
             title: Text("My order",style: GoogleFonts.merriweather(fontWeight: FontWeight.w700,fontSize: w*0.05),),
             leading: InkWell(
               onTap: () {
-                Navigator.push(context, CupertinoPageRoute(builder: (context) => profile_page(),));
+                Navigator.push(context, CupertinoPageRoute(builder: (context) => bottomNavi( ),));
               },
                 child: Icon(Icons.arrow_back_ios_new)),
           ),

@@ -21,4 +21,8 @@ class ImageConst{
   static const security="assets/image/security.png";
   static const avatar="assets/image/avatarperson.png";
   static const internetcheck="assets/image/notinternet.json";
+  static const catBed="assets/image/catBed.jpg";
+  static const catChair="assets/image/catChair.jpg";
+  static const catPop="assets/image/catChair.jpg";
+  static const catTable="assets/image/catTable.jpg";
 }

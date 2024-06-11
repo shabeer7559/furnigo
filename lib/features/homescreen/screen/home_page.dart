@@ -12,6 +12,7 @@ import 'package:furnigo/features/constants/color_const.dart';
 import 'package:furnigo/features/constants/icon_const.dart';
 import 'package:furnigo/features/constants/image_const.dart';
 import 'package:furnigo/features/homescreen/controller/controller.dart';
+import 'package:furnigo/features/homescreen/screen/search_page.dart';
 import 'package:furnigo/models/user_model.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -30,9 +31,35 @@ class home extends ConsumerStatefulWidget {
 
 class _homeState extends ConsumerState<home> {
   int selectedIndex=0;
-  String docId="jm5J9Z7Z8SkN1pGpJOsu";
+  String? docId;
   List bookMark=[];
 
+
+  getCatid() async {
+   QuerySnapshot catId=await FirebaseFirestore.instance.collection('category').get();
+    List num=catId.docs;
+    docId=num[0]["id"];
+  }
+
+@override
+  void initState() {
+
+    // FutureBuilder(
+    //   future: getCatid(),
+    //   builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
+    //       return Center(
+    //           child: CircularProgressIndicator());
+    //   },
+    //
+    // );
+
+    getCatid();
+    setState(() {
+
+    });
+    // TODO: implement initState
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +68,9 @@ class _homeState extends ConsumerState<home> {
       appBar: AppBar(
         leading: Padding(
           padding:  EdgeInsets.all(w*0.04),
-          child: SvgPicture.asset(IconConst.searchIcon,),
+          child: InkWell(
+            onTap: () => Navigator.push(context, CupertinoPageRoute(builder: (context) => searchPage(),)),
+              child: SvgPicture.asset(IconConst.searchIcon,)),
         ),
         title: Row(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -60,7 +89,7 @@ class _homeState extends ConsumerState<home> {
         actions: [
           InkWell(
             onTap: () {
-
+             getCatid();
               Navigator.push(context, CupertinoPageRoute(builder: (context) => MyCart(),));
             },
               child: SvgPicture.asset(IconConst.cartIcon)),
@@ -76,51 +105,60 @@ class _homeState extends ConsumerState<home> {
             ref.watch(streamCategoryProvider).when(
                 data: (data) {
 
-                  return SingleChildScrollView(
-                    physics: BouncingScrollPhysics(),
-                    scrollDirection: Axis.horizontal,
-                    child: Container(
-                      width: w*1,
-                      height:h*0.15,
-                      child: ListView.separated(
-                        scrollDirection: Axis.horizontal,
-                        physics: NeverScrollableScrollPhysics(),
-                        shrinkWrap: true,
-                        itemBuilder: (BuildContext context, int index) {
-                          return Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              InkWell(
-                                onTap: () {
-                                  selectedIndex=index;
-                                  docId=data[index].id;
-                                  setState(() {
+                  return Container(
+                    width: w*1,
+                    height:h*0.15,
+                    child: ListView.separated(
+                      scrollDirection: Axis.horizontal,
+                       physics: BouncingScrollPhysics(),
+                      shrinkWrap: true,
+                      itemBuilder: (BuildContext context, int index) {
+                        return Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            InkWell(
+                              onTap: () {
+                                selectedIndex=index;
+                                docId=data[index].id;
+                                setState(() {
 
-                                  });
-                                },
-                                child: Container(
-                                  width: w*0.18,
-                                  height: w*0.18,
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(w*0.04),
-                                      image: DecorationImage(image: NetworkImage(data[index].image.toString()),fit: BoxFit.fill,),
-                                      color:selectedIndex==index?ColorConst.primaryColor: ColorConst.secondaryColor,
-                                  ),
+                                });
+                              },
+                              child: selectedIndex==index?Container(
+                              width: w*0.18,
+                              height: w*0.18,
+                              decoration: BoxDecoration(
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: ColorConst.grey,
+                                    // offset: Offset(0, 4),
+                                    blurRadius: 8,
+                                    spreadRadius: 1
+                                  )
+                                ],
+                              borderRadius: BorderRadius.circular(w*0.05),
+                              image: DecorationImage(image: NetworkImage(data[index].image.toString()),fit: BoxFit.fill,),
+                              ),): Container(
+                                width: w*0.16,
+                                height: w*0.16,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(w*0.04),
+                                  image: DecorationImage(image: NetworkImage(data[index].image.toString()),fit: BoxFit.fill,),
                                 ),
                               ),
-                              Text(data[index].category,style: TextStyle(
-                                  fontWeight: FontWeight.w500,
-                                  color: ColorConst.grey,
-                                  fontSize: w*0.04
-                              ),)
-                            ],
-                          );
-                        },
-                        separatorBuilder: (BuildContext context, int index) {
-                          return SizedBox(width: w*0.03,);
-                        },
-                        itemCount: data.length,
-                      ),
+                            ),
+                            Text(data[index].category,style: TextStyle(
+                                fontWeight: FontWeight.w500,
+                                color: ColorConst.grey,
+                                fontSize: w*0.04
+                            ),)
+                          ],
+                        );
+                      },
+                      separatorBuilder: (BuildContext context, int index) {
+                        return SizedBox(width: w*0.03,);
+                      },
+                      itemCount: data.length,
                     ),
                   );
                 },
@@ -130,8 +168,10 @@ class _homeState extends ConsumerState<home> {
                 loading: () {
                   return Center(child: CircularProgressIndicator());
                 },),
-            ref.watch(streamProductsProvider(docId)).when(
+            ref.watch(streamProductsProvider(docId.toString())).when(
+
                 data: (data) {
+
                   return   Expanded(
                     child: GridView.builder(
                       physics: BouncingScrollPhysics(),
@@ -182,7 +222,7 @@ class _homeState extends ConsumerState<home> {
                                               bookMark.add(index);
                                               ref.watch(homeScreenPro).favoriteAdd(userDocId, FavoriteModels(
                                                   image: data[index].image.toString(),
-                                                  name: data[index].name, price: data[index].price, catId: docId, proId: data[index].id, review: data[index].review));
+                                                  name: data[index].name, price: data[index].price, catId: docId.toString(), proId: data[index].id, review: data[index].review));
                                             }
                                             setState(() {
 

@@ -28,163 +28,167 @@ class favorite extends ConsumerStatefulWidget {
 }
 
 class _favoriteState extends ConsumerState<favorite> {
-  // List fav=[
-  //   {"image":ImageConst.coffeetable,
-  //     "name":"Coffie Table",
-  //     "amnt":"\$50.00"
-  //
-  // },
-  //   {"image":ImageConst.coffieChair,
-  //     "name":"Coffie Chair",
-  //     "amnt":"\$20.00"
-  //
-  // },
-  //   {"image":ImageConst.minimalStand,
-  //     "name":"Minimal Stand",
-  //     "amnt":"\$25.00"
-  // },
-  //   {"image":ImageConst.simpleDesk,
-  //     "name":"Minimal Desk",
-  //     "amnt":"\$50.00"
-  // },
-  //   {"image":ImageConst.lamp,
-  //     "name":"Minimal Lamp",
-  //     "amnt":"\$12.00"
-  // },
-  // ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         leading: Padding(
-          padding:  EdgeInsets.all(w*0.04),
-          child: SvgPicture.asset(IconConst.searchIcon,color: ColorConst.primaryColor,),
+          padding: EdgeInsets.all(w * 0.04),
+          child: SvgPicture.asset(
+            IconConst.searchIcon,
+            color: ColorConst.primaryColor,
+          ),
         ),
         title: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text("Favorites",style: GoogleFonts.gelasio(),),
+            Text(
+              "Favorites",
+              style: GoogleFonts.gelasio(),
+            ),
           ],
         ),
         actions: [
           InkWell(
               onTap: () {
-                Navigator.push(context, CupertinoPageRoute(builder: (context) => MyCart(),));
+                Navigator.push(
+                    context,
+                    CupertinoPageRoute(
+                      builder: (context) => MyCart(),
+                    ));
               },
-              child: SvgPicture.asset(IconConst.cartIcon,color: ColorConst.primaryColor,)),
+              child: SvgPicture.asset(
+                IconConst.cartIcon,
+                color: ColorConst.primaryColor,
+              )),
           SizedBox(
-            width: w*0.05,
+            width: w * 0.05,
           )
         ],
       ),
       body: Column(
         children: [
-
-         ref.watch(favStreamProvider(userDocId)).when(
-                data: (data) {
-                  List favDetails=data.favourite;
-                  return   Expanded(
-                    child: ListView.separated(
-                      physics: BouncingScrollPhysics(),
-                      scrollDirection: Axis.vertical,
-                      shrinkWrap: true,
-
-                      itemBuilder: (BuildContext context, int index) {
-                        return InkWell(
-                          onTap: () {
-                            Navigator.push(context, CupertinoPageRoute(builder: (context) => ProductDetails(
+          ref.watch(favStreamProvider(userDocId)).when(data: (data) {
+            List favDetails = data.favourite;
+            return Expanded(
+              child: ListView.separated(
+                physics: BouncingScrollPhysics(),
+                scrollDirection: Axis.vertical,
+                shrinkWrap: true,
+                itemBuilder: (BuildContext context, int index) {
+                  return InkWell(
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          CupertinoPageRoute(
+                            builder: (context) => ProductDetails(
                                 favDetails[index]['image'],
                                 favDetails[index]['name'],
                                 favDetails[index]['price'],
-                               'review',
+                                favDetails[index]["review"],
                                 1,
                                 favDetails[index]['catId'],
-                                favDetails[index]['proId']),));
-                          },
-                          child: Container(
-                            margin: EdgeInsets.all(w*0.04),
-                            width: w*1,
-                            height: h*0.14,
+                                favDetails[index]['proId']),
+                          ));
+                    },
+                    child: Container(
+                      margin: EdgeInsets.all(w * 0.04),
+                      width: w * 1,
+                      height: h * 0.14,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(w * 0.03),
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          Container(
+                            height: h * 0.13,
+                            width: w * 0.3,
                             decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(w*0.03),
-                            ),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceAround,
-                              children: [
-                                Container(
-                                  height: h*0.13,
-                                  width: w*0.3,
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(w*0.03),
-                                      image: DecorationImage(image: NetworkImage(favDetails[index]["image"].toString()),fit: BoxFit.cover)
-
-                                  ),
-                                ),
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(favDetails[index]["name"]),
-                                    Text(favDetails[index]["price"].toString(),style: TextStyle(fontWeight: FontWeight.w700,
-                                        fontSize: w*0.05),),
-                                  ],),
-                                Column(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    InkWell(
-                                        onTap: () {
-                                          ref.watch(addingCartControllerProvider).deleteFavContro(id: userDocId, favDetails: favDetails,index: index);
-                                        },
-                                        child: SvgPicture.asset(IconConst.closeIcon)),
-                                    SvgPicture.asset(IconConst.blackcartIcon,),
-                                  ],
-                                )
-                              ],
-                            ),
+                                borderRadius: BorderRadius.circular(w * 0.03),
+                                image: DecorationImage(
+                                    image: NetworkImage(
+                                        favDetails[index]["image"].toString()),
+                                    fit: BoxFit.cover)),
                           ),
-                        );
-                      },
-                      separatorBuilder: (BuildContext context, int index) {
-                        return Divider(
-                          color: Colors.grey.shade200,
-                        );
-                      },
-                      itemCount: favDetails.length,
-
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(favDetails[index]["name"]),
+                              Text(
+                                favDetails[index]["price"].toString(),
+                                style: TextStyle(
+                                    fontWeight: FontWeight.w700,
+                                    fontSize: w * 0.05),
+                              ),
+                            ],
+                          ),
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              InkWell(
+                                  onTap: () {
+                                    ref
+                                        .watch(addingCartControllerProvider)
+                                        .deleteFavContro(
+                                            id: userDocId,
+                                            favDetails: favDetails,
+                                            index: index);
+                                  },
+                                  child: SvgPicture.asset(IconConst.closeIcon)),
+                              SvgPicture.asset(
+                                IconConst.blackcartIcon,
+                              ),
+                            ],
+                          )
+                        ],
+                      ),
                     ),
                   );
-    },
-          error: (error, stackTrace) {
-    return Text(error.toString());
-    },
-        loading: () {
-          return CircularProgressIndicator();
-        }
-              )
+                },
+                separatorBuilder: (BuildContext context, int index) {
+                  return Divider(
+                    color: Colors.grey.shade200,
+                  );
+                },
+                itemCount: favDetails.length,
+              ),
+            );
+          },
+
+              error: (error, stackTrace) {
+            return Text(error.toString());
+          }, loading: () {
+            return CircularProgressIndicator();
+          })
         ],
       ),
-      floatingActionButton:
-      InkWell(
+      floatingActionButton: InkWell(
         onTap: () {
-          Navigator.push(context, MaterialPageRoute(builder: (context) => bottomNavi(),));
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => bottomNavi(),
+              ));
         },
         child: Container(
-          width: w*0.9,
-          height: h*0.08,
+          width: w * 0.9,
+          height: h * 0.08,
           decoration: BoxDecoration(
-            boxShadow: [
-              BoxShadow(
-                  offset: Offset(0, 4),
-                  blurRadius: w*0.2,
-                  color: ColorConst.shadow
-              )
-            ],
-            borderRadius: BorderRadius.circular(w*0.03),
-            color: ColorConst.primaryColor
-          ),
+              boxShadow: [
+                BoxShadow(
+                    offset: Offset(0, 4),
+                    blurRadius: w * 0.2,
+                    color: ColorConst.shadow)
+              ],
+              borderRadius: BorderRadius.circular(w * 0.03),
+              color: ColorConst.primaryColor),
           child: Center(
-            child: Text("BACK TO HOME",style: TextStyle(
-              color: ColorConst.secondaryColor,fontSize: w*0.06
-            ),),
+            child: Text(
+              "BACK TO HOME",
+              style: TextStyle(
+                  color: ColorConst.secondaryColor, fontSize: w * 0.06),
+            ),
           ),
         ),
       ),
