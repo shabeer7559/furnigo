@@ -29,22 +29,26 @@ class _MyCartState extends ConsumerState<MyCart> {
   List cartData=[];
   List cartItems=[];
   dynamic sum=0;
-    sumItems() {
-      FirebaseFirestore.instance.collection("users").doc(userDocId).get().then((value) {
+    sumItems() async {
+      await FirebaseFirestore.instance.collection("users").doc(userDocId).get().then((value) {
         cartItems=value["cartItems"];
       });
-
 sum=0;
 for(int i=0;i<cartItems.length;i++){
   var c=cartItems[i];
-  sum=c["price"]*c["quantity"];
-}
-setState(() {
+  sum=sum+c["price"]*c["quantity"];
+  }
+      setState(() {
 
-});
-print(cartItems.toString());
-
+      });
     }
+
+    @override
+  void initState() {
+      sumItems();
+    // TODO: implement initState
+    super.initState();
+  }
 
 
   @override
@@ -126,7 +130,7 @@ print(cartItems.toString());
                   Navigator.push(
                       context,
                       CupertinoPageRoute(
-                        builder: (context) => checkOut(),
+                        builder: (context) => checkOut(totel: sum,),
                       ));
                 },
                 child: Container(
@@ -213,9 +217,8 @@ print(cartItems.toString());
                                     MainAxisAlignment.spaceEvenly,
                                     children: [
                                       InkWell(
-                                        onTap: () {
-sumItems();
-                                          FirebaseFirestore.instance
+                                        onTap: () async{
+                                          await FirebaseFirestore.instance
                                               .collection("users")
                                               .doc(userDocId)
                                               .get()
@@ -224,15 +227,17 @@ sumItems();
 
                                             cart[index]['quantity'] = cart[index]['quantity'] + 1;
 
+
                                             FirebaseFirestore.instance
                                                 .collection("users")
                                                 .doc(userDocId)
-                                                .update({'cartItems': cart});
+                                                .update({'cartItems': cart}).then((value) {
+
+                                              print(cart[index]['quantity']);
+                                              sumItems();
+
+                                            });
                                           });
-
-
-
-
 
                                           setState(() {
 
@@ -263,10 +268,9 @@ sumItems();
                                             color: ColorConst.primaryColor),
                                       ),
                                       InkWell(
-                                        onTap: () {
-                                          sumItems();
-                                          // cartItems[index]["qty"]<=0?0: cartItems[index]["qty"]--;
-                                          FirebaseFirestore.instance
+                                        onTap: () async{
+
+                                          await FirebaseFirestore.instance
                                               .collection("users")
                                               .doc(userDocId)
                                               .get()
@@ -274,21 +278,25 @@ sumItems();
                                             List cart = value['cartItems'];
 
                                             cart[index]['quantity'] =
-                                                cart[index]['quantity'] == 1
-                                                    ? 1
-                                                    : cart[index]['quantity'] -
-                                                        1;
+                                            cart[index]['quantity'] == 1
+                                                ? 1
+                                                : cart[index]['quantity'] -
+                                                1;
 
                                             FirebaseFirestore.instance
                                                 .collection("users")
                                                 .doc(userDocId)
-                                                .update({'cartItems': cart});
+                                                .update({'cartItems': cart}).then((value) {
+
+                                              sumItems();
+
+                                            });
+
                                           });
 
-                                       setState(() {
+                                          setState(() {
 
-                                       });
-
+                                          });
 
                                         },
                                         child: Container(
