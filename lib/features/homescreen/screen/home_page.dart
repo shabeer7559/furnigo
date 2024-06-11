@@ -12,6 +12,7 @@ import 'package:furnigo/features/constants/color_const.dart';
 import 'package:furnigo/features/constants/icon_const.dart';
 import 'package:furnigo/features/constants/image_const.dart';
 import 'package:furnigo/features/homescreen/controller/controller.dart';
+import 'package:furnigo/features/homescreen/screen/search_page.dart';
 import 'package:furnigo/models/user_model.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -41,7 +42,9 @@ class _homeState extends ConsumerState<home> {
       appBar: AppBar(
         leading: Padding(
           padding:  EdgeInsets.all(w*0.04),
-          child: SvgPicture.asset(IconConst.searchIcon,),
+          child: InkWell(
+            onTap: () => Navigator.push(context, CupertinoPageRoute(builder: (context) => searchPage(),)),
+              child: SvgPicture.asset(IconConst.searchIcon,)),
         ),
         title: Row(
           mainAxisAlignment: MainAxisAlignment.center,
