@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:furnigo/features/constants/color_const.dart';
 import 'package:furnigo/features/constants/icon_const.dart';
+import 'package:furnigo/features/profile/screen/edit_details.dart';
 import 'package:furnigo/features/splash/screen/splash_screen.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
@@ -63,7 +64,11 @@ class _settingsState extends State<settings> {
                           fontWeight: FontWeight.w600,
                           fontSize: w * 0.04),
                     ),
-                    SvgPicture.asset(IconConst.editIcon)
+                    InkWell(
+                      onTap: () {
+                        Navigator.push(context, CupertinoPageRoute(builder: (context) =>Edit_details(),));
+                      },
+                        child: SvgPicture.asset(IconConst.editIcon))
                   ],
                 ),
                Container(
