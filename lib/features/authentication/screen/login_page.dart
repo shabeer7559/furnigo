@@ -34,21 +34,22 @@ class _LoginPageState extends State<LoginPage> {
 
 
   final emailValidation =
-      RegExp(r"^.+@[a-zA-Z]+\.{1}[a-zA-Z]+(\.{0,1}[a-zA-Z]+)$");
+  RegExp(r"^.+@[a-zA-Z]+\.{1}[a-zA-Z]+(\.{0,1}[a-zA-Z]+)$");
   final passwordValidation =
-      RegExp(r"^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}");
+  RegExp(r"^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}");
   final formkey = GlobalKey<FormState>();
   List userList=[];
   getUserId() async {
-   var currentUserDetails = await FirebaseFirestore.instance.collection("users").where("email",isEqualTo: emailController.text).get().then((value) =>
-    value.docs.map((e) =>UserModel.fromMap(e.data()).toMap() ).toList()
+    var currentUserDetails = await FirebaseFirestore.instance.collection("users").where("email",isEqualTo: emailController.text).get().then((value) =>
+        value.docs.map((e) =>UserModel.fromMap(e.data()).toMap() ).toList()
     );
-   userList=currentUserDetails;
-   userDocId=userList[0]["id"];
-   userName=userList[0]["name"];
-   userEmail=userList[0]["email"];
-   userProfile=userList[0]["image"];
-setLoggedIn();
+    userList=currentUserDetails;
+    userDocId=userList[0]["id"];
+    userName=userList[0]["name"];
+    userEmail=userList[0]["email"];
+    userProfile=userList[0]["image"];
+    userPass=userList[0]["password"];
+    setLoggedIn();
 
   }
 
@@ -60,7 +61,7 @@ setLoggedIn();
     prefs.setString("image", userProfile);
     prefs.setString("id", userDocId);
   }
- Future<void> SignInwithEmailandPassword() async {
+  Future<void> SignInwithEmailandPassword() async {
     try {
       UserCredential userCredential = await FirebaseAuth.instance
           .signInWithEmailAndPassword(
@@ -75,13 +76,13 @@ setLoggedIn();
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Email Or Password Is Incorrect")));
     }
   }
-@override
+  @override
   void initState() {
     getUserId();
     // TODO: implement initState
     super.initState();
   }
-  
+
   @override
   bool password = false;
   Widget build(BuildContext context) {
@@ -222,20 +223,20 @@ setLoggedIn();
                             if (emailController.text != "" &&
                                 passwordController.text != "" &&
                                 formkey.currentState!.validate())
-                             SignInwithEmailandPassword();
+                              SignInwithEmailandPassword();
                             else {
                               emailController.text == ""
                                   ? ScaffoldMessenger.of(context).showSnackBar(
-                                      SnackBar(content: Text("Enter Your Email")))
+                                  SnackBar(content: Text("Enter Your Email")))
                                   : passwordController.text == ""
-                                      ? ScaffoldMessenger.of(context)
-                                          .showSnackBar(SnackBar(
-                                              content:
-                                                  Text("Enter Your Password")))
-                                      : ScaffoldMessenger.of(context)
-                                          .showSnackBar(SnackBar(
-                                              content:
-                                                  Text("Enter Valid Details")));
+                                  ? ScaffoldMessenger.of(context)
+                                  .showSnackBar(SnackBar(
+                                  content:
+                                  Text("Enter Your Password")))
+                                  : ScaffoldMessenger.of(context)
+                                  .showSnackBar(SnackBar(
+                                  content:
+                                  Text("Enter Valid Details")));
                             }
                           },
                           child: Container(
