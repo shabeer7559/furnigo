@@ -15,9 +15,9 @@ class AddingRepocitry{
 
 
     adding({
-   required name,required email,required password,required image, required favorite,required cartItems,required reviews,required address,required payment
+   required UserModel userModel
 }){
-     UserModel userdata=UserModel(name: name, email: email, password: password, image: image, favourite: favorite, cartItems: cartItems, reviews: reviews, id: '', address: address, payment:payment);
+     UserModel userdata=userModel;
      _users.add(userdata.toMap()).then((value) {
        UserModel idUpdate=userdata.copyWith(
          id: value.id

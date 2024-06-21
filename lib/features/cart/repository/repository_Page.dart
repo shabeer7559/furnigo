@@ -3,6 +3,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:furnigo/core/providers/firebase_providers.dart';
+import 'package:furnigo/models/booking_model.dart';
 import 'package:furnigo/models/cartModel.dart';
 import 'package:furnigo/models/user_model.dart';
 
@@ -20,15 +21,8 @@ final cartAddingRepositoryProvider=Provider((ref) => Cartadding(firestore: ref.w
   CollectionReference get _userDetails=>_firestore.collection("users");
   
   CollectionReference get _category=>_firestore.collection("category");
-//   adding({
-//     required usrDocId,required image,required name,required price,required quantity,
-//     // required image,required name, required price, required quantity,required id
-//     }){
-//     _userDetails.doc(usrDocId).update(({
-//   "cartItem":FieldValue.arrayUnion([{
-//     CartModels(image: image, name: name, price: price, quantity: quantity)
-// }])}));
-//   }
+
+  CollectionReference get _booking=>_firestore.collection("booking");
 
   Stream<UserModel> streamcart({required String docId})  {
     return _userDetails.doc(docId).snapshots().map((event) => UserModel.fromMap(event.data() as Map<String,dynamic>));
@@ -51,9 +45,16 @@ final cartAddingRepositoryProvider=Provider((ref) => Cartadding(firestore: ref.w
       "favourite":FieldValue.arrayRemove([favDetails[index]])
     });
   }
-
-
-
+  bookingAdding({
+    required BookingModel bookingModel
+    }){
+    BookingModel modelData=bookingModel;
+    return _booking.add(modelData.toMap()).then((value) {
+      BookingModel idUpdt=modelData.copyWith(
+        id: value.id
+      );value.update(idUpdt.toMap());
+    });
+  }
     }
 
     class CounterModel extends ChangeNotifier{

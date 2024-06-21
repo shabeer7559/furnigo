@@ -25,7 +25,7 @@ class _Edit_detailsState extends State<Edit_details> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: ColorConst.whit,
+        backgroundColor: Colors.white
       ),
       body: Column(
         children: [

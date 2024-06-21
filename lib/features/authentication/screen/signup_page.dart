@@ -13,6 +13,7 @@ import 'package:furnigo/features/authentication/screen/login_page.dart';
 import 'package:furnigo/features/constants/color_const.dart';
 import 'package:furnigo/features/constants/image_const.dart';
 import 'package:furnigo/features/homescreen/screen/bottomNavi.dart';
+import 'package:furnigo/models/user_model.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -39,7 +40,7 @@ class _SignUpState extends ConsumerState<SignUp> {
   final passwordValidation=RegExp(r"^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}");
   final formkey=GlobalKey<FormState>();
    data(){
-     ref.watch(addingControllerProvider).addingRepo(nameController.text, emailController.text, passwordController.text,imgurl,[],[],[],[],[]);
+     ref.watch(addingControllerProvider).addingRepo(UserModel(name: nameController.text, email: emailController.text, password: passwordController.text, image: imgurl, favourite: [], cartItems: [], reviews: [], id: "", address: [], payment: []));
    }
   var files;
   pickImage(ImageSource)async{

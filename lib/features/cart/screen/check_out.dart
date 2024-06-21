@@ -1,28 +1,50 @@
 import 'package:flml_internet_checker/flml_internet_checker.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:furnigo/features/constants/color_const.dart';
 import 'package:furnigo/features/constants/image_const.dart';
 import 'package:furnigo/features/homescreen/screen/success.dart';
+import 'package:furnigo/features/splash/screen/splash_screen.dart';
+import 'package:furnigo/models/booking_model.dart';
+import 'package:furnigo/models/cartModel.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
 
 import '../../../main.dart';
 import '../../constants/icon_const.dart';
+import '../controller/controller.dart';
 
 
 
-class checkOut extends StatefulWidget {
-  const checkOut({super.key, required totel});
+class checkOut extends ConsumerStatefulWidget {
+  final List cartModel;
+  final int totel;
+  const checkOut( {super.key,required this.cartModel,required this.totel});
 
   @override
-  State<checkOut> createState() => _checkOutState();
+  ConsumerState<checkOut> createState() => _checkOutState();
 }
 
-class _checkOutState extends State<checkOut> {
+class _checkOutState extends ConsumerState<checkOut> {
+  int delivery=5;
   @override
   Widget build(BuildContext context) {
+    bookingAdd(){
+      ref.watch(addingCartControllerProvider).bookingRepo(BookingModel(
+          cartModels: widget.cartModel,
+          userName: userName,
+          address: "shabeer,konnakkattil house malappuram kerala ",
+          payment: "card Payment",
+          orderAmount: widget.totel,
+          deliveryCharge: 5,
+          total: widget.totel+5,
+          status: 0,
+          time: DateTime.now().toString().substring(11,19),
+          date: DateTime.now().toString().substring(0,10),
+          id: ""));
+    }
     return InternetChecker(
       placeHolder: Lottie.asset(
           ImageConst.internetcheck,width: w*0.7
@@ -198,7 +220,7 @@ class _checkOutState extends State<checkOut> {
                           color: ColorConst.grey,
                           fontSize: w*0.045
                         ),),
-                        Text("\$95.00",
+                        Text("${widget.totel}",
                         style: TextStyle(
                             fontSize: w*0.045
                         ),),
@@ -214,7 +236,7 @@ class _checkOutState extends State<checkOut> {
                           color: ColorConst.grey,
                           fontSize: w*0.045
                         ),),
-                        Text("\$5.00",
+                        Text("${delivery}",
                         style: TextStyle(
                             fontSize: w*0.045
                         ),),
@@ -230,7 +252,7 @@ class _checkOutState extends State<checkOut> {
                           color: ColorConst.grey,
                           fontSize: w*0.045
                         ),),
-                        Text("\$100.00",
+                        Text("${widget.totel+delivery}",
                         style: TextStyle(
                             fontSize: w*0.045
                         ),),
@@ -242,6 +264,8 @@ class _checkOutState extends State<checkOut> {
             ),
             InkWell(
               onTap: () {
+
+                bookingAdd();
                 Navigator.push(context, CupertinoPageRoute(builder: (context) => Success(),));
               },
               child: Container(
