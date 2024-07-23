@@ -45,4 +45,10 @@ DeleteFav({required String id}){
   return _favorite.doc(id).delete();
 
 }
+ // DataRepository(){
+ //  List<String>data=[];
+ //  Future<List<String>>search(String query)async{
+ //    return data.where((element) => element.contains(query)).toList();
+ //  }
+ // }
 }
