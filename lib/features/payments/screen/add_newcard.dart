@@ -56,7 +56,7 @@ ref.watch(paymentControllerPro).addingPaymentController(docId: userDocId, cardMo
               onTap: () {
                 Navigator.push(context, CupertinoPageRoute(builder: (context) => paymentMethod(),));
               },
-                child: SvgPicture.asset(IconConst.backIcon)),
+                child:Icon(Icons.arrow_back_ios_sharp)),
           ),
           elevation: 0,
           centerTitle: true,

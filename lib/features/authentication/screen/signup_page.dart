@@ -24,7 +24,10 @@ import '../../constants/searchConantry.dart';
 String imgurl = '';
 
 class SignUp extends ConsumerStatefulWidget {
-  const SignUp({super.key});
+  final String emailGs;
+  final String imgGs;
+  final String nameGs;
+  const SignUp({super.key, required this.emailGs,required this.imgGs,required this.nameGs});
 
   @override
   ConsumerState<SignUp> createState() => _SignUpState();

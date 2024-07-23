@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:furnigo/features/constants/color_const.dart';
 import 'package:furnigo/features/constants/image_const.dart';
+import 'package:furnigo/features/homescreen/screen/bottomNavi.dart';
 import 'package:furnigo/features/homescreen/screen/home_page.dart';
 import 'package:furnigo/features/orders/my_orders.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -102,7 +103,7 @@ class _SuccessState extends State<Success> {
                   ),
                   InkWell(
                     onTap: () {
-                      Navigator.push(context, CupertinoPageRoute(builder: (context) => home(),));
+                      Navigator.push(context, CupertinoPageRoute(builder: (context) => bottomNavi(),));
                     },
                     child: Container(
                       height: h*0.08,

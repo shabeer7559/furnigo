@@ -15,6 +15,7 @@ import 'package:furnigo/features/settings/settings.dart';
 import 'package:furnigo/features/shipping/screen/shipping_address.dart';
 import 'package:furnigo/main.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:lottie/lottie.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -69,6 +70,7 @@ class _profile_pageState extends State<profile_page> {
               onTap: () async {
                  SharedPreferences prefs=await SharedPreferences.getInstance();
                  prefs.clear();
+                 GoogleSignIn().signOut();
                 Navigator.pushAndRemoveUntil(
                     context, CupertinoPageRoute(
                   builder: (context) => LoginPage(),), (route) => false);
