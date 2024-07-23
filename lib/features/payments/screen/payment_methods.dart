@@ -8,6 +8,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:furnigo/features/constants/color_const.dart';
 import 'package:furnigo/features/constants/icon_const.dart';
 import 'package:furnigo/features/constants/image_const.dart';
+import 'package:furnigo/features/homescreen/screen/bottomNavi.dart';
 import 'package:furnigo/features/payments/controller/controller.dart';
 import 'package:furnigo/features/payments/screen/add_newcard.dart';
 import 'package:furnigo/features/splash/screen/splash_screen.dart';
@@ -47,9 +48,9 @@ class _paymentMethodState extends ConsumerState<paymentMethod> {
             padding: EdgeInsets.all(w * 0.05),
             child: InkWell(
               onTap: () {
-                Navigator.pop(context);
+                Navigator.push(context, CupertinoPageRoute(builder: (context) => bottomNavi(),));
               },
-                child: SvgPicture.asset(IconConst.backIcon)),
+                child: Icon(Icons.arrow_back_ios_sharp)),
           ),
           elevation: 0,
           centerTitle: true,
@@ -65,7 +66,24 @@ class _paymentMethodState extends ConsumerState<paymentMethod> {
                  List carddData=data.payment;
                   return
                       Expanded(
-                        child: ListView.separated(
+                        child: carddData.isEmpty?Center(
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text("Please Add Your Payment Method",
+                                style: TextStyle(
+                                    fontSize: w*0.04
+                                ),),
+                              Container(
+                                height: h*0.5,
+                                width: w*0.6,
+                                decoration: BoxDecoration(
+                                    image: DecorationImage(image: AssetImage(ImageConst.curvedarrow))
+                                ),
+                              )
+                            ],
+                          ),
+                        ):ListView.separated(
                           shrinkWrap: true,
                             itemBuilder: (context, index) {
                           return Container(

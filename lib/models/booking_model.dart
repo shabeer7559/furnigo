@@ -3,7 +3,7 @@ import 'package:furnigo/models/cartModel.dart';
 class BookingModel {
   List cartModels;
   String userName;
-  String address;
+  List address;
   String payment;
   int orderAmount;
   int deliveryCharge;
@@ -45,7 +45,7 @@ class BookingModel {
     return BookingModel(
       cartModels: map["cartModels"] ?? [],
       userName: map["userName"] ?? "",
-      address: map["address"] ?? "",
+      address: map["address"] ?? [],
       payment: map["payment"] ?? 0,
       orderAmount: map["orderAmount"] ?? 0,
       deliveryCharge: map["deliveryCharge"] ?? 0,
@@ -59,7 +59,7 @@ class BookingModel {
   BookingModel copyWith({
     List? cartModels,
     String? userName,
-    String? address,
+    List? address,
     String? payment,
     int? orderAmount,
     int? deliveryCharge,

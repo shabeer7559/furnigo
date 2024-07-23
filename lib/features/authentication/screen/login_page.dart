@@ -15,6 +15,7 @@ import 'package:furnigo/features/homescreen/screen/bottomNavi.dart';
 import 'package:furnigo/features/homescreen/screen/home_page.dart';
 import 'package:furnigo/models/user_model.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:lottie/lottie.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -50,7 +51,6 @@ class _LoginPageState extends State<LoginPage> {
     userProfile=userList[0]["image"];
     userPass=userList[0]["password"];
     setLoggedIn();
-
   }
 
   setLoggedIn() async {
@@ -61,19 +61,43 @@ class _LoginPageState extends State<LoginPage> {
     prefs.setString("image", userProfile);
     prefs.setString("id", userDocId);
   }
-  Future<void> SignInwithEmailandPassword() async {
-    try {
-      UserCredential userCredential = await FirebaseAuth.instance
-          .signInWithEmailAndPassword(
-        email: emailController.text.trim(),
-        password: passwordController.text.trim(),
-      );
+  signwithemailandPass() async {
+    QuerySnapshot userdetil=await FirebaseFirestore.instance.collection("users").where("email", isEqualTo: emailController.text).get();
+    if(userdetil.docs.isNotEmpty){
       getUserId();
-
       Navigator.pushAndRemoveUntil(context, CupertinoPageRoute(builder: (context) => bottomNavi(),),
               (route) => false);
-    } on FirebaseAuthException catch(e){
+    }else{
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Email Or Password Is Incorrect")));
+    }
+  }
+  // Future<void> SignInwithEmailandPassword() async {
+  //   try {
+  //     UserCredential userCredential = await FirebaseAuth.instance
+  //         .signInWithEmailAndPassword(
+  //       email: emailController.text.trim(),
+  //       password: passwordController.text.trim(),
+  //     );
+  //     getUserId();
+  //     Navigator.pushAndRemoveUntil(context, CupertinoPageRoute(builder: (context) => bottomNavi(),),
+  //             (route) => false);
+  //   } on FirebaseAuthException catch(e){
+  //     ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Email Or Password Is Incorrect")));
+  //   }
+  // }
+  signInWithgoogle() async {
+    final GoogleSignInAccount? googleSignInAccount= await GoogleSignIn().signIn();
+    final GoogleSignInAuthentication googleSignInAuthentication= await googleSignInAccount!.authentication;
+    final AuthCredential credential=GoogleAuthProvider.credential(
+      accessToken: googleSignInAuthentication.accessToken,
+      idToken: googleSignInAuthentication.idToken,
+    );
+    var googleUser = await FirebaseAuth.instance.signInWithCredential(credential);
+    QuerySnapshot usersList =await FirebaseFirestore.instance.collection("users").where("email",isEqualTo: googleUser.user!.email).get();
+    if(usersList.docs.isNotEmpty){
+      Navigator.pushAndRemoveUntil(context, CupertinoPageRoute(builder: (context) => bottomNavi(),), (route) => false,);
+    }else{
+      Navigator.push(context, CupertinoPageRoute(builder: (context) => SignUp(emailGs: googleUser.user!.email!, imgGs: googleUser.user!.photoURL!, nameGs: googleUser.user!.displayName!,),));
     }
   }
   @override
@@ -205,11 +229,11 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                         InkWell(
                           onTap: () {
-                            Navigator.push(
-                                context,
-                                CupertinoPageRoute(
-                                  builder: (context) => ForgetPassword(),
-                                ));
+                            // Navigator.push(
+                            //     context,
+                            //     CupertinoPageRoute(
+                            //       builder: (context) => ForgetPassword(),
+                            //     ));
                           },
                           child: Text(
                             "Forgot Password",
@@ -223,7 +247,7 @@ class _LoginPageState extends State<LoginPage> {
                             if (emailController.text != "" &&
                                 passwordController.text != "" &&
                                 formkey.currentState!.validate())
-                              SignInwithEmailandPassword();
+                              signwithemailandPass();
                             else {
                               emailController.text == ""
                                   ? ScaffoldMessenger.of(context).showSnackBar(
@@ -265,10 +289,46 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                         InkWell(
                           onTap: () {
+                            signInWithgoogle();
+                          },
+                          child: Container(
+                              height: h*0.06,
+                              width: w*0.7,
+                              decoration: BoxDecoration(
+                                  border: Border.all(color: ColorConst.primaryColor),
+                                  // boxShadow: [
+                                  //   BoxShadow(
+                                  //       offset: Offset(0, 10),
+                                  //       blurRadius: 20,
+                                  //       color: ColorConst.primaryColor.withOpacity(0.25)
+                                  //   )
+                                  // ],
+                                  // color: ColorConst.primaryColor,
+                                  borderRadius: BorderRadius.circular(w*0.02)
+                              ),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  Container(
+                                    height: w * 0.1,
+                                    width: w * 0.1,
+                                    child: Image.asset(ImageConst.google),
+                                  ),
+                                  Text("Continue with Google",style: TextStyle(
+                                      fontSize: w*0.04,
+                                      color: ColorConst.primaryColor,
+                                      fontWeight: FontWeight.w500
+                                  ),)
+                                ],
+                              )
+                          ),
+                        ),
+                        InkWell(
+                          onTap: () {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => SignUp(),
+                                  builder: (context) => SignUp(emailGs: '', imgGs: '', nameGs: '',),
                                 ));
                           },
                           child: Text(

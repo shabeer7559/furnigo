@@ -19,7 +19,7 @@ class _CustViewState extends State<CustView> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: h*0.31,
+      height: h*0.3,
       child: Column(
         children: [
           Row(

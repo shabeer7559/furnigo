@@ -37,6 +37,7 @@ class _ratingState extends ConsumerState<rating> {
   TextEditingController reviewController=TextEditingController();
   int starRate=0;
   List reviews=[];
+    int reviewsno=0;
   userReviewAdding(){
     ref.watch(addingReviweControllsProvider).userReviewContro(id: userDocId, name: widget.name, image: widget.image, review: reviewController.text, date:DateTime.now().toString().substring(0,10) , rating: 1, price: widget.price);
   }
@@ -59,7 +60,7 @@ class _ratingState extends ConsumerState<rating> {
                 onTap: () {
                   Navigator.pop(context);
                 },
-                child: SvgPicture.asset(IconConst.arrowback)),
+                child: Icon(Icons.arrow_back_ios_sharp,color: ColorConst.primaryColor,)),
           ),
           title: Text("Rating & Review",style: GoogleFonts.gelasio(fontSize: w*0.055,fontWeight: FontWeight.w700),),
         ),
@@ -98,7 +99,7 @@ class _ratingState extends ConsumerState<rating> {
                           ),),
                         ],
                       ),
-                      Text("10 reviews",style: TextStyle(
+                      Text("${reviewsno} reviews",style: TextStyle(
                         fontWeight: FontWeight.w500,
                         fontSize: w*0.055
                       ),)
@@ -118,8 +119,19 @@ class _ratingState extends ConsumerState<rating> {
             }))).when(
                 data: (data) {
                   List reviewData=data.productReview;
+                  reviewsno=reviewData.length;
                   return  Expanded(
-                    child: ListView.separated(
+                    child:reviewData.isEmpty?Column(
+                      children: [
+                        Container(
+                          height: h*0.1,
+                          width: h*1,
+                          child: Icon(Icons.edit_outlined,size: h*0.04,),
+                        ),
+                        Text("Yay! No Reviews"),
+                        Text("No reviews yet. Share your thoughts with other customers"),
+                      ],
+                    ): ListView.separated(
                       scrollDirection: Axis.vertical,
                       shrinkWrap: true,
                       physics: BouncingScrollPhysics(),

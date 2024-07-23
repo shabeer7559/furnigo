@@ -10,9 +10,11 @@ import 'package:furnigo/features/cart/controller/controller.dart';
 import 'package:furnigo/features/constants/color_const.dart';
 import 'package:furnigo/features/constants/icon_const.dart';
 import 'package:furnigo/features/constants/image_const.dart';
+import 'package:furnigo/features/homescreen/screen/bottomNavi.dart';
 import 'package:furnigo/models/cartModel.dart';
 
 import 'package:google_fonts/google_fonts.dart';
+import 'package:lottie/lottie.dart';
 
 import '../../../main.dart';
 
@@ -58,7 +60,7 @@ for(int i=0;i<cartItems.length;i++){
       appBar: AppBar(
         centerTitle: true,
         leading: InkWell(
-            onTap: () => Navigator.pop(context),
+            onTap: () => Navigator.push(context, CupertinoPageRoute(builder: (context) => bottomNavi(),)),
             child: Icon(Icons.arrow_back_ios_sharp)),
         title: Text(
           "My cart",
@@ -169,7 +171,39 @@ for(int i=0;i<cartItems.length;i++){
                cartData = data.cartItems;
               return Expanded(
                 flex: 1,
-                child: ListView.separated(
+                child: cartData.isEmpty?Column(
+
+                  children: [
+                    Container(
+                      height: w*0.7,
+                      width: w*1,
+                      child:Lottie.asset(ImageConst.emptycart) ,
+                    ),
+                    Text("Your Cart Is Empty!",style: TextStyle(
+                      fontWeight: FontWeight.w600,
+                      fontSize: w*0.04
+                    ),),
+                    InkWell(
+                      onTap: () {
+                        Navigator.push(context, CupertinoPageRoute(builder: (context) => bottomNavi(),));
+                      },
+                      child: Container(
+                        height: h*0.05,
+                        width: w*0.3,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(w*0.03),
+                          border: Border.all(color: ColorConst.primaryColor)
+                        ),
+                        child:Center(
+                          child: Text("Shop Now",style: TextStyle(
+                              fontWeight: FontWeight.w600,
+                              fontSize: w*0.04
+                          ),),
+                        ) ,
+                      ),
+                    )
+                  ],
+                ):ListView.separated(
                     shrinkWrap: true,
                     physics: BouncingScrollPhysics(),
                     scrollDirection: Axis.vertical,
@@ -382,7 +416,7 @@ for(int i=0;i<cartItems.length;i++){
               return Text(error.toString());
             },
             loading: () {
-              return CircularProgressIndicator();
+              return Center(child: CircularProgressIndicator());
             },
           ),
           SizedBox(

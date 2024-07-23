@@ -28,10 +28,10 @@ class _AddshippingState extends ConsumerState<Addshipping> {
   TextEditingController nameController=TextEditingController();
   TextEditingController addressController=TextEditingController();
   TextEditingController zipController=TextEditingController();
-   String? countryValue;
-   String? stateValue;
-   String? cityValue;
-   String? dropdownValue;
+   String countryValue="";
+   String stateValue='';
+   String cityValue='';
+   String dropdownValue='';
    var address=[
      "Home",
      "Office"
@@ -41,10 +41,10 @@ class _AddshippingState extends ConsumerState<Addshipping> {
          name: nameController.text,
          address: addressController.text,
          zipcode: zipController.text,
-         country: countryValue!,
-         state: stateValue!,
-         city: cityValue!,
-         type: dropdownValue!));
+         country: countryValue,
+         state: stateValue,
+         city: cityValue,
+         type: dropdownValue));
    }
   @override
   Widget build(BuildContext context) {
@@ -63,7 +63,7 @@ class _AddshippingState extends ConsumerState<Addshipping> {
               onTap: () {
                 Navigator.push(context, CupertinoPageRoute(builder: (context) => shippingAddress(),));
               },
-                child: SvgPicture.asset(IconConst.backIcon)),
+                child: Icon(Icons.arrow_back_ios_sharp,color: ColorConst.primaryColor,)),
           ),
           elevation: 0,
           centerTitle: true,
@@ -179,31 +179,7 @@ class _AddshippingState extends ConsumerState<Addshipping> {
 
                           ),
                         ),
-                        Container(
-                          height: h*0.07,
-                          decoration:BoxDecoration(
-                            borderRadius: BorderRadius.circular(w*0.02),
-                            border: Border.all(color: CupertinoColors.black.withOpacity(0.5) )
-                          ),
-                          child: DropdownButton(
-                            underline: SizedBox(),
-                            isExpanded: true,
-                            hint: Text("Address Type"),
-                            icon: Center(child: Icon(Icons.keyboard_arrow_down_outlined)),
-                            value: dropdownValue,
-                            items: address.map((String? value) {
-                              return DropdownMenuItem(
-                                value: value,
-                                child: Text(value!),
-                              );
-                            },).toList(),
-                            onChanged: (newvalue) {
-                              setState(() {
-                                dropdownValue=newvalue;
-                              });
-                            },
-                          ),
-                        )
+
                       ],
                     ),
 

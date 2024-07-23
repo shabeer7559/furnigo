@@ -22,6 +22,7 @@ import '../../cart/screen/product_details.dart';
 import '../../splash/screen/splash_screen.dart';
 
 UserModel? currentUserModel;
+String? docId;
 class home extends ConsumerStatefulWidget {
   const home({super.key});
 
@@ -31,7 +32,7 @@ class home extends ConsumerStatefulWidget {
 
 class _homeState extends ConsumerState<home> {
   int selectedIndex=0;
-  String? docId;
+
   List bookMark=[];
 
 

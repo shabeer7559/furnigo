@@ -5,6 +5,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:furnigo/features/constants/color_const.dart';
 import 'package:furnigo/features/constants/image_const.dart';
+import 'package:furnigo/features/homescreen/screen/bottomNavi.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
 
@@ -63,6 +64,11 @@ class _notificationState extends State<notification> {
         appBar: AppBar(
           centerTitle: true,
           title: Text("Notification",style:GoogleFonts.merriweather(fontWeight: FontWeight.w700,fontSize: w*0.045) ,),
+          leading: InkWell(
+             onTap: () {
+               Navigator.push(context, CupertinoPageRoute(builder: (context) => bottomNavi(),));
+             },
+              child: Icon(Icons.arrow_back_ios_sharp)),
         ),
         body: Column(
           children: [

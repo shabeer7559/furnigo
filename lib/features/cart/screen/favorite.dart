@@ -15,6 +15,7 @@ import 'package:furnigo/features/homescreen/screen/bottomNavi.dart';
 import 'package:furnigo/features/homescreen/screen/home_page.dart';
 
 import 'package:google_fonts/google_fonts.dart';
+import 'package:lottie/lottie.dart';
 
 import '../../../main.dart';
 import '../../splash/screen/splash_screen.dart';
@@ -71,7 +72,39 @@ class _favoriteState extends ConsumerState<favorite> {
           ref.watch(favStreamProvider(userDocId)).when(data: (data) {
             List favDetails = data.favourite;
             return Expanded(
-              child: ListView.separated(
+              child: favDetails.isEmpty?Column(
+
+                children: [
+                  Container(
+                    height: w*0.7,
+                    width: w*1,
+                    child:Lottie.asset(ImageConst.emptylikes) ,
+                  ),
+                  Text("You haven't added any products yet",style: TextStyle(
+                      fontWeight: FontWeight.w600,
+                      fontSize: w*0.04
+                  ),),
+                  InkWell(
+                    onTap: () {
+                      Navigator.push(context, CupertinoPageRoute(builder: (context) => bottomNavi(),));
+                    },
+                    child: Container(
+                      height: h*0.05,
+                      width: w*0.4,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(w*0.03),
+                          border: Border.all(color: ColorConst.primaryColor)
+                      ),
+                      child:Center(
+                        child: Text("Find Items To Save",style: TextStyle(
+                            fontWeight: FontWeight.w600,
+                            fontSize: w*0.04
+                        ),),
+                      ) ,
+                    ),
+                  )
+                ],
+              ):ListView.separated(
                 physics: BouncingScrollPhysics(),
                 scrollDirection: Axis.vertical,
                 shrinkWrap: true,
@@ -159,7 +192,7 @@ class _favoriteState extends ConsumerState<favorite> {
               error: (error, stackTrace) {
             return Text(error.toString());
           }, loading: () {
-            return CircularProgressIndicator();
+            return Center(child: CircularProgressIndicator());
           })
         ],
       ),

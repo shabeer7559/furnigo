@@ -33,6 +33,11 @@ class _Edit_detailsState extends State<Edit_details> {
       internetConnectionText: "Please Check Your Internet Connection",
       child: Scaffold(
         appBar: AppBar(
+          leading: InkWell(
+              onTap: () {
+                Navigator.pop(context);
+              },
+              child: Icon(Icons.arrow_back_ios_sharp)),
           backgroundColor: ColorConst.whit,
         ),
         body: Column(
@@ -164,7 +169,7 @@ class _Edit_detailsState extends State<Edit_details> {
                 ),
                 InkWell(
                   onTap: () {
-                    Navigator.push(context, CupertinoPageRoute(builder: (context) => profile_page(),));
+                    Navigator.pop(context);
                   },
                   child: Container(
                     height: h*0.06,

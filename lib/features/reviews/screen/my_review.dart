@@ -51,7 +51,17 @@ class _MyReviewState extends ConsumerState<MyReview> {
                 data: (data) {
                   List userReviews=data.reviews;
                   return  Expanded(
-                    child: ListView.separated(
+                    child: userReviews.isEmpty?Column(
+                      children: [
+                        Container(
+                          height: h*0.1,
+                          width: h*1,
+                          child: Icon(Icons.edit_outlined,size: h*0.06,),
+                        ),
+                        Text("Yay! No Reviews"),
+                        Text("You have no products to review right now"),
+                      ],
+                    ):ListView.separated(
                         shrinkWrap: true,
                         scrollDirection: Axis.vertical,
                         physics: BouncingScrollPhysics(),

@@ -25,4 +25,8 @@ class ImageConst{
   static const catChair="assets/image/catChair.jpg";
   static const catPop="assets/image/catChair.jpg";
   static const catTable="assets/image/catTable.jpg";
+  static const curvedarrow="assets/image/curved down arrow.png";
+  static const google="assets/image/Google.png";
+  static const emptylikes="assets/image/empty cart.json";
+  static const emptycart="assets/image/empty likes.json";
 }
