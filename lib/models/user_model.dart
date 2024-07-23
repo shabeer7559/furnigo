@@ -9,6 +9,7 @@ class UserModel {
   String id;
   List address;
   List payment;
+  List search;
 
   UserModel({
     required  this.name,
@@ -21,6 +22,7 @@ class UserModel {
     required this.id,
     required this.address,
     required this.payment,
+    required this.search,
   });
 
   Map<String,dynamic> toMap(){
@@ -35,6 +37,7 @@ class UserModel {
       "id":this.id,
       "address": this.address,
       "payment": this.payment,
+      "search": this.search,
     };
   }
   factory UserModel.fromMap(Map<String, dynamic>map){
@@ -49,6 +52,7 @@ class UserModel {
       id: map["id"]??'',
       address: map["address"]??[],
       payment: map["payment"]??[],
+      search: map["search"]??[],
     );
   }
   UserModel copyWith({
@@ -62,6 +66,7 @@ class UserModel {
     String? id,
     List? address,
     List? payment,
+    List? search,
   }) {
     return UserModel(
       name: name ?? this.name,
@@ -74,6 +79,7 @@ class UserModel {
         id: id??this.id,
       address:  address??this.address,
       payment:  payment??this.payment,
+      search:  search??this.search,
     );
   }
 }
